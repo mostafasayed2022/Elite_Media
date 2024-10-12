@@ -300,9 +300,9 @@
 
 }
 
-.cardss:hover .card-image {
+/* .cardss:hover .card-image {
   opacity: 0; 
-}
+} */
 
 .cardss:hover .video {
   opacity: 1; 
