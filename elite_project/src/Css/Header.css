@@ -1,0 +1,133 @@
+:root {
+    --color1: #00AEEF; /* Primary color */
+    --color2: #F3D70F; /* Accent color */
+    --color3: #000000; /* Text color */
+    --color4: #515050; /* Secondary color */
+    --color5: #FFFFFF; /* Background color */
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--color5);
+    color: var(--color3);
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for a more distinct header */
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .nav-links, .mobile-nav {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-list {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    color: var(--color3);
+    padding: 0 20px;
+    overflow: hidden;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .btn{
+    background-color: var(--color2);
+    width: 120px;
+    height: 45px;
+    text-transform: uppercase;
+    color: var(--color3);
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+  }
+  .btn a:hover,
+    .btn:hover
+  {
+    color: var(--color5);
+    border-radius: 5px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: var(--color3);
+    transition: color 0.3s ease-in-out;
+  }
+
+  .nav-link:hover {
+    color: var(--color1);
+  }
+  
+  .mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color3);
+    font-size: 1.8rem; /* Increased size for better visibility */
+    cursor: pointer;
+    margin-left: auto; /* Align the button to the right in mobile view */
+  }
+  
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 0; /* Set initial height to zero */
+    overflow: hidden; /* Hide the content when closed */
+    opacity: 0; /* Hide content initially */
+  }
+  
+  /* Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 15px; /* Adjust padding for mobile */
+    }
+  
+    .nav-links {
+      display: none; /* Hide the desktop menu on mobile */
+    }
+  
+    .mobile-menu-button {
+      display: block; /* Show the hamburger menu button */
+    }
+  
+    .mobile-nav.open {
+      display: flex;
+      max-height: 500px; /* Set max height when open to show the content */
+      opacity: 1; /* Make the content visible */
+    }
+  }
+  

@@ -1,16 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
 
-const About=()=>{
+
+
+const Footer=()=>{
     return(
         <>
-            <h1>About</h1>
+            
         </>
     );
 }
 
 
-
-
-
-export default About;
+export default Footer;
