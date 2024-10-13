@@ -7,12 +7,15 @@ import ServicesSection from "../ServicesSection ";
 import image1 from "../../assets/home/image1.png";
 import image2 from "../../assets/home/image2.png"
 import Cards from "../Cards";
+import Header from "../Header";
 
 
 
 const Home = () => {
     return (
         <>
+            <Header />
+
             <div className="media-header-container">
                 <div className="media-info">
                     <span className="badge">A MEDIA SERVICES</span>
@@ -28,35 +31,35 @@ const Home = () => {
                     <img src={logo} alt="EMH Logo" className="emh-logo" />
                 </div>
             </div>
-            
+
             <section>
-                <Slick/>
+                <Slick />
             </section>
-            
+
             <section>
                 <ServicesSection />
             </section>
-            
+
             <section>
                 <div className="cards">
                     <div className="card">
-                        <img  src={image1} alt="" />
+                        <img src={image1} alt="" />
                     </div>
                     <div className="card">
                         <img src={image2} alt="" />
                     </div>
                 </div>
             </section>
-            
+
             <section>
                 <div className="title-services">
                     <h1>Ready to Elevate Your Career ?
-                    Join Our Elite Squad of Innovators !</h1>
+                        Join Our Elite Squad of Innovators !</h1>
                 </div>
             </section>
-            
+
             <section>
-                <Cards/>
+                <Cards />
             </section>
         </>
     );

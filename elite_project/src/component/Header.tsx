@@ -1,61 +1,48 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useState } from "react";
-import '../Css/Header.css';
-import { Link } from "react-router-dom";
-import logo from "../assets/logos/logo1.png";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "../Css/Header.css";
+import logo from '../assets/logos/logo1.png'; // Replace with your actual logo file path
 
 const Header: React.FC = () => {
-    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const toggleMobileMenu = () => {
-        setMobileMenuOpen(!isMobileMenuOpen);
-    };
-
     return (
-        <>
-            <header className="header-container">
+        <header className="header-container">
+            <div className="logo-container">
                 <img src={logo} alt="Logo" className="logo" />
-                <button className="mobile-menu-button" onClick={toggleMobileMenu}>
-                    ☰
-                </button>
-                <nav className="nav-links">
-                    <ul className="nav-list">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/about">About</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/work">Work</Link>
-                        </li>
-                    </ul>
+            </div>
+            <nav className="nav-links">
+                <ul className="nav-list">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/">HOME</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/work">WORK</Link>
+                    </li>
 
-                </nav>
-                <li className="nav-item btn">
-                    <Link className="nav-link" to="/contact">Contact</Link>
-                </li>
-                
-                
-                <div className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
-                    <ul className="nav-list">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/" onClick={toggleMobileMenu}>Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/about" onClick={toggleMobileMenu}>About</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/work" onClick={toggleMobileMenu}>Work</Link>
-                        </li>
-                        <li className="nav-item btn">
-                            <Link className="nav-link" to="/contact" onClick={toggleMobileMenu}>Contact</Link>
-                        </li>
-                    </ul>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/about">ABOUT</Link>
+                    </li>
+
+                    {/* <li className="nav-item">
+                        <Link className="nav-link" to="/services">SERVICES</Link>
+                    </li> */}
+                </ul>
+            </nav>
+            <div className='contact-button-cont'>
+                <div className="contact-button-container ">
+                    <Link className="contact-button" to="/contact">CONTACT</Link>
                 </div>
-            </header>
-        </>
+
+                <div className="contact-button-container ">
+                    <Link className="contact-button" to="/login">LOGIN</Link>
+                </div>
+
+                <div className="contact-button-container ">
+                    <Link className="contact-button" to="/register">REGISTER</Link>
+                </div>
+            </div>
+
+        </header>
     );
-}
+};
 
 export default Header;

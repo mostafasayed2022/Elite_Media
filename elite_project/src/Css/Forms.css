@@ -1,0 +1,135 @@
+/* Forms.css */
+:root {
+    --color1: #00AEEF; /* Primary color */
+    --color2: #F3D70F; /* Accent color */
+    --color3: #000000; /* Text color */
+    --color4: #515050; /* Secondary color */
+    --color5: #FFFFFF; /* Background color */
+    --font-family:"Montserrat", sans-serif;
+  }
+  
+  
+  * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--color5);
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--color5);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-title {
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: var(--font-family);
+    color: var(--color1);
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--color1);
+}
+
+.logo {
+    width: 100px; 
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid var(--color1);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--color2);
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+    color: var(--color1);
+    transition: 0.5s ease-out;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: var(--color3);
+}
+
+.login-button {
+    background-color: var(--color2);
+    color: var(--color3);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    color: var(--color5);
+}
+
+
+
+
+.login-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-footer a {
+    color: var(--color1);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
