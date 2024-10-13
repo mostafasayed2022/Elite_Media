@@ -185,6 +185,10 @@
 
 }
 
+.view-work-button a{
+  text-decoration: none;
+}
+
 .view-work-button:hover {
   color: var(--color5);
   border-radius: 8px;
@@ -315,6 +319,153 @@
   }
 }
 
+.btn-work{
+  margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.btn-work a{
+  text-decoration: none;
+}
 
-  
 /* End cards */
+
+/* start CallAction */
+
+  .CallToAction{
+    background-image: url("../../src//assets//home//background-team.png");
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 150px;
+  }
+  
+  
+.action{
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  transform: translate(-50px, -50px);
+  text-align: center;
+  }
+  
+  .action .text-action .text-action-1 {
+    font-size: 70px;
+    font-family: var(--font-family);
+    color: var(--color1);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  
+  .action .text-action .text-action-2 {
+    color: var(--color5);
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+  @media (max-width: 1024px) {
+    .action .text-action .text-action-1 {
+      font-size: 45px; /* Reduce font size for tablets */
+    }
+  
+    .action .text-action .text-action-2 {
+      font-size: 18px; /* Adjust subtext font size for tablets */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .action {
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Center the text on mobile devices */
+    }
+  
+    .action .text-action .text-action-1 {
+      font-size: 35px; /* Further reduce font size for mobile devices */
+    }
+  
+    .action .text-action .text-action-2 {
+      font-size: 16px; /* Further adjust subtext font size for mobile devices */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .action .text-action .text-action-1 {
+      font-size: 28px; /* Smaller font size for very small screens */
+    }
+  
+    .action .text-action .text-action-2 {
+      font-size: 14px; /* Smaller subtext for very small screens */
+    }
+  }
+  
+/* End CallAction */
+
+/* start contact message */
+.contact-message {
+  background-color: var(--color1);
+  position: relative;
+  width: 900px;
+  margin: 50px auto; /* Center horizontally */
+  padding: 20px; /* Optional padding */
+  top: 50%;
+  left: 50%;
+  transform: translate(-83%,-10%); /* Center the element on the page */
+  text-align: center;
+  height: 490px;
+}
+.action2 .text-action2{
+  line-height: 1;
+  padding: 20px;
+}
+
+.action2 .text-action-2{
+  color: var(--color5);
+  font-size: 50px;
+  text-transform: uppercase;
+  font-family: var(--font-family);
+  font-weight: bold;
+}
+
+.action2 .text-action-3{
+  color: var(--color5);
+  font-size: 30px;
+  font-weight: 100;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+  .contact-message {
+    width: 95%; /* Increase width for smaller screens */
+    transform: translate(-50%, -20%); /* Adjust positioning for smaller devices */
+  }
+
+  .action2 .text-action-2 {
+    font-size: 35px; /* Reduce font size on smaller screens */
+  }
+
+  .action2 .text-action-3 {
+    font-size: 20px; /* Reduce font size on smaller screens */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .contact-message {
+    padding: 15px;
+    transform: translate(-50%, -15%); /* Adjust positioning for very small screens */
+  }
+
+  .action2 .text-action-2 {
+    font-size: 28px; /* Further reduce font size for mobile */
+  }
+
+  .action2 .text-action-3 {
+    font-size: 18px; /* Further reduce font size for mobile */
+  }
+}
+
+/* end contact message */

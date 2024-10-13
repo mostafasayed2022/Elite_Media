@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Css/Home.css';
 import mediaVideo from "../assets/home/Media Production.mov"
+import { Link } from 'react-router-dom';
 
 const ServicesSection = () => {
     return (
@@ -11,7 +12,7 @@ const ServicesSection = () => {
                 <h1 className="services-title">
                     Things we're <span className="highlight-services">Great</span> at
                 </h1>
-                <button className="view-work-button">VIEW ALL WORK</button>
+                <Link to={"/work"}><button className="view-work-button btn-work">VIEW ALL WORK</button></Link>
             </div>
             <div className="services-media">
             <video className="media-video" src={mediaVideo}  autoPlay loop muted />

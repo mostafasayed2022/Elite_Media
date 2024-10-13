@@ -8,6 +8,7 @@ import image1 from "../../assets/home/image1.png";
 import image2 from "../../assets/home/image2.png"
 import Cards from "../Cards";
 import Header from "../Header";
+import { Link } from "react-router-dom";
 
 
 
@@ -60,6 +61,37 @@ const Home = () => {
 
             <section>
                 <Cards />
+                <div className="btn-work">
+                    <Link to={"/work"}><button className="view-work-button btn-work">VIEW ALL WORK</button></Link>
+                </div>
+            </section>
+            <section className="CallToAction">
+                <div className="action">
+                    <div className="text-action">
+                        <p className="text-action-1">Ready to Elevate Your Career ?
+                            Join Our Elite Squad of Innovators !
+                        </p>
+                        <p className="text-action-2">Unleash Your Potential and Become Part of the Creative Force Shaping the Future of Marketing !
+                        </p>
+                    </div>
+                    <div className="btn-work">
+                        <Link to={"/work"}><button className="view-work-button btn-work">VIEW ALL WORK</button></Link>
+                    </div>
+                </div>
+
+            </section>
+            <section className="contact-message">
+                <div className="action2">
+                    <div className="text-action2">
+                        <p className="text-action-2">Transform Your Vision into Reality with Elite Marketing Solutions !
+                        </p>
+                        <p className="text-action-3">Elevate Your Brand with Strategic and Creative Excellence.
+                        </p>
+                    </div>
+                    <div className="btn-work">
+                        <Link to={"/contact"}><button className="view-work-button btn-work">CONTACT</button></Link>
+                    </div>
+                </div>
             </section>
         </>
     );

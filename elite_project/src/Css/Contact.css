@@ -1,0 +1,65 @@
+:root {
+    --color1: #00AEEF; /* Primary color */
+    --color2: #F3D70F; /* Accent color */
+    --color3: #000000; /* Text color */
+    --color4: #515050; /* Secondary color */
+    --color5: #FFFFFF; /* Background color */
+    --font-family: "Montserrat", sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+  }
+  
+.contact-info-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.contact-details {
+  background-color: #00a7e1; /* Blue background */
+  padding: 40px;
+  color: white;
+}
+
+.contact-details h2 {
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  width: 60%;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input, 
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.contact-btn {
+  background-color: #ffd700; /* Yellow color */
+  padding: 10px 20px;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+}
