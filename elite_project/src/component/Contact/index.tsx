@@ -11,10 +11,12 @@ const Contact: React.FC = () => {
             <div className="contact-info-container">
                 <div className="contact-details">
                     <h2>CONTACT INFORMATION</h2>
-                    <p><i className="fas fa-map-marker-alt"></i> Mahmoud Mabrouk, 5 St. Omneya<br />
-                        Sheraton H, Ezzelden, Cairo, Egypt</p>
-                    <p className="mail"><i className="fas fa-envelope"></i>  <a href="mailto:hello@elitemediahouses.com">hello@elitemediahouses.com</a></p>
-                    <p className="phone"><i className="fas fa-phone"></i>  Egypt (+20) 1067559248</p>
+                    <p className="address"><i className="fas fa-map-marker-alt"></i> Mahmoud Mabrouk, 5 St. Omneya<br /><span> Sheraton H, Ezzelden, Cairo, Egypt</span></p>
+                    <div className="mail-phone">
+                        <p className="mail"><i className="fas fa-envelope"></i>  <a href="mailto:hello@elitemediahouses.com">hello@elitemediahouses.com</a></p>
+                        <p className="phone"><i className="fas fa-phone"></i>  Egypt (+20) 1067559248</p>
+                    </div>
+
                     <div className="social-icons">
                         {/* Social Icons */}
                         <a href="#"><i className="fab fa-facebook-f"></i></a>
@@ -56,7 +58,7 @@ const Contact: React.FC = () => {
                     </form>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 }

@@ -4,6 +4,7 @@ import Header from "../Header";
 import "../../Css/About.css"
 import "../../Css/Home.css"
 import CardsWork from "../CardsWork";
+import Footer from "../Footer";
 const Work = () => {
     return (
         <>
@@ -22,6 +23,7 @@ const Work = () => {
             <section>
                 <CardsWork/>
             </section>
+            <Footer/>
         </>
     );
 }

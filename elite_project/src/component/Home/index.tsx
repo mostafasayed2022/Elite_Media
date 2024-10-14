@@ -9,6 +9,7 @@ import image2 from "../../assets/home/image2.png"
 import Cards from "../Cards";
 import Header from "../Header";
 import { Link } from "react-router-dom";
+import Footer from "../Footer";
 
 
 
@@ -75,7 +76,7 @@ const Home = () => {
                         </p>
                     </div>
                     <div className="btn-work">
-                        <Link to={"/work"}><button className="view-work-button btn-work">VIEW ALL WORK</button></Link>
+                        <Link to={"/join"}><button className="view-work-button btn-work">JOIN OUR TEAM</button></Link>
                     </div>
                 </div>
 
@@ -93,6 +94,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            
+            <Footer/>
         </>
     );
 }

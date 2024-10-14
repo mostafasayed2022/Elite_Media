@@ -7,6 +7,7 @@ import Work from './component/Work';
 import Login from './component/Login';
 import Register from './component/Register';
 import Contact from './component/Contact';
+import JoinTeam from './component/JoinTeam';
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/contact' element={<Contact/>}/>
+          <Route path='/join' element={<JoinTeam/>}/>
+
 
         </Routes>
       </Router>
