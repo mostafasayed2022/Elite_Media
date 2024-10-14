@@ -1,3 +1,13 @@
+
+:root {
+  --color1: #00AEEF; /* Primary color */
+  --color2: #F3D70F; /* Accent color */
+  --color3: #000000; /* Text color */
+  --color4: #515050; /* Secondary color */
+  --color5: #FFFFFF; /* Background color */
+  --font-family: "Montserrat", sans-serif;
+}
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -11,3 +21,107 @@
   body {
     font-family: "Montserrat", sans-serif;
     }
+    
+    .footer {
+      background: #F8F9FA;
+      color: #fff; /* White text color */
+      padding: 60px;
+      text-align: center; /* Center-align text */
+      
+    }
+    
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--color1);
+      
+    }
+    
+    .footer-logo {
+      width: 100px; /* Adjust logo size as needed */
+      margin-bottom: 15px;
+    }
+    
+    .footer a {
+      color: #00a7e1; /* Light blue color for links */
+      text-decoration: none;
+      margin: 5px 0;
+    }
+    
+    .footer-services {
+      list-style:none; 
+      padding: 0; 
+      margin-left:20px;
+      text-align: center; 
+      display: flex;
+      align-items: center;
+      
+    }
+    
+    .footer-services li {
+      margin: 5px 0; 
+      color: var(--color3); 
+      font-size: 15px; 
+      padding: 10px;
+    }
+    
+    .footer-services li::before {
+      content: ''; 
+      display: inline-block; 
+      width: 10px; 
+      height: 10px; 
+      background-color: #00a7e1; 
+      margin-right: 10px; 
+      vertical-align: middle; 
+    }
+    
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px; /* Space between the social icons */
+      margin-top: 15px;
+    }
+    
+    .social-icons a {
+      color: var(--color1); /* White color for social icons */
+      font-size: 24px; /* Size of the icons */
+      transition: color 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: #00a7e1; /* Change color on hover */
+    }
+    
+    
+    
+    .footer-contact {
+      list-style: none; 
+      padding: 0; 
+      margin: 10px 0; 
+      text-align: center; 
+      border-left: 1px solid var(--color1);
+      margin-left: 8px;
+    }
+    
+    .footer-contact li {
+      margin: 5px 0; /* Space between each list item */
+      color: var(--color1); /* White text color */
+      font-size: 16px; /* Adjust the font size as needed */
+      
+    }
+    
+
+
+/* copy */
+
+.footer-but{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

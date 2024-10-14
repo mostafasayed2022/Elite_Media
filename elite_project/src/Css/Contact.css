@@ -17,49 +17,148 @@
     padding: 0;
   }
   
+  
+  
 .contact-info-container {
   display: flex;
   justify-content: space-between;
   padding: 20px;
 }
 
+@media (max-width:767px) {
+    .contact-info-container{
+      flex-direction: column;
+    }
+}
+
+
+
 .contact-details {
   background-color: #00a7e1; /* Blue background */
   padding: 40px;
   color: white;
+  width: 43%;
+  border-radius: 16px;
+  text-align: left;
 }
+
+
+
+.form-1,
+.form-2,
+.form-3
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 
 .contact-details h2 {
   margin-bottom: 20px;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.contact-details p{
+  text-align: left;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  font-size: 18px;
+  font-family: var(--font-family);
+}
+.contact-details .mail a{
+  color: var(--color5);
+}
+
+.contact-details .phone{
+  text-decoration: none;
+}
+
+.contact-details p i{
+  margin-right: 20px;
 }
 
 .contact-form {
   width: 60%;
+  background-color: var(--color5);
+  padding: 45px;
+  border-radius: 20px;
 }
 
 .input-group {
   margin-bottom: 15px;
+  padding: 20px;
 }
+
+
 
 .input-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--color4);
 }
 
-.input-group input, 
+.input-group .inp, 
 .input-group textarea {
-  width: 100%;
+  width: 180%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color4);
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: var(--color5);
+  transition: 0.5s ease-in;
 }
+
+
+.input-group textarea{
+  width: 200%;
+}
+
 
 .contact-btn {
-  background-color: #ffd700; /* Yellow color */
+  background-color: var(--color2); /* Yellow color */
   padding: 10px 20px;
   border: none;
-  color: #333;
+  color: var(--color3);
   cursor: pointer;
-  font-weight: bold;
+  font-weight:bold;
+  transition: 0.5s ease-in-out;
+  font-family: var(--font-family);
+  
+}
+
+.contact-btn:hover{
+  color: var(--color5);
+  border-radius: 6px;
+  background-color: var(--color1);
+}
+
+.btn-4{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px; 
+  margin-top: 20px;
+  padding: 8px;
+  
+}
+
+.social-icons a {
+  color: var(--color1); /* Icon color */
+  font-size: 24px; /* Size of the icons */
+  transition: color 0.3s ease; /* Smooth transition effect */
+  margin-left: 15px;
+  background-color: var(--color5);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.social-icons a:hover {
+  color: #00a7e1; /* Change color on hover */
 }
