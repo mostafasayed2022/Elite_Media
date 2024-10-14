@@ -9,6 +9,7 @@ import section2 from "../../assets/about/section2.png";
 import section3 from "../../assets/about/section3.png";
 import mediaVideo2 from "../../assets/about/media2.mp4"
 import Footer from "../Footer";
+import TeamSection from "../TeamSection";
 
 
 const About = () => {
@@ -100,6 +101,9 @@ const About = () => {
                     </div>
                 </section>
             </div>
+            <section>
+                <TeamSection/>
+            </section>
             <Footer/>
         </>
     );
