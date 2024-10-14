@@ -4,6 +4,16 @@ import "../Css/Header.css";
 import logo from '../assets/logos/logo1.png'; // Replace with your actual logo file path
 
 const Header: React.FC = () => {
+
+
+    const scrollToSection = (id: string) => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+      
+
     return (
         <header className="header-container">
             <div className="logo-container">
@@ -22,9 +32,11 @@ const Header: React.FC = () => {
                         <Link className="nav-link" to="/about">ABOUT</Link>
                     </li>
 
-                    {/* <li className="nav-item">
-                        <Link className="nav-link" to="/services">SERVICES</Link>
-                    </li> */}
+                    <li className="nav-item">
+                        <Link className="nav-link" to="#" onClick={() => scrollToSection('services-section')}>
+                            SERVICES
+                        </Link>
+                    </li>
                 </ul>
             </nav>
             <div className='contact-button-cont'>
