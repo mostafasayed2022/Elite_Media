@@ -11,7 +11,7 @@
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box; 
   }
   
   html {
@@ -20,6 +20,7 @@
   
   body {
     font-family: "Montserrat", sans-serif;
+
     }
     
     /* start banner home */
@@ -35,7 +36,6 @@
     
     .media-info {
       max-width: 600px;
-      
     }
     
     .badge {
@@ -77,20 +77,19 @@
       font-size: 16px;
       color: #555;
       margin: 10px 0;
-      border-bottom: 1px dotted var(--color1);
       padding: 25px 0;
       font-family: var(--font-family);
     }
     
-    .logo-container {
-      max-width: 200px;
-      margin-right: 200px;
+    .logo-container-home {
+       margin-right: 250px;
     }
     
     .emh-logo {
       width: 200%;
-      height: auto;
     }
+    
+
     /* end banner home */
 
   /* start  slider */
@@ -124,6 +123,7 @@
 .services-header {
   margin-bottom: 20px;
   line-height: 0.5;
+  margin-left: 60px;
 }
 
 .services-subtitle {
@@ -172,14 +172,13 @@
 }
 
 .view-work-button {
-  background-color: #ffcc00;
+  background-color: var(--color2);
   color: #000;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 30px;
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
-  border-radius: 5px;
   font-weight: bold;
   font-family: var(--font-family);
 
@@ -199,16 +198,20 @@
   margin-top: 20px;
 }
 
-.media-video {
-  width:100%;
-  /* max-width: 900px; */
-  border-radius: 10px;
+.media-video-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-video-work {
+  width:91%;
 }
 
 .media-overlay {
   position: absolute;
   top: 93%;
-  left: 18%;
+  left: 25%;
   transform: translate(-50%, -50%);
   color: #fff;
   padding: 20px;
@@ -239,11 +242,10 @@
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 25px;
 }
 
 .cards .card img{
-  width: 400px;
+  width: 550px;
 }
 
 .title-services{
@@ -285,7 +287,6 @@
 
 .card-image {
   width: 100%; 
-  border-radius: 10px; 
   transition: opacity 0.3s ease; 
 }
 
@@ -299,17 +300,16 @@
   transition: opacity 0.3s ease; 
 }
 
-.cardss:hover{
+.cardss:hover .card-image{
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
+    border-radius: 10px;
 }
 
-/* .cardss:hover .card-image {
-  opacity: 0; 
-} */
 
 .cardss:hover .video {
   opacity: 1; 
+  width: 100%;
+  height: 99%;
 }
 
 /* Responsive design */
@@ -360,11 +360,12 @@
     color: var(--color1);
     line-height: 1;
     text-transform: uppercase;
+    font-weight: bold;
   }
   
   .action .text-action .text-action-2 {
     color: var(--color5);
-    font-size: 20px;
+    font-size: 25px;
     text-transform: capitalize;
   }
   @media (max-width: 1024px) {
@@ -408,13 +409,12 @@
 /* start contact message */
 .contact-message {
   background-color: var(--color1);
-  position: relative;
-  width: 900px;
-  margin: 50px auto; /* Center horizontally */
-  padding: 20px; /* Optional padding */
-  top: 50%;
-  left: 50%;
-  transform: translate(-83%,-10%); /* Center the element on the page */
+  /* position: relative; */
+  width:1200px;
+  margin: 50px auto; 
+  padding: 20px; 
+  /* left: 65%;
+  transform: translate(-83%,-10%);  */
   text-align: center;
   height: 490px;
 }
@@ -440,8 +440,8 @@
 /* Responsive styles */
 @media only screen and (max-width: 768px) {
   .contact-message {
-    width: 95%; /* Increase width for smaller screens */
-    transform: translate(-50%, -20%); /* Adjust positioning for smaller devices */
+    width: 95%; 
+    /* transform: translate(-50%, -20%);  */
   }
 
   .action2 .text-action-2 {

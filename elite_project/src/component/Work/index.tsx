@@ -18,8 +18,8 @@ const Work = () => {
         <>
             <Header />
             <section className="work-container">
-                <header className="about-header work-header" >
-                    <span className="badge badge-work " data-aos="fade-up"
+                <header className="about-header" >
+                    <span className="badge-about " data-aos="fade-up"
                         data-aos-anchor-placement="top-bottom">Work</span>
 
                     <h1 className="title" data-aos="fade-up"

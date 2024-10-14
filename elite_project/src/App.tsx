@@ -8,7 +8,7 @@ import Login from './component/Login';
 import Register from './component/Register';
 import Contact from './component/Contact';
 import JoinTeam from './component/JoinTeam';
-// import Dashboard from './Dashboard/Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
           <Route path='/register' element={<Register/>} />
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/join' element={<JoinTeam/>}/>
-          {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
+          <Route path='/dashboard' element={<Dashboard/>}/>
         </Routes>
       </Router>
     </>

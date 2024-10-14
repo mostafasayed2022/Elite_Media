@@ -25,7 +25,7 @@ body {
   background-color: var(--color5);
   color: var(--color3);
   margin: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for a more distinct header */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -34,9 +34,12 @@ body {
   align-items: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  margin: 0;
+.logo-container img {
+  width: 140px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-links, .mobile-nav {
@@ -100,9 +103,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .header-container{
-    
-  }
+
 
   .nav-list {
       gap: 20px; 

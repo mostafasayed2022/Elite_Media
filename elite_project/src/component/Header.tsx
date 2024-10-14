@@ -17,7 +17,7 @@ const Header: React.FC = () => {
     return (
         <header className="header-container">
             <div className="logo-container">
-                <img src={logo} alt="Logo" className="logo" />
+                <img src={logo} alt="Logo" className="" />
             </div>
             <nav className="nav-links">
                 <ul className="nav-list">
@@ -37,9 +37,9 @@ const Header: React.FC = () => {
                             SERVICES
                         </Link>
                     </li>
-                    {/* <li className="nav-item">
+                    <li className="nav-item">
                         <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
-                    </li> */}
+                    </li>
                 </ul>
             </nav>
             <div className='contact-button-cont'>

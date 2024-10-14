@@ -24,7 +24,7 @@ const About = () => {
             <Header />
             <div className="about-container" >
                 <header className="about-header" >
-                    <span className="badge" data-aos="fade-down"
+                    <span className="badge-about" data-aos="fade-down"
                         data-aos-easing="linear"
                         data-aos-duration="1500" >about</span>
 
@@ -65,8 +65,9 @@ const About = () => {
                                 4. ⁠Commitment to Your Success<br />
                                 5. ⁠FreshPerspective<br />
                             </p>
-
-                            <a href="/contact" className="contact-button">CONTACT</a>
+                                <div className="container-btn">
+                                <a href="/contact" className="contact-button-about">CONTACT</a>
+                                </div>
                         </div>
 
                     </div>

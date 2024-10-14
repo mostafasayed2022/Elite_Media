@@ -1,80 +1,290 @@
-.dashboard-container {
-    display: flex;
-  }
-  
+/* App.css */
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+
+.dashboard-container{
+  display: flex;
+}
+
+/* Sidebar */
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #f9f9f9; /* Light background */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.dashboard-title {
+  color: #00aaff; /* Light blue color */
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.menu h4 {
+  color: #888888;
+  font-size: 14px;
+  margin: 20px 0 10px 0;
+}
+
+hr{
+  color: red;
+    width: 120%;
+    height: 1px;
+    margin-top: 20px;
+}
+.menu ul {
+  list-style: none;
+  width: 100%;
+  padding: 15px;
+}
+
+.menu li {
+  padding: 15px 80px;
+  color: #333333;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.menu li.active,
+.menu li:hover {
+  background-color: #00aaff; /* Light blue background on hover */
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+  outline: none;
+}
+
+.section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+textarea.intro-text {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  resize: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Upload Button */
+.upload-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-btn {
+  background-color: transparent;
+  border: 2px dashed #00A7E1;
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: #00A7E1;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #00A7E1;
+  color: white;
+}
+
+.upload-size {
+  font-size: 12px;
+  color: #666;
+  margin-left: 10px;
+}
+
+/* Save Button */
+.save-btn {
+  background-color: #FFD400;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.save-btn:hover {
+  background-color: #ffb300;
+}
+
+/* Client logos */
+.client-logos {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.client-logo {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Services Session */
+.services-session {
+  display: flex;
+  flex-direction: column;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.service input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+  flex: 1;
+  outline: none;
+  font-size: 14px;
+}
+
+.add-service-btn {
+  background-color: #00A7E1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-service-btn:hover {
+  background-color: #008cb5;
+}
+
+/* Scrollbar Styling for main content */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background-color: #00A7E1;
+  border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
   .sidebar {
-    width: 200px;
-    background-color: #f3f3f3;
-    padding: 20px;
+    width: 25%;
   }
-  
-  .logo {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .navigation {
-    list-style: none;
-    padding: 0;
-  }
-  
+
   .nav-item {
-    padding: 10px 0;
+    font-size: 16px;
   }
-  
-  .nav-item.active {
-    background-color: #e0e0e0;
+
+  .search-bar input {
+    max-width: 250px;
   }
-  
-  .settings-logout {
-    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
   }
-  
-  .settings-button,
-  .logout-button {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  .content {
-    flex: 1;
+
+  .main-content {
     padding: 20px;
   }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+
+  .upload-btn {
+    padding: 10px 20px;
   }
-  
-  .search-bar {
-    width: 300px;
-    padding: 10px;
+
+  .upload-size {
+    font-size: 10px;
   }
-  
-  .section {
-    margin-bottom: 20px;
+
+  .save-btn {
+    padding: 8px 16px;
   }
-  
-  .upload-section {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
+
+  .add-service-btn {
+    padding: 8px 16px;
   }
-  
-  .save-button,
-  .work-button,
-  .add-service-button {
-    background-color: #ffd700;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    display: none;
   }
-  
-  .work-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+
+  .main-content {
+    padding: 15px;
   }
-  
+
+  .service input {
+    font-size: 12px;
+}
+}

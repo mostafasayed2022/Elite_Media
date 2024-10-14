@@ -18,10 +18,12 @@ const ServicesSection = () => {
                 <h1 className="services-title" data-aos="fade-down-right">
                     Things we're <span className="highlight-services">Great</span> at
                 </h1>
-                <Link to={"/work"}><button className="view-work-button btn-work" data-aos="fade-down">VIEW ALL WORK</button></Link>
+                <Link to={"/work"}><button className="view-work-button " data-aos="fade-down">VIEW ALL WORK</button></Link>
             </div>
             <div className="services-media" >
-            <video className="media-video" src={mediaVideo}  autoPlay loop muted />
+            <div className='media-video-container'>
+            <video className="media-video-work" src={mediaVideo}  autoPlay loop muted />
+            </div>
             <div className="media-overlay" >
                     <h2 className="media-text" data-aos="fade-down-right">MEDIA PRODUCTION</h2>
                 </div>

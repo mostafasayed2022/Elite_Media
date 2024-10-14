@@ -25,7 +25,6 @@ const Home = () => {
     return (
         <>
             <Header />
-
             <div className="media-header-container">
                 <div className="media-info">
                     <span className="badge" data-aos="fade-right">A MEDIA SERVICES</span>
@@ -37,8 +36,8 @@ const Home = () => {
                         Welcome To The Home Of Creativity, Uniqueness, Freshness, Originality And More.
                     </p>
                 </div>
-                <div className="logo-container">
-                    <img  data-aos="fade-down" src={logo} alt="EMH Logo" className="emh-logo" />
+                <div className="logo-container-home">
+                    <img  data-aos="fade-left" src={logo} alt="EMH Logo" className="emh-logo" />
                 </div>
             </div>
 
