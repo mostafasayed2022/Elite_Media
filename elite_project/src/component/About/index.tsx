@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header";
 import "../../Css/About.css"
 import "../../Css/Home.css"
@@ -11,33 +11,45 @@ import mediaVideo2 from "../../assets/about/media2.mp4"
 import Footer from "../Footer";
 import TeamSection from "../TeamSection";
 
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const About = () => {
+
+    useEffect(() => {
+        AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
+    }, []);
+
     return (
         <>
             <Header />
             <div className="about-container" >
                 <header className="about-header" >
-                    <span className="badge">about</span>
+                    <span className="badge" data-aos="fade-down"
+                        data-aos-easing="linear"
+                        data-aos-duration="1500" >about</span>
 
-                    <h1 className="title">
+                    <h1 className="title" data-aos="fade-down"
+                        data-aos-easing="linear"
+                        data-aos-duration="1500">
                         Elite Media Houses <br />
-                        <span className="sub-title">Made By <span className="highlight">Elites  For  Elite</span></span>
+                        <span className="sub-title" data-aos="fade-down"
+                            data-aos-easing="linear"
+                            data-aos-duration="1500">Made By <span className="highlight">Elites  For  Elite</span></span>
                     </h1>
                 </header>
 
-                <section className="partners-section">
-                    <h3>Proud Partners in Success!</h3>
-                    <p className="section-pha">Celebrating the Achievements of Our Valued Clients.</p>
+                <section className="partners-section" >
+                    <h3> Proud Partners in Success!</h3>
+                    <p className="section-pha" >Celebrating the Achievements of Our Valued Clients.</p>
                     <Slick />
                 </section>
 
                 <section className="about-content">
                     <div className="about-section">
                         <div className="image">
-                            <img src={section1} alt="section1" />
+                            <img data-aos="fade-up-left" src={section1} alt="section1" />
                         </div>
-                        <div className="paragraph">
+                        <div className="paragraph" data-aos="fade-up-right">
                             <h3 className="heading1">Why Choose Us</h3>
                             <p className="pha1">
                                 In a rapidly evolving market choosing the right partner can make all the <span>difference</span>
@@ -64,7 +76,7 @@ const About = () => {
 
 
                     <div className="about-section">
-                        <div className="paragraph">
+                        <div className="paragraph" data-aos="fade-up-left">
                             <h3 className="heading1">About</h3>
                             <p className="paragraph1">
                                 <span>Elite Media Houses</span>  is the epicenter of <span>creative</span>  and <span>unique</span>  advertising solutions. Our team embodies <span>youth, freshness</span> , and <span>originality</span> , making us trendsetters and the first choice for our clients. With a distinctive approach, we stay at the forefront of innovation, ensuring our presence is always top of mind.
@@ -73,16 +85,16 @@ const About = () => {
                         </div>
 
                         <div className="image">
-                            <img src={section2} alt="section2" />
+                            <img data-aos="fade-up-right" src={section2} alt="section2" />
                         </div>
                     </div>
 
 
                     <div className="about-section">
                         <div className="image3">
-                            <img src={section3} alt="section3" />
+                            <img data-aos="fade-up-left" src={section3} alt="section3" />
                         </div>
-                        <div className="paragraph4">
+                        <div className="paragraph4" data-aos="fade-up-right">
                             <h3 className="heading1">Our Philosophy</h3>
                             <p className="paragraph2">
                                 At <span>Elite Media Houses Advertising  Services</span> , we believe that <span>creativity</span>  and <span>innovation</span>  are the cornerstones of impactful advertising. Our philosophy is rooted in the idea that every brand has a <span>unique story</span>  to tell, and it is our mission to bring that story to life in the most compelling and memorable way. We embrace a <span>fresh</span>  and <span>original</span>   approach, always striving to be trendsetters and pioneers in the advertising industry.
@@ -102,9 +114,9 @@ const About = () => {
                 </section>
             </div>
             <section>
-                <TeamSection/>
+                <TeamSection />
             </section>
-            <Footer/>
+            <Footer />
         </>
     );
 }

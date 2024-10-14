@@ -37,6 +37,9 @@ const Header: React.FC = () => {
                             SERVICES
                         </Link>
                     </li>
+                    {/* <li className="nav-item">
+                        <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
+                    </li> */}
                 </ul>
             </nav>
             <div className='contact-button-cont'>

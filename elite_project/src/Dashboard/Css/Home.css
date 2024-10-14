@@ -1,0 +1,80 @@
+.dashboard-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #f3f3f3;
+    padding: 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .navigation {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-item {
+    padding: 10px 0;
+  }
+  
+  .nav-item.active {
+    background-color: #e0e0e0;
+  }
+  
+  .settings-logout {
+    margin-top: 50px;
+  }
+  
+  .settings-button,
+  .logout-button {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    width: 300px;
+    padding: 10px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .upload-section {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .save-button,
+  .work-button,
+  .add-service-button {
+    background-color: #ffd700;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .work-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

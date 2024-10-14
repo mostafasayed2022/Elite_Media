@@ -35,16 +35,16 @@ const Cards: React.FC = () => {
     ];
 
     return (
-        <div className="container">
+        <div className="container" >
             <div className="grid">
                 {cardsData.map((card, index) => (
-                    <div 
+                    <div  
                         className="cardss" 
                         key={index} 
                         onMouseEnter={() => handleMouseEnter(index)} 
                         onMouseLeave={() => handleMouseLeave(index)}
                     >
-                        <div className="card-logo">
+                        <div className="card-logo" >
                             <img src={card.logo} alt={card.title} className="card-image" />
                             <video 
                                 src={card.videoSrc}  // Use videoSrc from card data

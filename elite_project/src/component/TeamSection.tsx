@@ -1,7 +1,5 @@
-import React from "react";
-
+import React, {useEffect} from "react";
 import "../Css/About.css";
-
 import image1 from "../assets/about/emam.png";
 import image2 from "../assets/about/marawan 1.png";
 import image3 from "../assets/about/hosny.png";
@@ -13,7 +11,8 @@ import image8 from "../assets/about/arwa 1.png";
 import image9 from "../assets/about/nouran 1.png";
 import image10 from "../assets/about/team.png";
 
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
@@ -41,20 +40,25 @@ const teamMembers: TeamMember[] = [
 
 
 const TeamSection: React.FC = () => {
+    useEffect(() => {
+        AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
+    }, []);
+
+
     return (
         <>
             <div className="team-section">
-                <h2 className="team-title">OUR TEAM</h2>
-                <p className="team-subtitle">Meet the faces behind the magic!</p>
-                <p className="team-subtitle">A Collective of Creative Visionaries and Strategic Thinkers Driving our Success. !</p>
+                <h2 className="team-title" data-aos="fade-up">OUR TEAM</h2>
+                <p className="team-subtitle" data-aos="fade-up">Meet the faces behind the magic!</p>
+                <p className="team-subtitle" data-aos="fade-up">A Collective of Creative Visionaries and Strategic Thinkers Driving our Success. !</p>
 
                 <div className="team-grid">
                     {teamMembers.map((member, index) => (
                         <div key={index} className="team-card">
-                            <img src={member.image} alt={member.name} className="team-image" />
+                            <img  data-aos="fade-up"src={member.image} alt={member.name} className="team-image" />
                             <div className="team-info">
-                                <h3>{member.name}</h3>
-                                <p>{member.title}</p>
+                                <h3 data-aos="fade-up">{member.name}</h3>
+                                <p data-aos="fade-up">{member.title}</p>
 
                             </div>
 
