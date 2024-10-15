@@ -482,3 +482,72 @@ input[type="text"] {
   margin-top: 10px;
   color: #00a7e1;
 }
+
+
+/* contact */
+
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contact-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.contact-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contact-field {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-top: 5px;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+input[type="text"]:read-only {
+  background-color: #f9f9f9;
+  color: #666;
+}
+
+a.hyperlink {
+  color: #00a7e1;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+}
+
+a.hyperlink:hover {
+  text-decoration: underline;
+}
+

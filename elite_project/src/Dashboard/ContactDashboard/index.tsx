@@ -3,10 +3,10 @@ import Sidebar from "../Sidebar";
 import UploadButton from "../UploadButton";
 import SearchBar from "../SearchBar";
 
-const ContactDashboard =()=>{
-    return(
+const ContactDashboard = () => {
+    return (
         <>
-              <div className="dashboard-container">
+            <div className="dashboard-container">
                 {/* Sidebar */}
                 <Sidebar />
 
@@ -15,36 +15,43 @@ const ContactDashboard =()=>{
                     <SearchBar />
 
                     {/* Dashboard Sections */}
-                    <div className="section intro-session">
-                        <h2>INTRO Session</h2>
-                        <label>Text</label>
-                        <textarea placeholder="Write here..." className="intro-text" />
-                        <UploadButton label="Photo or Video" size="1920x1080" />
-                        <button className="save-btn">SAVE</button>
-                    </div>
+                    <div className="contact-form-container">
+                        <h2 className="contact-title">Contact</h2>
 
-                    <div className="section clients-session">
-                        <h2>Clients Session</h2>
-                        <UploadButton label="Photos" size="200x200" />
-                        {/* <div className="client-logos">
-                            {["logo1.png", "logo2.png", "logo3.png"].map((logo, index) => (
-                                <img key={index} src={logo} alt={Client ${index}} className="client-logo" />
-            ))}
-                        </div> */}
-                        <button className="save-btn">SAVE</button>
-                    </div>
+                        <div className="contact-field">
+                            <label>Location</label>
+                            <a href="#" className="hyperlink">Hyperlink</a>
+                            <input type="text" value="Mahmoud Madkour St, El-Basatin Sharkeya, El Basatin, Cairo Governorate" readOnly />
+                        </div>
 
-                    <div className="section services-session">
-                        <h2>Services Session</h2>
-                        <div className="service">
-                            <input type="text" placeholder="Service 1" />
-                            <UploadButton label="Photo or Video" size="768x1198" />
+                        <div className="contact-field">
+                            <label>EMH Gmail</label>
+                            <a href="mailto:Hello@Elitemediahouses.com" className="hyperlink">Hyperlink</a>
+                            <input type="text" value="Hello@Elitemediahouses.Com" readOnly />
                         </div>
-                        <div className="service">
-                            <input type="text" placeholder="Service 2" />
-                            <UploadButton label="Photo or Video" size="768x1198" />
+
+                        <div className="contact-field">
+                            <label>EMH Number</label>
+                            <input type="text" value="Egypt (+20) 1067559248" readOnly />
                         </div>
-                        <button className="add-service-btn">+ Add Service</button>
+
+                        <div className="contact-field">
+                            <label>Facebook Profile</label>
+                            <a href="#" className="hyperlink">Hyperlink</a>
+                            <input type="text" value="..." readOnly />
+                        </div>
+
+                        <div className="contact-field">
+                            <label>Instagram Profile</label>
+                            <a href="https://www.instagram.com/elite_media_house/" target="_blank" rel="noopener noreferrer" className="hyperlink">Hyperlink</a>
+                            <input type="text" value="https://www.instagram.com/elite_media_house/" readOnly />
+                        </div>
+
+                        <div className="contact-field">
+                            <label>Linkedin Profile</label>
+                            <a href="https://www.linkedin.com/company/elite-media-house/" target="_blank" rel="noopener noreferrer" className="hyperlink">Hyperlink</a>
+                            <input type="text" value="https://www.linkedin.com/company/elite-media-house/" readOnly />
+                        </div>
                     </div>
                 </div>
             </div>
