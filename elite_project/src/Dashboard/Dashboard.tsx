@@ -1,11 +1,15 @@
-
-import React from "react";
-import Home from "../Dashboard/Home";
-
-const Dashboard=()=>{
-    return(
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeDashboard from "./HomeDashboard";
+import AboutDashboard from "./AboutDashboard";
+import WorkDashboard from "./WorkDashboard";
+import ContactDashboard from "./ContactDashboard";
+const Dashboard = () => {
+    return (
         <>
-            <Home/>
+            <HomeDashboard/>
+            <AboutDashboard/>
+            <WorkDashboard/>
+            <ContactDashboard/>
         </>
     );
 }

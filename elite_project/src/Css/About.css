@@ -11,6 +11,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+
   }
   
   html {
@@ -137,7 +138,7 @@
     }
     .partners-section p{
       font-size: 23px;
-      line-height: 0;
+      line-height: 2;
       color: var(--color4);
     }
     
@@ -173,13 +174,14 @@
     
     .pha1{
         text-align: start;
-        font-size: 30px;
+        font-size: 35px;
         font-weight: bold;
         font-family: var(--font-family);
+        line-height: 1;
     }
     .paragraph{
       text-transform: capitalize;
-      line-height: 1;
+      /* line-height: 2; */
       margin-left: 10px;
       margin-left: 30px;
     }
@@ -188,6 +190,7 @@
       font-size: 15px;
       color: var(--color1);
       text-transform: uppercase;
+      line-height: 1;
     }
     
     .pha1 span{
@@ -199,12 +202,15 @@
       text-align: start;
       color: var(--color4);
       font-size: 17px;
+      /* line-height: 1; */
+      margin-top: 20px;
     }
     
     .pha3{
       text-align: start;
       color: var(--color4);
       line-height: 2;
+      margin: 20px 0 ;
 
     }
     
@@ -285,7 +291,7 @@
   
   .team-subtitle {
     font-size: 16px;
-    color: var(--color4);
+    color: var(--color3);
     font-weight: 800;
     margin-bottom: 30px;
   }

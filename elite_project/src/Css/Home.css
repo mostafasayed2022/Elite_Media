@@ -12,6 +12,8 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; 
+
+
   }
   
   html {
@@ -20,7 +22,6 @@
   
   body {
     font-family: "Montserrat", sans-serif;
-
     }
     
     /* start banner home */
@@ -122,7 +123,7 @@
 
 .services-header {
   margin-bottom: 20px;
-  line-height: 0.5;
+  line-height: 2;
   margin-left: 60px;
 }
 
@@ -249,10 +250,11 @@
 }
 
 .title-services{
-  margin: 60px;
-  max-width: 500px;
+  margin: 80px 50px;
+  max-width: 60%;
   text-transform: uppercase;
   color: var(--color1);
+  font-size: 30px;
 }
 
   /* end services section */
@@ -352,6 +354,7 @@
   left: 10%;
   transform: translate(-50px, -50px);
   text-align: center;
+  line-height: 3;
   }
   
   .action .text-action .text-action-1 {
@@ -367,6 +370,8 @@
     color: var(--color5);
     font-size: 25px;
     text-transform: capitalize;
+    line-height: 2;
+    margin-top: 20px;
   }
   @media (max-width: 1024px) {
     .action .text-action .text-action-1 {
@@ -418,8 +423,13 @@
   text-align: center;
   height: 490px;
 }
+
+.action2{
+  line-height: 2;
+  padding: 20px;
+}
 .action2 .text-action2{
-  line-height: 1;
+  /* line-height: 2; */
   padding: 20px;
 }
 
@@ -429,12 +439,15 @@
   text-transform: uppercase;
   font-family: var(--font-family);
   font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 .action2 .text-action-3{
   color: var(--color5);
   font-size: 30px;
   font-weight: 100;
+  line-height: 1.5;
 }
 
 /* Responsive styles */

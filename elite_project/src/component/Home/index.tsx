@@ -79,7 +79,7 @@ const Home = () => {
                         <p className="text-action-1" data-aos="zoom-in-down">Ready to Elevate Your Career ?
                             Join Our Elite Squad of Innovators !
                         </p>
-                        <p className="text-action-2" data-aos="zoom-in-up">Unleash Your Potential and Become Part of the Creative Force Shaping the Future of Marketing !
+                        <p className="text-action-2" data-aos="zoom-in-up">Unleash Your Potential and Become Part of the Creative Force Shaping the<br/> Future of Marketing !
                         </p>
                     </div>
                     <div className="btn-work">
@@ -95,7 +95,7 @@ const Home = () => {
                             data-aos-offset="300"
                             data-aos-easing="ease-in-sine">Transform Your Vision into Reality with Elite Marketing Solutions !
                         </p>
-                        <p className="text-action-3">Elevate Your Brand with Strategic and Creative Excellence.
+                        <p className="text-action-3">Elevate Your Brand with Strategic and Creative <br/> Excellence.
                         </p>
                     </div>
                     <div className="btn-work">

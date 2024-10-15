@@ -1,5 +1,4 @@
-import React from "react";
-import "../Css/Home.css";
+import "../Css/Dashboard.css";
 
 import Sidebar from "../Sidebar"
 import UploadButton from "../UploadButton"
