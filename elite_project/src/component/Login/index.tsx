@@ -35,7 +35,7 @@ const Login: React.FC = () => {
             localStorage.setItem('refresh_token', data.refresh);
 
             // Redirect to the home page after successful login
-            navigate('/dashboard');
+            navigate('/HomeDashboard');
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
             setError('Login failed. Please try again.');
