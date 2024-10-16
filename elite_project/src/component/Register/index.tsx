@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../Css/Forms.css';
 import logo from "../../assets/logos/logo1.png";
 import backgroundImage from "../../assets/home/bacground.png";
@@ -11,7 +11,7 @@ const Register = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,7 +32,9 @@ const Register = () => {
             }
 
             const data = await response.json();
+
             console.log('Registration successful', data);
+            navigate("/login")
             // Redirect to login or home page after successful registration
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
