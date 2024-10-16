@@ -82,7 +82,7 @@ const ContactDashboard: React.FC = () => {
     };
 
     const handleSave = async () => {
-        const token = localStorage.getItem("access_token");
+        // const token = localStorage.getItem("access_token");
 
         try {
             if (contact.id) {
@@ -210,7 +210,3 @@ const ContactDashboard: React.FC = () => {
 };
 
 export default ContactDashboard;
-function setIsLoading(arg0: boolean) {
-    throw new Error("Function not implemented.");
-}
-

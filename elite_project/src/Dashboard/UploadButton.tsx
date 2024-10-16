@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 
 // Upload Button Component
@@ -8,6 +8,8 @@ import React from "react";
 interface UploadButtonProps {
     label: string;
     size: string;
+    onFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    inputName: string;
   }
   
   const UploadButton: React.FC<UploadButtonProps> = ({ label, size }) => {
