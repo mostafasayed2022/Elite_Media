@@ -151,7 +151,7 @@ const HomeDashboard: React.FC = () => {
                                         type="file"
                                         accept="image/*, video/*" // Allows both image and video files
                                         onChange={handleFileChange}
-                                        className="upload-input"
+                                        // className="upload-input"
                                     />
                                 </div>
                                 <button className="save-btn" onClick={handleSave}>SAVE</button>
@@ -176,7 +176,7 @@ const HomeDashboard: React.FC = () => {
                                     type="file"
                                     accept="image/*, video/*" // Allows both image and video files
                                     onChange={handleFileChange}
-                                    className="upload-input"
+                                    // className="upload-input"
                                 />
                             </div>
                             <button className="add-service-btn">+ Add Service</button>
@@ -200,7 +200,7 @@ const HomeDashboard: React.FC = () => {
                                 type="file"
                                 accept="image/*, video/*" // Allows both image and video files
                                 onChange={handleFileChange}
-                                className="upload-input"
+                                // className="upload-input"
                             />
                         </div>
                         <button className="save-btn" onClick={handleSave}>SAVE</button>
