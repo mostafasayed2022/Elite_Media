@@ -89,7 +89,7 @@ const ContactDashboard: React.FC = () => {
                 // If the contact exists, perform an update
                 const response = await axios.put(`http://127.0.0.1:8000/dashboard_contact/${contact.id}/`, contact, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
                 console.log("Contact updated:", response.data);
@@ -98,7 +98,7 @@ const ContactDashboard: React.FC = () => {
                 // Show error if contact does not exist and user is trying to save
                 const response = await axios.post(`http://127.0.0.1:8000/dashboard_contact/`, contact, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
                     },
                 });
                 console.log("Contact saved:", response.data);
