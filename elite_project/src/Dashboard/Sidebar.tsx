@@ -12,7 +12,6 @@ const Sidebar = () => {
   const handleLogout = () => {
     // Clear authentication data from local storage or cookies
     localStorage.removeItem('authToken'); // Example for clearing auth token
-    // Redirect to login page after logout
     navigate('/login');
   };
 
