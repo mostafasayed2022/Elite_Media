@@ -50,7 +50,7 @@ const HomeDashboard: React.FC = () => {
             }
 
             try {
-                const response = await axios.get("http://127.0.0.1:8000/dashboard_contact/", {
+                const response = await axios.get("http://127.0.0.1:8000/home_dashboard/", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -60,7 +60,7 @@ const HomeDashboard: React.FC = () => {
                     setHome(response.data[0]);
                     setHomeExists(true);
                 } else {
-                    setHomeExists(false);
+                    setHomeExists(true);
                 }
             } catch (error: unknown) {
                 if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
@@ -91,20 +91,20 @@ const HomeDashboard: React.FC = () => {
 
         try {
             if (home.id) {
-                const response = await axios.put(`http://127.0.0.1:8000/dashboard_contact/${home.id}/`, home, {
+                const response = await axios.put(`http://127.0.0.1:8000/home_dashboard/${home.id}/`, home, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
-                console.log("Contact updated:", response.data);
+                console.log("home updated:", response.data);
                 setIsEditing(false);
             } else {
-                const response = await axios.post("http://127.0.0.1:8000/dashboard_contact/", home, {
+                const response = await axios.post("http://127.0.0.1:8000/home_dashboard/", home, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
-                console.log("Contact saved:", response.data);
+                console.log("home saved:", response.data);
                 setIsEditing(false);
             }
         } catch (error) {
