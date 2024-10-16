@@ -21,7 +21,7 @@ interface Home {
     id?: number;
 }
 
-const Home: React.FC = () => {
+const HomeDashboard: React.FC = () => {
     const [home, setHome] = useState<Home>({
         text: "",
         video: null,
@@ -197,4 +197,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default HomeDashboard;
