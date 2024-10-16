@@ -25,11 +25,12 @@ const ContactDashboard: React.FC = () => {
     });
 
     const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [contactExists, setContactExists] = useState<boolean>(true); // New state to track if contact exists
     const navigate = useNavigate(); // Hook for redirection
 
     useEffect(() => {
         const fetchContactData = async () => {
-            const token = localStorage.getItem("token"); // Assuming the JWT token is stored in localStorage
+            const token = localStorage.getItem("access_token"); // Assuming the JWT token is stored in localStorage
     
             if (!token) {
                 // Redirect to login if not authenticated
@@ -38,31 +39,42 @@ const ContactDashboard: React.FC = () => {
             }
     
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/dashboard-contact/", {
+                const response = await axios.get("http://127.0.0.1:8000/dashboard_contact/", {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Include the JWT in the headers
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`, // Include the JWT in the headers
                     },
                 });
     
                 if (response.data.length > 0) {
-                    setContact(response.data[0]); // Assuming the response is an array and the user has only one contact
+                    setContact(response.data[0]); // Assuming the user has only one contact
+                    setContactExists(true); // Contact exists
+                } else {
+                    setContactExists(true); // No contact exists, user will create one
+                    // Optionally, initialize a blank contact for the user to fill out
+                    setContact({
+                        address: "",
+                        phone: "",
+                        email: "",
+                        facebook_profile: "",
+                        instagram_profile: "",
+                        linkedin_profile: "",
+                    });
                 }
             } catch (error: unknown) {
                 if (axios.isAxiosError(error) && error.response) {
                     console.error("Error fetching contact data:", error.response);
-                    // Optional: Redirect to login if the token is invalid or expired
+                    // Only redirect to login for authentication errors (401)
                     if (error.response.status === 401) {
                         navigate("/login");
                     }
                 } else {
                     console.error("Error fetching contact data:", error);
                 }
-            }
+            } 
         };
     
         fetchContactData();
-    }, [navigate]); // Include navigate in the dependency array
-    
+    }, [navigate]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -70,16 +82,28 @@ const ContactDashboard: React.FC = () => {
     };
 
     const handleSave = async () => {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("access_token");
 
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/dashboard-contact/${contact.id}/`, contact, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log("Contact updated:", response.data);
-            setIsEditing(false); // Exit edit mode
+            if (contact.id) {
+                // If the contact exists, perform an update
+                const response = await axios.put(`http://127.0.0.1:8000/dashboard_contact/${contact.id}/`, contact, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log("Contact updated:", response.data);
+                setIsEditing(false); // Exit edit mode
+            } else {
+                // Show error if contact does not exist and user is trying to save
+                const response = await axios.post(`http://127.0.0.1:8000/dashboard_contact/`, contact, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log("Contact saved:", response.data);
+                setIsEditing(false);
+            }
         } catch (error) {
             console.error("Error updating contact:", error);
         }
@@ -95,82 +119,89 @@ const ContactDashboard: React.FC = () => {
                 <div className="contact-form-container">
                     <h2 className="contact-title">Contact</h2>
 
-                    <div className="contact-field">
-                        <label>Location</label>
-                        <input 
-                            type="text" 
-                            className="contact-input" 
-                            name="address" 
-                            value={contact.address} 
-                            onChange={handleChange} 
-                            readOnly={!isEditing} 
-                        />
-                    </div>
+                    {contactExists ? (
+                        <>
+                            {/* Contact fields */}
+                            <div className="contact-field">
+                                <label>Location</label>
+                                <input 
+                                    type="text" 
+                                    className="contact-input" 
+                                    name="address" 
+                                    value={contact.address} 
+                                    onChange={handleChange} 
+                                    readOnly={!isEditing} 
+                                />
+                            </div>
 
-                    <div className="contact-field">
-                        <label>EMH Gmail</label>
-                        <input 
-                            type="text" 
-                            className="contact-input" 
-                            name="email" 
-                            value={contact.email} 
-                            onChange={handleChange} 
-                            readOnly={!isEditing} 
-                        />
-                    </div>
+                            <div className="contact-field">
+                                <label>EMH Gmail</label>
+                                <input 
+                                    type="text" 
+                                    className="contact-input" 
+                                    name="email" 
+                                    value={contact.email} 
+                                    onChange={handleChange} 
+                                    readOnly={!isEditing} 
+                                />
+                            </div>
 
-                    <div className="contact-field">
-                        <label>EMH Number</label>
-                        <input 
-                            type="text" 
-                            className="contact-input" 
-                            name="phone" 
-                            value={contact.phone} 
-                            onChange={handleChange} 
-                            readOnly={!isEditing} 
-                        />
-                    </div>
+                            <div className="contact-field">
+                                <label>EMH Number</label>
+                                <input 
+                                    type="text" 
+                                    className="contact-input" 
+                                    name="phone" 
+                                    value={contact.phone} 
+                                    onChange={handleChange} 
+                                    readOnly={!isEditing} 
+                                />
+                            </div>
 
-                    <div className="contact-field">
-                        <label>Facebook Profile</label>
-                        <input 
-                            type="text" 
-                            className="contact-input" 
-                            name="facebook_profile" 
-                            value={contact.facebook_profile} 
-                            onChange={handleChange} 
-                            readOnly={!isEditing} 
-                        />
-                    </div>
+                            <div className="contact-field">
+                                <label>Facebook Profile</label>
+                                <input 
+                                    type="text" 
+                                    className="contact-input" 
+                                    name="facebook_profile" 
+                                    value={contact.facebook_profile} 
+                                    onChange={handleChange} 
+                                    readOnly={!isEditing} 
+                                />
+                            </div>
 
-                    <div className="contact-field">
-                        <label>Instagram Profile</label>
-                        <input 
-                            type="text" 
-                            className="contact-input" 
-                            name="instagram_profile" 
-                            value={contact.instagram_profile} 
-                            onChange={handleChange} 
-                            readOnly={!isEditing} 
-                        />
-                    </div>
+                            <div className="contact-field">
+                                <label>Instagram Profile</label>
+                                <input 
+                                    type="text" 
+                                    className="contact-input" 
+                                    name="instagram_profile" 
+                                    value={contact.instagram_profile} 
+                                    onChange={handleChange} 
+                                    readOnly={!isEditing} 
+                                />
+                            </div>
 
-                    <div className="contact-field">
-                        <label>LinkedIn Profile</label>
-                        <input 
-                            type="text" 
-                            className="contact-input" 
-                            name="linkedin_profile" 
-                            value={contact.linkedin_profile} 
-                            onChange={handleChange} 
-                            readOnly={!isEditing} 
-                        />
-                    </div>
+                            <div className="contact-field">
+                                <label>LinkedIn Profile</label>
+                                <input 
+                                    type="text" 
+                                    className="contact-input" 
+                                    name="linkedin_profile" 
+                                    value={contact.linkedin_profile} 
+                                    onChange={handleChange} 
+                                    readOnly={!isEditing} 
+                                />
+                            </div>
 
-                    {isEditing ? (
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                            {isEditing ? (
+                                <button className="save-btn" onClick={handleSave}>SAVE</button>
+                            ) : (
+                                <button className="edit-btn" onClick={() => setIsEditing(true)}>EDIT</button>
+                            )}
+                        </>
                     ) : (
-                        <button className="edit-btn" onClick={() => setIsEditing(true)}>EDIT</button>
+                        <p>No contact record found. Please create one.</p>
                     )}
                 </div>
             </div>
@@ -179,3 +210,7 @@ const ContactDashboard: React.FC = () => {
 };
 
 export default ContactDashboard;
+function setIsLoading(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+
