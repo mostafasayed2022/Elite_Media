@@ -1,6 +1,5 @@
 import "../Css/Dashboard.css";
 import Sidebar from "../Sidebar";
-// import UploadButton from "../UploadButton";
 import SearchBar from "../SearchBar";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -35,8 +34,7 @@ const HomeDashboard: React.FC = () => {
         serviceimage: null,
         servicevideo: null,
     });
-    const [, setFileName] = useState<string>('Click to upload');
-    const [, setIsEditing] = useState<boolean>(false);
+    const [fileName, setFileName] = useState<string>('Click to upload');
     const [homeExists, setHomeExists] = useState<boolean>(true);
     const navigate = useNavigate();
 
@@ -52,7 +50,7 @@ const HomeDashboard: React.FC = () => {
             try {
                 const response = await axios.get("http://127.0.0.1:8000/home_dashboard/", {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 });
 
@@ -60,7 +58,7 @@ const HomeDashboard: React.FC = () => {
                     setHome(response.data[0]);
                     setHomeExists(true);
                 } else {
-                    setHomeExists(true);
+                    setHomeExists(false);
                 }
             } catch (error: unknown) {
                 if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
@@ -78,45 +76,44 @@ const HomeDashboard: React.FC = () => {
         const { name, value } = e.target;
         setHome({ ...home, [name]: value });
     };
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Home) => {
         const file = e.target.files ? e.target.files[0] : null;
 
         if (file) {
-            const isImage = file.type.startsWith('image/');
-            const isVideo = file.type.startsWith('video/');
-
-            if (isImage) {
-                setFileName(`Image: ${file.name}`);
-            } else if (isVideo) {
-                setFileName(`Video: ${file.name}`);
-            } else {
-                setFileName('Unsupported file type');
-            }
+            setHome({ ...home, [field]: file }); // Update the specific field in state
+            setFileName(`File: ${file.name}`);
         } else {
             setFileName('Click to upload');
         }
     };
 
     const handleSave = async () => {
-        // const token = localStorage.getItem("access_token");
+        const formData = new FormData();
+        
+        // Append all fields to FormData
+        Object.entries(home).forEach(([key, value]) => {
+            if (value) formData.append(key, value);
+        });
 
         try {
+            const token = localStorage.getItem("access_token");
             if (home.id) {
-                const response = await axios.put(`http://127.0.0.1:8000/home_dashboard/${home.id}/`, home, {
+                const response = await axios.put(`http://127.0.0.1:8000/home_dashboard/${home.id}/`, formData, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
                     },
                 });
-                console.log("home updated:", response.data);
-                setIsEditing(false);
+                console.log("Home updated:", response.data);
             } else {
-                const response = await axios.post("http://127.0.0.1:8000/home_dashboard/", home, {
+                const response = await axios.post("http://127.0.0.1:8000/home_dashboard/", formData, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
                     },
                 });
-                console.log("home saved:", response.data);
-                setIsEditing(false);
+                console.log("Home saved:", response.data);
             }
         } catch (error) {
             console.error("Error saving data:", error);
@@ -127,14 +124,10 @@ const HomeDashboard: React.FC = () => {
         <>
             <div className="dashboard-container">
                 <Sidebar />
-
                 <div className="main-content">
                     <SearchBar />
-
                     <div className="section intro-session">
                         <h2>INTRO Session</h2>
-
-                        <label>Text</label>
                         {homeExists ? (
                             <>
                                 <label>Text</label>
@@ -147,11 +140,10 @@ const HomeDashboard: React.FC = () => {
                                         onChange={handleTextChange}
                                     />
                                     <input
-                                        id="media-upload"
+                                        id="video"
                                         type="file"
-                                        accept="image/*, video/*" // Allows both image and video files
-                                        onChange={handleFileChange}
-                                        // className="upload-input"
+                                        accept="image/*, video/*"
+                                        onChange={(e) => handleFileChange(e, 'video')}
                                     />
                                 </div>
                                 <button className="save-btn" onClick={handleSave}>SAVE</button>
@@ -174,9 +166,8 @@ const HomeDashboard: React.FC = () => {
                                 <input
                                     id="media-upload"
                                     type="file"
-                                    accept="image/*, video/*" // Allows both image and video files
-                                    onChange={handleFileChange}
-                                    // className="upload-input"
+                                    accept="image/*, video/*"
+                                    onChange={(e) => handleFileChange(e, 'serviceimage')}
                                 />
                             </div>
                             <button className="add-service-btn">+ Add Service</button>
@@ -196,11 +187,10 @@ const HomeDashboard: React.FC = () => {
                                 onChange={handleTextChange}
                             />
                             <input
-                                id="media-upload"
+                                id="team-video-upload"
                                 type="file"
-                                accept="image/*, video/*" // Allows both image and video files
-                                onChange={handleFileChange}
-                                // className="upload-input"
+                                accept="image/*, video/*"
+                                onChange={(e) => handleFileChange(e, 'teamvideo')}
                             />
                         </div>
                         <button className="save-btn" onClick={handleSave}>SAVE</button>
