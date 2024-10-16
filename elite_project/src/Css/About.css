@@ -156,14 +156,29 @@
         flex-wrap: wrap;
       }
       .about-section .image img{
-        width: 300px;
+        width: 100%;
+        max-width: 350px;
+        margin-left: 30px;
+      }
+      
+      .paragraph{
+        margin:30px 0;
+      }
+      
+      .about-section .image3 img{
+        max-width: 380px; 
+        margin-bottom: 35px;
+      }
+      .media-text{
+          display: none;
       }
     }
     
     
-    .about-section .image img{
+    .about-section .image img,
+    .about-section .image3 img
+    {
       width: 650px;
-      border-radius: 10px;
     }
     
     .about-section h3{
@@ -246,11 +261,6 @@
     .paragraph4 .paragraph2 span{
       font-weight: bold;
       
-    }
-    
-    .about-section .image3 img{
-      width: 650px;
-      border-radius: 10px;
     }
     
     .services-media{

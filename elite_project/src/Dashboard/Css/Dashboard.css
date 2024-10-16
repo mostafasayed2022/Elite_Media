@@ -32,7 +32,7 @@ body {
 /* Sidebar styling */
 .sidebar {
   width: 300px;
-  height: 155vh;
+  height: 200vh;
   background-color: var(--color5); /* Light background */
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -89,7 +89,7 @@ body {
 
 .sidebar .menu ul li.active a::before {
     opacity: 1; 
-    left: -153px; 
+    left: -152px; 
   }
 
 
@@ -121,6 +121,19 @@ hr{
 .menu li:hover {
   background-color: var(--color1);
   color: white;
+}
+
+ .logout-button{
+  background: none;
+  border: none;
+  color: var(--color3);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-size: 15px;
+  font-family: var(--font-family);
+  font-weight: bold;
+  
 }
 
 /* Main Content */
@@ -260,23 +273,6 @@ textarea.intro-text {
   align-items: center;
 }
 
-/* .service1{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.service2{
-  display: flex;
-  flex-direction: column;
-  flex: 2;
-}
-
-.service2{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-} */
 
 .service input {
   padding: 10px;
@@ -484,6 +480,9 @@ a.hyperlink:hover {
     font-size: 16px;
   }
 
+  .service-container {
+    grid-template-columns: 1fr 1fr; /* Two columns on larger tablets and small desktops */
+  }
   /* .search-bar input {
     max-width: 450px;
   } */
@@ -500,6 +499,7 @@ a.hyperlink:hover {
 
   .upload-btn {
     padding: 10px 20px;
+    width: 400px;
   }
 
   .upload-size {
@@ -508,16 +508,58 @@ a.hyperlink:hover {
 
   .save-btn {
     padding: 8px 16px;
+    width: 150px;
   }
 
   .add-service-btn {
     padding: 8px 16px;
   }
+  .service-container {
+    grid-template-columns: 1fr; /* One column on tablets and mobile devices */
+  }
+  .intro-section1{
+    flex-wrap: wrap;
+    
+  }
+  textarea.intro-text{
+    width: 100%;
+  }
+  .service input{
+    width:100%;
+  }
+  .intro-section2 .sec1,
+  .intro-section2 .sec2
+  {
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  }
+  .intro-text-session{
+    width: 100%;
+  }
+  .menu li{
+    padding: 20px 30px;
+  }
+  
+  .sidebar .menu ul li.active a::before{
+    left: -92px;
+  }
 }
 
 @media (max-width: 480px) {
+
+  .card-work{
+  width: 270px;
+  }
   .sidebar {
-    display: none;
+    width: 140px;
+
+  }
+  
+  .add-service-btn{
+  width: 100%;
+  }
+  .menu h4{
+    margin-left: 20px;
   }
 
   .main-content {
@@ -526,6 +568,38 @@ a.hyperlink:hover {
 
   .service input {
     font-size:12px;
+}
+
+.upload-btn{
+  width: 160px;
+
+}
+
+.intro-section1{
+  flex-wrap: wrap;
+  
+}
+textarea.intro-text{
+  width: 100%;
+}
+.service input{
+  width:100%;
+}
+.intro-section2 .sec1,
+.intro-section2 .sec2
+{
+flex-wrap: wrap;
+margin-bottom: 40px;
+}
+.intro-text-session{
+  width: 100%;
+}
+.menu li{
+  padding: 15px 15px;
+}
+
+.sidebar .menu ul li.active a::before{
+  left: -75px;
 }
 }
 

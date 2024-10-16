@@ -1,11 +1,20 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from "../assets/logos/logo1.png";
 
 const Sidebar = () => {
   const location = useLocation(); // Get the current location
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
   // Function to determine if the link is active based on the current path
   const isActive = (path: string) => location.pathname === path;
+
+  // Function to handle logout
+  const handleLogout = () => {
+    // Clear authentication data from local storage or cookies
+    localStorage.removeItem('authToken'); // Example for clearing auth token
+    // Redirect to login page after logout
+    navigate('/login');
+  };
 
   return (
     <div className="sidebar">
@@ -28,6 +37,13 @@ const Sidebar = () => {
           </li>
           <li className={isActive('/ContactDashboard') ? 'active' : ''}>
             <Link to="/ContactDashboard">Contact</Link>
+          </li>
+        </ul>
+        <hr />
+        <h4>ACCOUNT</h4>
+        <ul>
+          <li >
+            <button onClick={handleLogout}  className='logout-button'>Logout</button>
           </li>
         </ul>
       </div>
