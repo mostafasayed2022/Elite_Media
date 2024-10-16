@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             try {
                 const response = await axios.get("http://127.0.0.1:8000/dashboard_contact/", {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
 
