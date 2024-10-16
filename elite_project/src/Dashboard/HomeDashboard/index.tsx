@@ -78,11 +78,20 @@ const HomeDashboard: React.FC = () => {
         const { name, value } = e.target;
         setHome({ ...home, [name]: value });
     };
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>, _type: 'image' | 'video', section: keyof Home) => {
+        const file = e.target.files ? e.target.files[0] : null;
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, files } = e.target;
-        if (files) {
-            setHome({ ...home, [name]: files[0] });
+        if (file) {
+            const isImage = file.type.startsWith('image/');
+            const isVideo = file.type.startsWith('video/');
+
+            if (isImage) {
+                setHome({ ...home, [section]: file });
+            } else if (isVideo) {
+                setHome({ ...home, [section]: file });
+            } else {
+                alert('Unsupported file type. Please upload an image or video.');
+            }
         }
     };
 
@@ -136,9 +145,9 @@ const HomeDashboard: React.FC = () => {
                                         onChange={handleTextChange}
                                     />
                                     <UploadButton
-                                        label="Photo or Video"
+                                        label="Upload Photo or Video"
                                         size="1920x1080"
-                                        onFileChange={handleFileChange}
+                                        onFileChange={(e) => handleFileChange(e, 'image', 'image')}
                                         inputName="video"
                                     />
                                 </div>
@@ -160,9 +169,9 @@ const HomeDashboard: React.FC = () => {
                                     onChange={handleTextChange}
                                 />
                                 <UploadButton
-                                    label="Photo or Video"
+                                    label="Upload Service Photo or Video"
                                     size="1609x699"
-                                    onFileChange={handleFileChange}
+                                    onFileChange={(e) => handleFileChange(e, 'image', 'serviceimage')}
                                     inputName="serviceimage"
                                 />
                             </div>
@@ -183,9 +192,9 @@ const HomeDashboard: React.FC = () => {
                                 onChange={handleTextChange}
                             />
                             <UploadButton
-                                label="Photo or Video"
+                                label="Upload Team Photo or Video"
                                 size="1728x972"
-                                onFileChange={handleFileChange}
+                                onFileChange={(e) => handleFileChange(e, 'image', 'teamimage')}
                                 inputName="teamvideo"
                             />
                         </div>
