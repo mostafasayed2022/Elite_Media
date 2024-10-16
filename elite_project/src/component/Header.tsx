@@ -42,7 +42,7 @@ const Header: React.FC = () => {
                     </li>
                     {isAuthenticated && (
                         <li className="nav-item">
-                            <Link className="nav-link" to="/dashboard">DASHBOARD</Link>
+                            <Link className="nav-link" to="/HomeDashboard">DASHBOARD</Link>
                         </li>
                     )}
                 </ul>
