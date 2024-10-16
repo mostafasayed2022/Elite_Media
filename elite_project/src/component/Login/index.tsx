@@ -52,7 +52,7 @@ const Login: React.FC = () => {
                     <div className="input-group">
                         <label htmlFor="email" className="input-label">User Name:</label>
                         <input
-                            type="email"
+                            type="text"
                             id="email"
                             className="input-field"
                             value={username}
