@@ -6,20 +6,31 @@ import React, { ChangeEvent } from "react";
 
 
 interface UploadButtonProps {
-    label: string;
-    size: string;
-    onFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    inputName: string;
-  }
-  
-  const UploadButton: React.FC<UploadButtonProps> = ({ label, size }) => {
-    return (
-      <div className="upload-container">
-        <button className="upload-btn">Click to upload</button>
-        <span className="upload-size">{size}</span>
-      </div>
-    );
-  };
-  
-  
-  export default UploadButton;
+  label: string;
+  size: string;
+  onFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  inputName: string;
+}
+
+const UploadButton: React.FC<UploadButtonProps> = ({ label, size, onFileChange, inputName }) => {
+  return (
+    <div className="upload-container">
+      <label className="upload-btn">
+        {label}
+        <input
+          type="file"
+          accept="image/,video/" // Accept both images and videos
+          onChange={onFileChange}
+          name={inputName}
+        />
+      </label>
+    </div>
+  );
+};
+
+
+
+
+
+
+export default UploadButton;
