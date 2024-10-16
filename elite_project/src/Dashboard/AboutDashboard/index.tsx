@@ -4,6 +4,8 @@ import UploadButton from "../UploadButton";
 import SearchBar from "../SearchBar";
 import "../Css/Dashboard.css";
 const AboutDashboard = () => {
+
+
     return (
         <>
             <div className="dashboard-container">
@@ -20,7 +22,29 @@ const AboutDashboard = () => {
                         <label>Text</label>
                         <div className="intro-section1">
                             <textarea placeholder="Write here..." className="intro-text" />
-                            <UploadButton label="Photo or Video" size="1920x1080" />
+                            <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Video
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamvideo')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                            </div>
                         </div>
                         <button className="save-btn">SAVE</button>
                     </div>
@@ -30,7 +54,29 @@ const AboutDashboard = () => {
                         <label>Text</label>
                         <div className="intro-section1">
                             <textarea placeholder="Write here..." className="intro-text" />
-                            <UploadButton label="Photo or Video" size="200x200" />
+                            <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Video
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamvideo')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                            </div>
                         </div>
                         <button className="save-btn">SAVE</button>
                     </div>
@@ -41,15 +87,71 @@ const AboutDashboard = () => {
                             <label htmlFor="text">Text   “About”</label>
                             <div className="sec1">
                                 <textarea placeholder="Write here..." className="intro-text-session" />
-                                <UploadButton label="Photo or Video" size="751x460" />
+                                <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Video
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamvideo')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                            </div>
                             </div>
                             <label htmlFor="text">Text “Our Philosophy”</label>
                             <div className="sec2">
                                 <textarea placeholder="Write here..." className="intro-text-session" />
-                                <UploadButton label="Photo or Video" size="751x460" />
+                                <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Video
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamvideo')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                            </div>
                             </div>
                         </div>
-                        <UploadButton label="Photo or Video" size="1924x700" />
+                        <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                            </div>
                     </div>
 
 

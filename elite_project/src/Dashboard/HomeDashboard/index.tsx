@@ -34,7 +34,7 @@ const HomeDashboard: React.FC = () => {
         serviceimage: null,
         servicevideo: null,
     });
-    const [fileName, setFileName] = useState<string>('Click to upload');
+    const [, setFileName] = useState<string>('Click to upload');
     const [homeExists, setHomeExists] = useState<boolean>(true);
     const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const HomeDashboard: React.FC = () => {
             const token = localStorage.getItem("access_token");
 
             if (!token) {
-                navigate("/login");
+                // navigate("/login");
                 return;
             }
 
@@ -90,7 +90,7 @@ const HomeDashboard: React.FC = () => {
 
     const handleSave = async () => {
         const formData = new FormData();
-        
+
         // Append all fields to FormData
         Object.entries(home).forEach(([key, value]) => {
             if (value) formData.append(key, value);
@@ -139,12 +139,32 @@ const HomeDashboard: React.FC = () => {
                                         className="intro-text"
                                         onChange={handleTextChange}
                                     />
-                                    <input
-                                        id="video"
-                                        type="file"
-                                        accept="image/*, video/*"
-                                        onChange={(e) => handleFileChange(e, 'video')}
-                                    />
+                                    <div >
+
+                                    </div>
+                                    <div>
+                                        <label htmlFor="team-video-upload" className="file-upload-label">
+                                            Upload Image
+                                            <input
+                                                id="team-video-upload"
+                                                type="file"
+                                                accept="image/, video/"
+                                                onChange={(e) => handleFileChange(e, 'image')}
+                                                className="file-upload-input"
+                                            />
+                                        </label>
+
+                                        <label htmlFor="team-video-upload" className="file-upload-label">
+                                            Upload Video
+                                            <input
+                                                id="team-video-upload"
+                                                type="file"
+                                                accept="image/, video/"
+                                                onChange={(e) => handleFileChange(e, 'video')}
+                                                className="file-upload-input"
+                                            />
+                                        </label>
+                                    </div>
                                 </div>
                                 <button className="save-btn" onClick={handleSave}>SAVE</button>
                             </>
@@ -163,12 +183,29 @@ const HomeDashboard: React.FC = () => {
                                     placeholder="Media Production"
                                     onChange={handleTextChange}
                                 />
-                                <input
-                                    id="media-upload"
-                                    type="file"
-                                    accept="image/*, video/*"
-                                    onChange={(e) => handleFileChange(e, 'serviceimage')}
-                                />
+                                <div>
+                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                        Upload Image
+                                        <input
+                                            id="team-video-upload"
+                                            type="file"
+                                            accept="image/, video/"
+                                            onChange={(e) => handleFileChange(e, 'serviceimage')}
+                                            className="file-upload-input"
+                                        />
+                                    </label>
+
+                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                        Upload Video
+                                        <input
+                                            id="team-video-upload"
+                                            type="file"
+                                            accept="image/, video/"
+                                            onChange={(e) => handleFileChange(e, 'servicevideo')}
+                                            className="file-upload-input"
+                                        />
+                                    </label>
+                                </div>
                             </div>
                             <button className="add-service-btn">+ Add Service</button>
                         </div>
@@ -186,12 +223,30 @@ const HomeDashboard: React.FC = () => {
                                 className="intro-text"
                                 onChange={handleTextChange}
                             />
-                            <input
-                                id="team-video-upload"
-                                type="file"
-                                accept="image/*, video/*"
-                                onChange={(e) => handleFileChange(e, 'teamvideo')}
-                            />
+                            <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Video
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'teamvideo')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                            </div>
+
                         </div>
                         <button className="save-btn" onClick={handleSave}>SAVE</button>
                     </div>
