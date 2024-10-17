@@ -154,7 +154,7 @@ const HomeDashboard: React.FC = () => {
                                             />
                                         </label>
 
-                                        <label htmlFor="team-video-upload" className="file-upload-label">
+                                        {/* <label htmlFor="team-video-upload" className="file-upload-label">
                                             Upload Video
                                             <input
                                                 id="team-video-upload"
@@ -163,7 +163,7 @@ const HomeDashboard: React.FC = () => {
                                                 onChange={(e) => handleFileChange(e, 'video')}
                                                 className="file-upload-input"
                                             />
-                                        </label>
+                                        </label> */}
                                     </div>
                                 </div>
                                 <button className="save-btn" onClick={handleSave}>SAVE</button>
@@ -188,7 +188,7 @@ const HomeDashboard: React.FC = () => {
                                         className="file-upload-input"
                                     />
                                 </label>
-                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                {/* <label htmlFor="team-video-upload" className="file-upload-label">
                                     Upload video
                                     <input
                                         id="team-video-upload"
@@ -197,7 +197,7 @@ const HomeDashboard: React.FC = () => {
                                         onChange={(e) => handleFileChange(e, 'clientvideo')}
                                         className="file-upload-input"
                                     />
-                                </label>
+                                </label> */}
                                 
                             </div>
                         </div>
@@ -228,7 +228,7 @@ const HomeDashboard: React.FC = () => {
                                         />
                                     </label>
 
-                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                    {/* <label htmlFor="team-video-upload" className="file-upload-label">
                                         Upload Video
                                         <input
                                             id="team-video-upload"
@@ -237,7 +237,7 @@ const HomeDashboard: React.FC = () => {
                                             onChange={(e) => handleFileChange(e, 'servicevideo')}
                                             className="file-upload-input"
                                         />
-                                    </label>
+                                    </label> */}
                                 </div>
                             </div>
                             <button className="add-service-btn">+ Add Service</button>
@@ -268,7 +268,7 @@ const HomeDashboard: React.FC = () => {
                                     />
                                 </label>
 
-                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                {/* <label htmlFor="team-video-upload" className="file-upload-label">
                                     Upload Video
                                     <input
                                         id="team-video-upload"
@@ -277,7 +277,7 @@ const HomeDashboard: React.FC = () => {
                                         onChange={(e) => handleFileChange(e, 'teamvideo')}
                                         className="file-upload-input"
                                     />
-                                </label>
+                                </label> */}
                             </div>
 
                         </div>

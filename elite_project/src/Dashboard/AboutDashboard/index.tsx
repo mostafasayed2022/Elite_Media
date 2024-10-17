@@ -51,7 +51,7 @@ const AboutDashboard = () => {
             }
 
             try {
-                const response = await axios.get("http://127.0.0.1:8000/home_dashboard/", {
+                const response = await axios.get("http://127.0.0.1:8000/about_dashboard/", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
