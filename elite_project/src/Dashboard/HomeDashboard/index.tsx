@@ -50,7 +50,7 @@ const HomeDashboard: React.FC = () => {
             try {
                 const response = await axios.get("http://127.0.0.1:8000/home_dashboard/", {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
 
@@ -172,6 +172,39 @@ const HomeDashboard: React.FC = () => {
                             <p>No home data available.</p>
                         )}
                     </div>
+                    
+                    <div className="section intro-session">
+                        <h2>Clients Session</h2>
+                        <label>Text</label>
+                        <div className="intro-section1">
+                         <div>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'clientimage')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                    Upload video
+                                    <input
+                                        id="team-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'clientvideo')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                                
+                            </div>
+                        </div>
+                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                    </div>
+                    
+                    
                     <div className="section services-session">
                         <h2>Services Session</h2>
                         <div className="service-container">

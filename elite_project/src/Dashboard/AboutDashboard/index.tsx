@@ -24,8 +24,6 @@ interface About {
 
 
 const AboutDashboard = () => {
-
-
     const [about, setAbout] = useState<About>({
         text: "",
         image: null,
