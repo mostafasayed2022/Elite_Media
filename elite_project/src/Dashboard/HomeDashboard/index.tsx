@@ -58,7 +58,7 @@ const HomeDashboard: React.FC = () => {
                     setHome(response.data[0]);
                     setHomeExists(true);
                 } else {
-                    setHomeExists(false);
+                    setHomeExists(true);
                 }
             } catch (error: unknown) {
                 if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
@@ -97,11 +97,11 @@ const HomeDashboard: React.FC = () => {
         });
 
         try {
-            const token = localStorage.getItem("access_token");
+            // const token = localStorage.getItem("access_token");
             if (home.id) {
                 const response = await axios.put(`http://127.0.0.1:8000/home_dashboard/${home.id}/`, formData, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                         'Content-Type': 'multipart/form-data', // Important for file uploads
                     },
                 });
@@ -109,7 +109,7 @@ const HomeDashboard: React.FC = () => {
             } else {
                 const response = await axios.post("http://127.0.0.1:8000/home_dashboard/", formData, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
                         'Content-Type': 'multipart/form-data', // Important for file uploads
                     },
                 });
