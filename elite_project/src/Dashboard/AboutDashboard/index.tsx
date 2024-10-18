@@ -37,7 +37,7 @@ const AboutDashboard = () => {
         teamimage: null,
     });
     const [, setFileName] = useState<string>('Click to upload');
-    const [aboutExists, setAboutExists] = useState<boolean>(true);
+    // const [aboutExists, setAboutExists] = useState<boolean>(true);
     const navigate = useNavigate();
 
 
@@ -59,9 +59,9 @@ const AboutDashboard = () => {
 
                 if (response.data.length > 0) {
                     setAbout(response.data[0]);
-                    setAboutExists(true);
+                    // setAboutExists(true);
                 } else {
-                    setAboutExists(true);
+                    // setAboutExists(true);
                 }
             } catch (error: unknown) {
                 if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
@@ -136,8 +136,8 @@ const AboutDashboard = () => {
                 <div className="main-content">
                     <SearchBar />
                     {/* Conditionally render the content based on aboutExists */}
-                    {aboutExists ? (
-                        <>
+                    {/* {aboutExists ? ( */}
+                        {/* <> */}
                             {/* Dashboard Sections */}
                             <div className="section intro-session">
                                 <h2>Why Choose Us Session</h2>
@@ -151,6 +151,17 @@ const AboutDashboard = () => {
                                         onChange={handleTextChange}
                                     />
                                     <div>
+                                    <label htmlFor="team-video-upload2" className="file-upload-label">
+                                    Upload Image2
+                                    <input
+                                        id="team-video-upload2"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'image')}
+                                        className="file-upload-input"
+                                        required
+                                    />
+                                </label>
                                         <label htmlFor="team-video-upload" className="file-upload-label">
                                             Upload Image
                                             <input
@@ -159,6 +170,7 @@ const AboutDashboard = () => {
                                                 accept="image/, video/"
                                                 onChange={(e) => handleFileChange(e, "why_choose_usimage")}
                                                 className="file-upload-input"
+                                                required
                                             />
                                         </label>
                                     </div>
@@ -166,7 +178,7 @@ const AboutDashboard = () => {
                                 <button className="save-btn" onClick={handleSave}>SAVE</button>
                             </div>
 
-                        </>
+                        {/* </>
 
 
                     ) : (
@@ -174,7 +186,7 @@ const AboutDashboard = () => {
                         <div className="no-data">
                             <p>No data available. Please add information to the About section.</p>
                         </div>
-                    )}
+                    )} */}
 
 
 
@@ -189,10 +201,10 @@ const AboutDashboard = () => {
                                 value={about.text}
                                 onChange={handleTextChange}
                             />                           <div>
-                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                <label htmlFor="team-video-upload2" className="file-upload-label">
                                     Upload Image
                                     <input
-                                        id="team-video-upload"
+                                        id="team-video-upload2"
                                         type="file"
                                         accept="image/, video/"
                                         onChange={(e) => handleFileChange(e, 'image')}
@@ -216,10 +228,10 @@ const AboutDashboard = () => {
                                     value={about.abouttext_about}
                                     onChange={handleTextChange}
                                 />                                <div>
-                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                    <label htmlFor="team-video-upload3" className="file-upload-label">
                                         Upload Image
                                         <input
-                                            id="team-video-upload"
+                                            id="team-video-upload3"
                                             type="file"
                                             accept="image/, video/"
                                             onChange={(e) => handleFileChange(e, 'aboutimage')}
