@@ -1,11 +1,9 @@
-import React from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import SearchBar from "../SearchBar";
 import { useNavigate } from "react-router-dom";
-import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import "../Css/Dashboard.css";
-
 
 interface About {
     text: string;
@@ -21,8 +19,6 @@ interface About {
     id?: number;
 }
 
-
-
 const AboutDashboard = () => {
     const [about, setAbout] = useState<About>({
         text: "",
@@ -37,9 +33,7 @@ const AboutDashboard = () => {
         teamimage: null,
     });
     const [, setFileName] = useState<string>('Click to upload');
-    // const [aboutExists, setAboutExists] = useState<boolean>(true);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const fetchAboutData = async () => {
@@ -53,17 +47,14 @@ const AboutDashboard = () => {
             try {
                 const response = await axios.get("http://127.0.0.1:8000/about_dashboard/", {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 });
 
                 if (response.data.length > 0) {
                     setAbout(response.data[0]);
-                    // setAboutExists(true);
-                } else {
-                    // setAboutExists(true);
                 }
-            } catch (error: unknown) {
+            } catch (error) {
                 if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
                     navigate("/login");
                 } else {
@@ -84,38 +75,32 @@ const AboutDashboard = () => {
         const file = e.target.files ? e.target.files[0] : null;
 
         if (file) {
-            setAbout({ ...about, [field]: file }); // Update the specific field in state
+            setAbout({ ...about, [field]: file });
             setFileName(`File: ${file.name}`);
         } else {
             setFileName('Click to upload');
         }
     };
 
-
-    const handleSave = async () => {
+    const handleSave = async (section: keyof About) => {
         const formData = new FormData();
 
         // Append all fields to FormData
-        Object.entries(about).forEach(([key, value]) => {
-            if (value) formData.append(key, value);
-        });
+        if (about[section]) {
+            formData.append(section, about[section] as Blob);
+        }
 
         try {
+            const headers = {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                'Content-Type': 'multipart/form-data',
+            };
+
             if (about.id) {
-                const response = await axios.put(`http://127.0.0.1:8000/about_dashboard/${about.id}/`, formData, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                        'Content-Type': 'multipart/form-data', // Important for file uploads
-                    },
-                });
+                const response = await axios.put(`http://127.0.0.1:8000/about_dashboard/${about.id}/`, formData, { headers });
                 console.log("About updated:", response.data);
             } else {
-                const response = await axios.post("http://127.0.0.1:8000/about_dashboard/", formData, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
-                        'Content-Type': 'multipart/form-data', // Important for file uploads
-                    },
-                });
+                const response = await axios.post("http://127.0.0.1:8000/about_dashboard/", formData, { headers });
                 console.log("About saved:", response.data);
             }
         } catch (error) {
@@ -123,72 +108,40 @@ const AboutDashboard = () => {
         }
     };
 
-
-
-
     return (
         <>
             <div className="dashboard-container">
-                {/* Sidebar */}
                 <Sidebar />
-
-                {/* Main Content */}
                 <div className="main-content">
                     <SearchBar />
-                    {/* Conditionally render the content based on aboutExists */}
-                    {/* {aboutExists ? ( */}
-                        {/* <> */}
-                            {/* Dashboard Sections */}
-                            <div className="section intro-session">
-                                <h2>Why Choose Us Session</h2>
-                                <label>Text</label>
-                                <div className="intro-section1">
-                                    <textarea
-                                        placeholder="Write here..."
-                                        className="intro-text"
-                                        name="why_choose_ustext"
-                                        value={about.why_choose_ustext}
-                                        onChange={handleTextChange}
-                                    />
-                                    <div>
-                                    <label htmlFor="team-video-upload2" className="file-upload-label">
-                                    Upload Image2
+
+                    <div className="section intro-session">
+                        <h2>Why Choose Us Session</h2>
+                        <label>Text</label>
+                        <div className="intro-section1">
+                            <textarea
+                                placeholder="Write here..."
+                                className="intro-text"
+                                name="why_choose_ustext"
+                                value={about.why_choose_ustext}
+                                onChange={handleTextChange}
+                            />
+                            <div>
+                                <label htmlFor="why-choose-us-image" className="file-upload-label">
+                                    Upload Image
                                     <input
-                                        id="team-video-upload2"
+                                        id="why-choose-us-image"
                                         type="file"
-                                        accept="image/, video/"
-                                        onChange={(e) => handleFileChange(e, 'image')}
+                                        accept="image/*,video/*"
+                                        onChange={(e) => handleFileChange(e, "why_choose_usimage")}
                                         className="file-upload-input"
                                         required
                                     />
                                 </label>
-                                        <label htmlFor="team-video-upload" className="file-upload-label">
-                                            Upload Image
-                                            <input
-                                                id="team-video-upload"
-                                                type="file"
-                                                accept="image/, video/"
-                                                onChange={(e) => handleFileChange(e, "why_choose_usimage")}
-                                                className="file-upload-input"
-                                                required
-                                            />
-                                        </label>
-                                    </div>
-                                </div>
-                                <button className="save-btn" onClick={handleSave}>SAVE</button>
                             </div>
-
-                        {/* </>
-
-
-                    ) : (
-
-                        <div className="no-data">
-                            <p>No data available. Please add information to the About section.</p>
                         </div>
-                    )} */}
-
-
+                        <button className="save-btn" onClick={() => handleSave("why_choose_ustext")}>SAVE</button>
+                    </div>
 
                     <div className="section intro-session">
                         <h2>Clients Session</h2>
@@ -200,103 +153,28 @@ const AboutDashboard = () => {
                                 name="text"
                                 value={about.text}
                                 onChange={handleTextChange}
-                            />                           <div>
-                                <label htmlFor="team-video-upload2" className="file-upload-label">
+                            />
+                            <div>
+                                <label htmlFor="client-image-upload" className="file-upload-label">
                                     Upload Image
                                     <input
-                                        id="team-video-upload2"
+                                        id="client-image-upload"
                                         type="file"
-                                        accept="image/, video/"
-                                        onChange={(e) => handleFileChange(e, 'image')}
+                                        accept="image/*,video/*"
+                                        onChange={(e) => handleFileChange(e, "image")}
                                         className="file-upload-input"
                                     />
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("text")}>SAVE</button>
                     </div>
 
-                    <div className="section intro-session">
-                        <h2>About Sessionn</h2>
-                        <div className="intro-section2">
-                            <label htmlFor="text">Text   “About”</label>
-                            <div className="sec1">
-                                <textarea
-                                    placeholder="Write here..."
-                                    className="intro-text"
-                                    name="abouttext_about"
-                                    value={about.abouttext_about}
-                                    onChange={handleTextChange}
-                                />                                <div>
-                                    <label htmlFor="team-video-upload3" className="file-upload-label">
-                                        Upload Image
-                                        <input
-                                            id="team-video-upload3"
-                                            type="file"
-                                            accept="image/, video/"
-                                            onChange={(e) => handleFileChange(e, 'aboutimage')}
-                                            className="file-upload-input"
-                                        />
-                                    </label>
-                                </div>
-                            </div>
-                            <label htmlFor="text">Text “Our Philosophy”</label>
-                            <div className="sec2">
-                                <textarea
-                                    placeholder="Write here..."
-                                    className="intro-text"
-                                    name="text_philo"
-                                    value={about.text_philo}
-                                    onChange={handleTextChange}
-                                />
-                                <div>
-                                    <label htmlFor="team-video-upload" className="file-upload-label">
-                                        Upload Image
-                                        <input
-                                            id="team-video-upload"
-                                            type="file"
-                                            accept="image/, video/"
-                                            onChange={(e) => handleFileChange(e, 'image_philo')}
-                                            className="file-upload-input"
-                                        />
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            {/* <label htmlFor="team-video-upload" className="file-upload-label">
-                                Upload Image
-                                <input
-                                    id="team-video-upload"
-                                    type="file"
-                                    accept="image/, video/"
-                                    onChange={(e) => handleFileChange(e, 'teamimage')}
-                                    className="file-upload-input"
-                                />
-                            </label> */}
-                        </div>
-                    </div>
-
-
-                    <div className="section services-session">
-                        <h2>Our Team Session</h2>
-                        <textarea
-                            placeholder="Write here..."
-                            className="intro-text"
-                            name="teamtext"
-                            value={about.teamtext}
-                            onChange={handleTextChange}
-                        />
-                        <div className="service">
-                        </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
-                    </div>
-
+                    {/* Additional sections here */}
                 </div>
-            </div >
+            </div>
         </>
     );
-}
-
+};
 
 export default AboutDashboard;
