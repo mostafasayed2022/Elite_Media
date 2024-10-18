@@ -82,22 +82,14 @@ const AboutDashboard = () => {
         }
     };
 
-    const handleSave = async () => {
+    const handleSave = async (section: keyof About) => {
         const formData = new FormData();
 
         // Append all fields to FormData
-        formData.append("text", about.text);
-        formData.append("abouttext_about", about.abouttext_about);
-        formData.append("why_choose_ustext", about.why_choose_ustext);
-        formData.append("text_philo", about.text_philo);
-        formData.append("teamtext", about.teamtext);
+        if (about[section]) {
+            formData.append(section, about[section] as Blob);
+        }
 
-        // Append files to FormData if they exist
-        if (about.image) formData.append("image", about.image);
-        if (about.aboutimage) formData.append("aboutimage", about.aboutimage);
-        if (about.why_choose_usimage) formData.append("why_choose_usimage", about.why_choose_usimage);
-        if (about.image_philo) formData.append("image_philo", about.image_philo);
-        if (about.teamimage) formData.append("teamimage", about.teamimage);
         try {
             const headers = {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -150,7 +142,7 @@ const AboutDashboard = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("why_choose_ustext")}>SAVE</button>
                     </div>
 
 
@@ -181,7 +173,7 @@ const AboutDashboard = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("text")}>SAVE</button>
                     </div>
                     {/*End  Clients Session */}
 
@@ -237,7 +229,7 @@ const AboutDashboard = () => {
                                         />
                                     </label>
                                 </div>
-                                <button className="save-btn" onClick={handleSave}>Save About</button>
+                                <button className="save-btn" onClick={() => handleSave("abouttext_about")}>Save About</button>
                             </div>
                         </div>
                         <div>
@@ -269,7 +261,7 @@ const AboutDashboard = () => {
                         />
                         <div className="service">
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("teamtext")}>SAVE</button>
                     </div>
                 </div>
             </div>
