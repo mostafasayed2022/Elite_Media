@@ -35,7 +35,6 @@ const HomeDashboard: React.FC = () => {
         servicevideo: null,
     });
     const [, setFileName] = useState<string>('Click to upload');
-    const [homeExists, setHomeExists] = useState<boolean>(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,9 +55,7 @@ const HomeDashboard: React.FC = () => {
 
                 if (response.data.length > 0) {
                     setHome(response.data[0]);
-                    setHomeExists(true);
-                } else {
-                    setHomeExists(true);
+
                 }
             } catch (error: unknown) {
                 if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
@@ -72,10 +69,12 @@ const HomeDashboard: React.FC = () => {
         fetchHomeData();
     }, [navigate]);
 
+
     const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setHome({ ...home, [name]: value });
     };
+
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Home) => {
         const file = e.target.files ? e.target.files[0] : null;
@@ -88,13 +87,46 @@ const HomeDashboard: React.FC = () => {
         }
     };
 
-    const handleSave = async () => {
+    const handleSave3 = async (section: keyof Home,) => {
         const formData = new FormData();
-
         // Append all fields to FormData
-        Object.entries(home).forEach(([key, value]) => {
-            if (value) formData.append(key, value);
-        });
+        if (home[section]) {
+            formData.append(section, home[section] as Blob);
+
+        }
+        try {
+            // const token = localStorage.getItem("access_token");
+            if (home.id) {
+                const response = await axios.put(`http://127.0.0.1:8000/home_dashboard/${home.id}/`, formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                console.log("Home updated:", response.data);
+            } else {
+                const response = await axios.post("http://127.0.0.1:8000/home_dashboard/", formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                console.log("Home saved:", response.data);
+            }
+        } catch (error) {
+            console.error("Error saving data:", error);
+        }
+    };
+
+
+    const handleSave2 = async (section: keyof Home, section2: keyof Home) => {
+        const formData = new FormData();
+        // Append all fields to FormData
+        if (home[section] && home[section2]) {
+            formData.append(section, home[section] as Blob);
+            formData.append(section2, home[section2] as Blob);
+        }
+
 
         try {
             // const token = localStorage.getItem("access_token");
@@ -120,6 +152,44 @@ const HomeDashboard: React.FC = () => {
         }
     };
 
+
+    const handleSave = async (section: keyof Home, section2: keyof Home, section3: keyof Home) => {
+        const formData = new FormData();
+
+        // Append all fields to FormData
+        if (home[section] && home[section2] && home[section3]) {
+            formData.append(section, home[section] as Blob);
+            formData.append(section2, home[section2] as Blob);
+            formData.append(section3, home[section3] as Blob);
+        }
+
+
+        try {
+            // const token = localStorage.getItem("access_token");
+            if (home.id) {
+                const response = await axios.put(`http://127.0.0.1:8000/home_dashboard/${home.id}/`, formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                console.log("Home updated:", response.data);
+            } else {
+                const response = await axios.post("http://127.0.0.1:8000/home_dashboard/", formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                console.log("Home saved:", response.data);
+            }
+        } catch (error) {
+            console.error("Error saving data:", error);
+        }
+    };
+
+
+
     return (
         <>
             <div className="dashboard-container">
@@ -128,83 +198,71 @@ const HomeDashboard: React.FC = () => {
                     <SearchBar />
                     <div className="section intro-session">
                         <h2>INTRO Session</h2>
-                        {homeExists ? (
-                            <>
-                                <label>Text</label>
-                                <div className="intro-section1">
-                                    <textarea
-                                        name="text"
-                                        value={home.text}
-                                        placeholder="Write here..."
-                                        className="intro-text"
-                                        onChange={handleTextChange}
-                                    />
-                                    <div >
 
-                                    </div>
-                                    <div>
-                                        <label htmlFor="team-video-upload" className="file-upload-label">
-                                            Upload Image
-                                            <input
-                                                id="team-video-upload"
-                                                type="file"
-                                                accept="image/, video/"
-                                                onChange={(e) => handleFileChange(e, 'image')}
-                                                className="file-upload-input"
-                                            />
-                                        </label>
-
-                                        {/* <label htmlFor="team-video-upload" className="file-upload-label">
-                                            Upload Video
-                                            <input
-                                                id="team-video-upload"
-                                                type="file"
-                                                accept="image/, video/"
-                                                onChange={(e) => handleFileChange(e, 'video')}
-                                                className="file-upload-input"
-                                            />
-                                        </label> */}
-                                    </div>
-                                </div>
-                                <button className="save-btn" onClick={handleSave}>SAVE</button>
-                            </>
-                        ) : (
-                            <p>No home data available.</p>
-                        )}
-                    </div>
-                    
-                    <div className="section intro-session">
-                        <h2>Clients Session</h2>
                         <label>Text</label>
                         <div className="intro-section1">
-                         <div>
-                                <label htmlFor="team-video-upload" className="file-upload-label">
+                            <textarea
+                                name="text"
+                                value={home.text}
+                                placeholder="Write here..."
+                                className="intro-text"
+                                onChange={handleTextChange}
+                            />
+                            <div >
+
+                            </div>
+                            <div>
+                                <label htmlFor="intro-image-upload" className="file-upload-label">
                                     Upload Image
                                     <input
-                                        id="team-video-upload"
+                                        id="intro-image-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'image')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+
+                                <label htmlFor="intro-video-upload" className="file-upload-label">
+                                    Upload Video
+                                    <input
+                                        id="intro-video-upload"
+                                        type="file"
+                                        accept="image/, video/"
+                                        onChange={(e) => handleFileChange(e, 'video')}
+                                        className="file-upload-input"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <button className="save-btn" onClick={() => handleSave("text", "image", "video")}>SAVE</button>
+
+
+                    </div>
+
+                    <div className="section intro-session">
+                        <h2>Clients Session</h2>
+                        <label>image</label>
+                        <div className="intro-section1">
+                            <div>
+                                <label htmlFor="client-image-upload" className="file-upload-label">
+                                    Upload Image
+                                    <input
+                                        id="client-image-upload"
                                         type="file"
                                         accept="image/, video/"
                                         onChange={(e) => handleFileChange(e, 'clientimage')}
                                         className="file-upload-input"
                                     />
                                 </label>
-                                {/* <label htmlFor="team-video-upload" className="file-upload-label">
-                                    Upload video
-                                    <input
-                                        id="team-video-upload"
-                                        type="file"
-                                        accept="image/, video/"
-                                        onChange={(e) => handleFileChange(e, 'clientvideo')}
-                                        className="file-upload-input"
-                                    />
-                                </label> */}
-                                
+
+
                             </div>
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave3("clientimage")}>SAVE</button>
                     </div>
-                    
-                    
+
+
                     <div className="section services-session">
                         <h2>Services Session</h2>
                         <div className="service-container">
@@ -217,10 +275,10 @@ const HomeDashboard: React.FC = () => {
                                     onChange={handleTextChange}
                                 />
                                 <div>
-                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                    <label htmlFor="service-image-upload" className="file-upload-label">
                                         Upload Image
                                         <input
-                                            id="team-video-upload"
+                                            id="service-image-upload"
                                             type="file"
                                             accept="image/, video/"
                                             onChange={(e) => handleFileChange(e, 'serviceimage')}
@@ -228,21 +286,21 @@ const HomeDashboard: React.FC = () => {
                                         />
                                     </label>
 
-                                    {/* <label htmlFor="team-video-upload" className="file-upload-label">
+                                    <label htmlFor="service-video-upload" className="file-upload-label">
                                         Upload Video
                                         <input
-                                            id="team-video-upload"
+                                            id="service-video-upload"
                                             type="file"
                                             accept="image/, video/"
                                             onChange={(e) => handleFileChange(e, 'servicevideo')}
                                             className="file-upload-input"
                                         />
-                                    </label> */}
+                                    </label>
                                 </div>
                             </div>
                             <button className="add-service-btn">+ Add Service</button>
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("servicename", "serviceimage", "servicevideo")}>SAVE</button>
                     </div>
 
                     <div className="section team-session">
@@ -257,10 +315,10 @@ const HomeDashboard: React.FC = () => {
                                 onChange={handleTextChange}
                             />
                             <div>
-                                <label htmlFor="team-video-upload" className="file-upload-label">
+                                <label htmlFor="team-image-upload" className="file-upload-label">
                                     Upload Image
                                     <input
-                                        id="team-video-upload"
+                                        id="team-image-upload"
                                         type="file"
                                         accept="image/, video/"
                                         onChange={(e) => handleFileChange(e, 'teamimage')}
@@ -268,20 +326,10 @@ const HomeDashboard: React.FC = () => {
                                     />
                                 </label>
 
-                                {/* <label htmlFor="team-video-upload" className="file-upload-label">
-                                    Upload Video
-                                    <input
-                                        id="team-video-upload"
-                                        type="file"
-                                        accept="image/, video/"
-                                        onChange={(e) => handleFileChange(e, 'teamvideo')}
-                                        className="file-upload-input"
-                                    />
-                                </label> */}
                             </div>
 
                         </div>
-                        <button className="save-btn" onClick={handleSave}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave2("teamtext", "teamimage")}>SAVE</button>
                     </div>
                 </div>
             </div>
@@ -290,3 +338,4 @@ const HomeDashboard: React.FC = () => {
 };
 
 export default HomeDashboard;
+

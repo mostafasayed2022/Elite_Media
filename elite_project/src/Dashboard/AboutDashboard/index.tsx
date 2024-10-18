@@ -82,12 +82,13 @@ const AboutDashboard = () => {
         }
     };
 
-    const handleSave = async (section: keyof About) => {
+    const handleSave = async (section: keyof About, section2: keyof About) => {
         const formData = new FormData();
 
         // Append all fields to FormData
-        if (about[section]) {
+        if (about[section] && about[section2]) {
             formData.append(section, about[section] as Blob);
+            formData.append(section2, about[section2] as Blob);
         }
 
         try {
@@ -115,8 +116,6 @@ const AboutDashboard = () => {
                 <div className="main-content">
                     <SearchBar />
 
-
-                    {/* Why Choose Us Session */}
                     <div className="section intro-session">
                         <h2>Why Choose Us Session</h2>
                         <label>Text</label>
@@ -142,13 +141,9 @@ const AboutDashboard = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={() => handleSave("why_choose_ustext")}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("why_choose_usimage", "why_choose_ustext")}>SAVE</button>
                     </div>
 
-
-                    {/* end  Why Choose Us Session */}
-
-                    {/*start  Clients Session */}
                     <div className="section intro-session">
                         <h2>Clients Session</h2>
                         <label>Text</label>
@@ -173,13 +168,10 @@ const AboutDashboard = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={() => handleSave("text")}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("text", "image")}>SAVE</button>
                     </div>
-                    {/*End  Clients Session */}
-
 
                     {/* Additional sections here */}
-
                     {/*start  About Session */}
 
                     <div className="section intro-session">
@@ -206,6 +198,7 @@ const AboutDashboard = () => {
                                         />
                                     </label>
                                 </div>
+                                <button className="save-btn" onClick={() => handleSave("aboutimage","abouttext_about")}>Save About</button>
                             </div>
 
                             <label htmlFor="text">Text “Our Philosophy”</label>
@@ -218,10 +211,10 @@ const AboutDashboard = () => {
                                     onChange={handleTextChange}
                                 />
                                 <div>
-                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                    <label htmlFor="philo-image-upload" className="file-upload-label">
                                         Upload Image
                                         <input
-                                            id="team-video-upload"
+                                            id="philo-image-upload"
                                             type="file"
                                             accept="image/, video/"
                                             onChange={(e) => handleFileChange(e, 'image_philo')}
@@ -229,21 +222,10 @@ const AboutDashboard = () => {
                                         />
                                     </label>
                                 </div>
-                                <button className="save-btn" onClick={() => handleSave("abouttext_about")}>Save About</button>
+                                <button className="save-btn" onClick={() => handleSave("text_philo","image_philo")}>Save About</button>
                             </div>
                         </div>
-                        <div>
-                            {/* <label htmlFor="team-video-upload" className="file-upload-label">
-                                Upload Image
-                                <input
-                                    id="team-video-upload"
-                                    type="file"
-                                    accept="image/, video/"
-                                    onChange={(e) => handleFileChange(e, 'teamimage')}
-                                    className="file-upload-input"
-                                />
-                            </label> */}
-                        </div>
+                       
                     </div>
 
 
@@ -259,14 +241,31 @@ const AboutDashboard = () => {
                             value={about.teamtext}
                             onChange={handleTextChange}
                         />
+                         <div>
+                            <label htmlFor="team-image-upload" className="file-upload-label">
+                                Upload Image
+                                <input
+                                    id="team-image-upload"
+                                    type="file"
+                                    accept="image/, video/"
+                                    onChange={(e) => handleFileChange(e, 'teamimage')}
+                                    className="file-upload-input"
+                                />
+                            </label>
+                        </div>
                         <div className="service">
                         </div>
-                        <button className="save-btn" onClick={() => handleSave("teamtext")}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("teamtext","teamimage")}>SAVE</button>
                     </div>
+
+
+
+
+
                 </div>
             </div>
         </>
     );
 };
 
-export default AboutDashboard;
+export default AboutDashboard
