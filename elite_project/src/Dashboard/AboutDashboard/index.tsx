@@ -115,6 +115,8 @@ const AboutDashboard = () => {
                 <div className="main-content">
                     <SearchBar />
 
+
+                    {/* Why Choose Us Session */}
                     <div className="section intro-session">
                         <h2>Why Choose Us Session</h2>
                         <label>Text</label>
@@ -143,6 +145,10 @@ const AboutDashboard = () => {
                         <button className="save-btn" onClick={() => handleSave("why_choose_ustext")}>SAVE</button>
                     </div>
 
+
+                    {/* end  Why Choose Us Session */}
+
+                    {/*start  Clients Session */}
                     <div className="section intro-session">
                         <h2>Clients Session</h2>
                         <label>Text</label>
@@ -169,8 +175,94 @@ const AboutDashboard = () => {
                         </div>
                         <button className="save-btn" onClick={() => handleSave("text")}>SAVE</button>
                     </div>
+                    {/*End  Clients Session */}
+
 
                     {/* Additional sections here */}
+
+                    {/*start  About Session */}
+
+                    <div className="section intro-session">
+                        <h2>About Sessionn</h2>
+                        <div className="intro-section2">
+                            <label htmlFor="text">Text   “About”</label>
+                            <div className="sec1">
+                                <textarea
+                                    placeholder="Write here..."
+                                    className="intro-text"
+                                    name="abouttext_about"
+                                    value={about.abouttext_about}
+                                    onChange={handleTextChange}
+                                />
+                                <div>
+                                    <label htmlFor="team-video-upload3" className="file-upload-label">
+                                        Upload Image
+                                        <input
+                                            id="team-video-upload3"
+                                            type="file"
+                                            accept="image/, video/"
+                                            onChange={(e) => handleFileChange(e, 'aboutimage')}
+                                            className="file-upload-input"
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+
+                            <label htmlFor="text">Text “Our Philosophy”</label>
+                            <div className="sec2">
+                                <textarea
+                                    placeholder="Write here..."
+                                    className="intro-text"
+                                    name="text_philo"
+                                    value={about.text_philo}
+                                    onChange={handleTextChange}
+                                />
+                                <div>
+                                    <label htmlFor="team-video-upload" className="file-upload-label">
+                                        Upload Image
+                                        <input
+                                            id="team-video-upload"
+                                            type="file"
+                                            accept="image/, video/"
+                                            onChange={(e) => handleFileChange(e, 'image_philo')}
+                                            className="file-upload-input"
+                                        />
+                                    </label>
+                                </div>
+                                <button className="save-btn" onClick={() => handleSave("abouttext_about")}>Save About</button>
+                            </div>
+                        </div>
+                        <div>
+                            {/* <label htmlFor="team-video-upload" className="file-upload-label">
+                                Upload Image
+                                <input
+                                    id="team-video-upload"
+                                    type="file"
+                                    accept="image/, video/"
+                                    onChange={(e) => handleFileChange(e, 'teamimage')}
+                                    className="file-upload-input"
+                                />
+                            </label> */}
+                        </div>
+                    </div>
+
+
+                    {/*start  About Session */}
+
+
+                    <div className="section services-session">
+                        <h2>Our Team Session</h2>
+                        <textarea
+                            placeholder="Write here..."
+                            className="intro-text"
+                            name="teamtext"
+                            value={about.teamtext}
+                            onChange={handleTextChange}
+                        />
+                        <div className="service">
+                        </div>
+                        <button className="save-btn" onClick={() => handleSave("teamtext")}>SAVE</button>
+                    </div>
                 </div>
             </div>
         </>
