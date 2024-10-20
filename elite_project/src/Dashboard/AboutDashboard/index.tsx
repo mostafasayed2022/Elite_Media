@@ -88,7 +88,7 @@ const AboutDashboard = () => {
         // Append all fields to FormData
         if (about[section] && about[section2]) {
             formData.append(section, about[section] as Blob);
-            formData.append(section2, about[section2] as Blob);
+            formData.append(section2, about[section2] as string);
         }
 
         try {
@@ -115,7 +115,6 @@ const AboutDashboard = () => {
                 <Sidebar />
                 <div className="main-content">
                     <SearchBar />
-
                     <div className="section intro-session">
                         <h2>Why Choose Us Session</h2>
                         <label>Text</label>
@@ -143,7 +142,6 @@ const AboutDashboard = () => {
                         </div>
                         <button className="save-btn" onClick={() => handleSave("why_choose_usimage", "why_choose_ustext")}>SAVE</button>
                     </div>
-
                     <div className="section intro-session">
                         <h2>Clients Session</h2>
                         <label>Text</label>
@@ -168,9 +166,8 @@ const AboutDashboard = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={() => handleSave("text", "image")}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave( "image","text")}>SAVE</button>
                     </div>
-
                     {/* Additional sections here */}
                     {/*start  About Session */}
 
@@ -222,7 +219,7 @@ const AboutDashboard = () => {
                                         />
                                     </label>
                                 </div>
-                                <button className="save-btn" onClick={() => handleSave("text_philo","image_philo")}>Save About</button>
+                                <button className="save-btn" onClick={() => handleSave("image_philo","text_philo")}>Save About</button>
                             </div>
                         </div>
                        
@@ -255,11 +252,8 @@ const AboutDashboard = () => {
                         </div>
                         <div className="service">
                         </div>
-                        <button className="save-btn" onClick={() => handleSave("teamtext","teamimage")}>SAVE</button>
+                        <button className="save-btn" onClick={() => handleSave("teamimage","teamtext")}>SAVE</button>
                     </div>
-
-
-
 
 
                 </div>
@@ -268,4 +262,4 @@ const AboutDashboard = () => {
     );
 };
 
-export default AboutDashboard
+export default AboutDashboard;
