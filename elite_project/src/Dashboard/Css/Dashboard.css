@@ -629,6 +629,15 @@ margin-bottom: 40px;
 
 
 
+.image-preview {
+  width: 100px;  /* Adjust this to control the size */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px; /* For rounded edges */
+  margin-top:10px;
+  margin-left: 30px;
+}
+
 /* contact */
 
 
