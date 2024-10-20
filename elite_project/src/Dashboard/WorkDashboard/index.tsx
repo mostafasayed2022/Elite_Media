@@ -17,7 +17,7 @@ interface Work {
 
 }
 
-const WorkDashboard = () => {
+const WorkDashboard = () => {
 
     const [work, setWork] = useState<Work>({
         title: " ",
@@ -26,7 +26,8 @@ const WorkDashboard = () => {
         video: null,
     });
 
-    const [fileName, setFileName] = useState<string>('Click to upload');
+    const [imageFileName, setImageFileName] = useState<string>("Click to upload image");
+    const [videoFileName, setVideoFileName] = useState<string>("Click to upload video");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -70,16 +71,24 @@ const WorkDashboard = () => {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Work) => {
         const file = e.target.files ? e.target.files[0] : null;
-
         if (file) {
-            setWork({ ...work, [field]: file }); // Update the specific field in state
-            setFileName(`File: ${file.name}`);
+            setWork({ ...work, [field]: file });
+
+            // Set the file name based on whether it's an image or video
+            if (field === "logo") {
+                setImageFileName(file.name);
+            } else if (field === "video") {
+                setVideoFileName(file.name);
+            }
         } else {
-            setFileName('Click to upload');
+            // Reset file name if no file is selected
+            if (field === "logo") {
+                setImageFileName("Click to upload image");
+            } else if (field === "video") {
+                setVideoFileName("Click to upload video");
+            }
         }
-    };
-
-
+    }
     const handleSave = async (section: keyof Work, section2: keyof Work, section3: keyof Work, section4: keyof Work) => {
         const formData = new FormData();
         // Append all fields to FormData
@@ -105,7 +114,7 @@ const WorkDashboard = () => {
             } else {
                 const response = await axios.post("http://127.0.0.1:8000/dashboard_work/", formData, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                         'Content-Type': 'multipart/form-data', // Important for file uploads
                     },
                 });
@@ -156,7 +165,7 @@ const WorkDashboard = () => {
                                                 onChange={(e) => handleFileChange(e, 'logo')}
                                                 className="file-upload-input"
                                             />
-                                            <div>{fileName}</div>
+                                            <div>{imageFileName}</div>
                                         </label>
                                         {/* <span className="file-size">778x524</span> */}
                                     </div>
@@ -187,7 +196,7 @@ const WorkDashboard = () => {
                                                 onChange={(e) => handleFileChange(e, 'video')}
                                                 className="file-upload-input"
                                             />
-                                            <div>{fileName}</div>
+                                            <div>{videoFileName}</div>
                                         </label>
                                         {/* <span className="file-size">778x524</span> */}
                                     </div>
