@@ -1,26 +1,18 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../Css/Home.css";
-import XtraGreenLogo from '../assets/home/image4.png';
-import AlmentorLogo from '../assets/home/image6.png';
-import AxisLogo from '../assets/home/image3.png';
-import AlJoufLogo from '../assets/home/image5.png';
+import axios from "axios";
 
-import Abtal from "../assets/work/Abtal El Amal Initiative-image.png";
-import Ahmed from "../assets/work/Ahmed Farid Mustapha.png";
-import united from "../assets/work/UNITED BROTHERS.png";
-import zyout from "../assets/work/ZYOUT-image.png";
+interface Work {
+    id: number;
+    title: string;
+    logo: string;  // Assuming logo is a URL string
+    deliverables: string;
+    video: string; // Assuming video is a URL string
+}
 
+const Cards: React.FC = () => {
+    const [work, setWork] = useState<Work[]>([]); // Initialize with an empty array
 
-
-
-
-import video from "../assets/home/xtra.mp4";
-import video1 from "../assets/home/Axis.mp4"; // Video for AXIS
-import video2 from "../assets/work/Abtal El Amal Initiative.mp4"; // Video for AXIS
-import video3 from "../assets/work/ZYOUT.mp4"; // Video for AXIS
-
-
-const CardsWork: React.FC = () => {
     // Initialize videoRefs with an array of nullable HTMLVideoElement
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
@@ -39,41 +31,50 @@ const CardsWork: React.FC = () => {
         }
     };
 
-    // Array of card data with their respective videos
-    const cardsData = [
-        { logo: XtraGreenLogo, title: "Xtra Green", description: "#Branding & Identity", videoSrc: video },
-        { logo: AlmentorLogo, title: "Almentor", description: "#Media Production #Videographic #Printing & Giveaways #Editing" }, // Same video
-        { logo: AxisLogo, title: "AXIS", description: "#Branding & Identity", videoSrc: video1 }, // Different video for AXIS
-        { logo: AlJoufLogo, title: "Al Jouf Urban Observatory", description: "#Motion Graphic" }, // Same video
-        { logo: Abtal, title: "Al Jouf Urban Observatory", description: "#UI/UX #WEBSITE" , videoSrc: video2 }, // Same video
-        { logo: Ahmed, title: "Al Jouf Urban Observatory", description: "#Motion Graphic #Application" }, // Same video
-        { logo: united, title: "Al Jouf Urban Observatory", description: "#UI/UX #WEBSITE" }, // Same video
-        { logo: zyout, title: "Al Jouf Urban Observatory", description: "#Motion Graphic #Branding & Identity",videoSrc: video3 }, // Same video
-
-    ];
+    // Fetch data from the backend
+    useEffect(() => {
+        const fetchWorks = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/work/");
+                if (response.data.length > 0) {
+                    setWork(response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching works:", error);
+            }
+        };
+        fetchWorks();
+    }, []);
 
     return (
         <div className="container">
             <div className="grid">
-                {cardsData.map((card, index) => (
-                    <div 
-                        className="cardss" 
-                        key={index} 
-                        onMouseEnter={() => handleMouseEnter(index)} 
+                {work.map((item, index) => (
+                    <div
+                        className="cardss"
+                        key={index}
+                        onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={() => handleMouseLeave(index)}
                     >
                         <div className="card-logo">
-                            <img src={card.logo} alt={card.title} className="card-image" />
-                            <video 
-                                src={card.videoSrc}  // Use videoSrc from card data
-                                className="video" 
-                                muted 
-                                loop 
-                                ref={el => (videoRefs.current[index] = el)} 
-                            />
+                            {/* Display logo if it exists */}
+                            {item.logo && (
+                                <img src={item.logo} alt={item.title} className="card-image" />
+                            )}
+
+                            {/* Display video if it exists */}
+                            {item.video && (
+                                <video
+                                    src={item.video}
+                                    className="video"
+                                    muted
+                                    loop
+                                    ref={el => (videoRefs.current[index] = el)}
+                                />
+                            )}
                         </div>
-                        <h2>{card.title}</h2>
-                        <p>{card.description}</p>
+                        <h2>{item.title}</h2>
+                        <p>{item.deliverables}</p>
                     </div>
                 ))}
             </div>
@@ -81,4 +82,4 @@ const CardsWork: React.FC = () => {
     );
 };
 
-export default CardsWork;
+export default Cards;
