@@ -103,6 +103,7 @@
   
   .logo-item img {
     max-width: 100%;
+    width: 160px;
     height: auto;
     padding: 10px;
     transition: transform 0.3s ease;
@@ -160,7 +161,6 @@
   color: #ffcc00; 
   font-weight: bold;
   font-size: 80px;
-  border-left: 1px solid var(--color2);
   font-family: var(--font-family);
 
 }
