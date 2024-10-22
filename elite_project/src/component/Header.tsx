@@ -36,7 +36,7 @@ const Header: React.FC = () => {
                         <Link className="nav-link" to="/about">ABOUT</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="#" onClick={() => scrollToSection('services-section')}>
+                        <Link className="nav-link" to="/" onClick={() => scrollToSection('services-section')}>
                             SERVICES
                         </Link>
                     </li>

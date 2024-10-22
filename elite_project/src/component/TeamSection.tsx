@@ -1,80 +1,95 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import "../Css/About.css";
-import image1 from "../assets/about/emam.png";
-import image2 from "../assets/about/marawan 1.png";
-import image3 from "../assets/about/hosny.png";
-import image4 from "../assets/about/ali.png";
-import image5 from "../assets/about/el qersh 5.png";
-import image6 from "../assets/about/ahmed 1.png";
-import image7 from "../assets/about/Rana 1 (1).png";
-import image8 from "../assets/about/arwa 1.png";
-import image9 from "../assets/about/nouran 1.png";
-import image10 from "../assets/about/team.png";
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-
-
-type TeamMember = {
+interface TeamMember {
     name: string;
     title: string;
-    image: string;
-};
-
-
-const teamMembers: TeamMember[] = [
-    { name: 'Mohamed Emam', title: 'Executive Co-Founder', image: `${image1}` },
-    { name: 'Mariam Basion', title: 'Executive Co-Founder', image: `${image2}` },
-    { name: 'Mohammed Hosary', title: 'Executive Co-Founder', image: `${image3}` },
-    { name: 'Amr Ali', title: 'Executive Co-Founder', image: `${image4}` },
-    { name: 'Yahia A. El Qarsh', title: 'Senior Video Editor', image: `${image5}` },
-    { name: 'Ahmed Soliman', title: 'Senior Graphic Designer', image: `${image6}` },
-    { name: 'Rana Mohamed', title: 'HR', image: `${image7}` },
-    { name: 'Arwa Sakr', title: 'Motion Designer', image: `${image8}` },
-    { name: 'Nouran Abdeen', title: 'Sales Representative', image: `${image9}` },
-    { name: '', title: '', image: `${image10}` }
-
-];
-
-
+    image: string | null; // Assuming you'll have image URLs instead of File
+    id?: number;
+}
 
 const TeamSection: React.FC = () => {
+    const [teamMember, setTeamMember] = useState<TeamMember[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
+
     useEffect(() => {
-        AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
+        AOS.init({ duration: 1000 }); // Initialize AOS for animations
     }, []);
 
+    useEffect(() => {
+        const fetchTeamMemberData = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/team_member_get/");
+                
+                if (response.data.length > 0) {
+                    const fetchedTeamMembers = response.data.map((item: any) => ({
+                        id: item.id,
+                        title: item.title,
+                        image: item.image_url || null, // Assuming the API provides image URLs
+                        name: item.name,
+                    }));
+
+                    setTeamMember(fetchedTeamMembers);
+                }
+            } catch (error) {
+                console.error("Error fetching team members:", error);
+                setError("Failed to load team members. Please try again later.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTeamMemberData();
+    }, []);
 
     return (
         <>
             <div className="team-section">
                 <h2 className="team-title" data-aos="fade-up">OUR TEAM</h2>
                 <p className="team-subtitle" data-aos="fade-up">Meet the faces behind the magic!</p>
-                <p className="team-subtitle" data-aos="fade-up">A Collective of Creative Visionaries and Strategic Thinkers Driving our Success. !</p>
+                <p className="team-subtitle" data-aos="fade-up">A Collective of Creative Visionaries and Strategic Thinkers Driving our Success!</p>
 
-                <div className="team-grid">
-                    {teamMembers.map((member, index) => (
-                        <div key={index} className="team-card">
-                            <img  data-aos="fade-up"src={member.image} alt={member.name} className="team-image" />
-                            <div className="team-info">
-                                <h3 data-aos="fade-up">{member.name}</h3>
-                                <p data-aos="fade-up">{member.title}</p>
-
+                {loading ? (
+                    <p>Loading team members...</p>
+                ) : error ? (
+                    <p>{error}</p>
+                ) : (
+                    <div className="team-grid">
+                        {teamMember.map((member) => (
+                            <div key={member.id} className="team-card">
+                                {member.image ? (
+                                    <img
+                                        data-aos="fade-up"
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="team-image"
+                                        loading="lazy" // Lazy loading image for performance
+                                    />
+                                ) : (
+                                    <div className="team-placeholder" data-aos="fade-up">No Image</div>
+                                )}
+                                <div className="team-info">
+                                    <h3 data-aos="fade-up">{member.name}</h3>
+                                    <p data-aos="fade-up">{member.title}</p>
+                                </div>
                             </div>
+                        ))}
+                    </div>
+                )}
 
-                        </div>
-                    ))}
-
-
-                </div>
                 <div className="join-team">
                     <a href="/join" className="join-team-button">JOIN OUR TEAM</a>
                 </div>
             </div>
-
         </>
-    )
-}
-
+    );
+};
 
 export default TeamSection;
