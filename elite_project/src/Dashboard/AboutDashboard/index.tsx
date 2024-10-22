@@ -110,6 +110,7 @@ const AboutDashboard = () => {
 
                 if (response.data.length > 0) {
                     // Map response data to the works array
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const fetchTeamMember = response.data.map((item: any) => ({
                         id: item.id,
                         title: item.title,
@@ -382,7 +383,7 @@ const AboutDashboard = () => {
                                             className="file-upload-input"
                                         />
                                     </label>
-
+                        
 
                                 </div>
                                 <button className="save-btn" onClick={() => handleSave("image_philo", "text_philo")}>Save </button>
@@ -393,7 +394,7 @@ const AboutDashboard = () => {
 
                     </div>
 
-                    {/*start  About Session */}
+                    {/*end  About Session */}
 
                     <div className="section services-session">
                         <h2>Our Team Session</h2>
