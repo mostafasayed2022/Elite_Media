@@ -8,27 +8,86 @@ import image1 from "../../assets/home/image1.png";
 import image2 from "../../assets/home/image2.png"
 import Cards from "../Cards";
 import Header from "../Header";
-import { Link } from "react-router-dom";
-import ChoiceModal from "../ChoiceModal ";
+import { Link,useNavigate } from "react-router-dom";
+// import ChoiceModal from "../ChoiceModal ";
 import Footer from "../Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import axios from "axios";
 
+
+
+
+interface Home {
+    text: string;
+    video: File | null;
+    image: File | null;
+    clientvideo: File | null;
+    clientimage: File | null;
+    teamtext: string;
+    teamvideo: File | null;
+    teamimage: File | null;
+    servicename: string;
+    serviceimage: File | null;
+    servicevideo: File | null;
+    id?: number;
+}
 
 
 
 const Home = () => {
-    const [choiceMade, setChoiceMade] = useState(false);
+    // const [choiceMade, setChoiceMade] = useState(false);
+    const navigate = useNavigate();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [home, setHome] = useState<Home>({
+        text: "",
+        video: null,
+        image: null,
+        clientvideo: null,
+        clientimage: null,
+        teamtext: "",
+        teamvideo: null,
+        teamimage: null,
+        servicename: "",
+        serviceimage: null,
+        servicevideo: null,
+    });
 
     useEffect(() => {
         AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
     }, []);
+    
+    
+    useEffect(() => {
+        const fetchHomeData = async () => {
+
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/home/", {
+                });
+
+                if (response.data.length > 0) {
+                    setHome(response.data[0]);
+
+                }
+            } catch (error: unknown) {
+                if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+                    navigate("/login");
+                } else {
+                    console.error("Error fetching data:", error);
+                }
+            }
+        };
+
+        fetchHomeData();
+    }, [navigate]);
+
+    
 
     return (
         <>
-            {!choiceMade && <ChoiceModal setChoiceMade={setChoiceMade} />} {/* Render modal if no choice */}
-            {choiceMade && ( /* Only show content after choice is made */
-                <>
+            {/* {!choiceMade && <ChoiceModal setChoiceMade={setChoiceMade} />} 
+            {choiceMade && ( 
+                <> */}
                     <Header />
                     <div className="media-header-container">
                         <div className="media-info">
@@ -110,8 +169,8 @@ const Home = () => {
                     </section>
 
                     <Footer />
-                </>
-            )}
+                {/* </>
+            )} */}
         </>
 
     );
