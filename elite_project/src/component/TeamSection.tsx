@@ -29,14 +29,7 @@ const TeamSection: React.FC = () => {
                 const response = await axios.get("http://127.0.0.1:8000/team_member_get/");
                 
                 if (response.data.length > 0) {
-                    const fetchedTeamMembers = response.data.map((item: any) => ({
-                        id: item.id,
-                        title: item.title,
-                        image: item.image_url || null, // Assuming the API provides image URLs
-                        name: item.name,
-                    }));
-
-                    setTeamMember(fetchedTeamMembers);
+                    setTeamMember(response.data);
                 }
             } catch (error) {
                 console.error("Error fetching team members:", error);
