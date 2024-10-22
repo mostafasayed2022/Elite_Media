@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "../Css/Footer.css";
 import logo from "../assets/logos/logo1.png"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -19,7 +19,7 @@ interface Contact {
 
 const Footer = () => {
 
-  // const [isEditing, setIsEditing] = useState<boolean>(false);
+    // const [isEditing, setIsEditing] = useState<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [contactExists, setContactExists] = useState<boolean>(true);
     const navigate = useNavigate(); // Hook for redirection
@@ -33,16 +33,16 @@ const Footer = () => {
         instagram_profile: "",
         linkedin_profile: "",
     });
-    
-    
+
+
     useEffect(() => {
         const fetchContactData = async () => {
-    
+
             try {
                 const response = await axios.get("http://127.0.0.1:8000/contact/", {
 
                 });
-    
+
                 if (response.data.length > 0) {
                     setContact(response.data[0]); // Assuming the user has only one contact
                     setContactExists(true); // Contact exists
@@ -68,9 +68,9 @@ const Footer = () => {
                 } else {
                     console.error("Error fetching contact data:", error);
                 }
-            } 
+            }
         };
-    
+
         fetchContactData();
     }, [navigate]);
 
@@ -90,7 +90,7 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div  className="touch-1">
+                    <div className="touch-1">
                         <h4>Services</h4>
                         <ul className="footer-services">
                             <li>Media Production</li>
@@ -108,6 +108,7 @@ const Footer = () => {
                         <a href={contact.linkedin_profile}><i className="fab fa-linkedin-in"></i></a>
                     </div>
                     <div className="copy">
+                        <Link to="/login">sign In</Link>
                         <p>© 2024 Elite Media Houses. All rights reserved.</p>
                     </div>
                 </div>

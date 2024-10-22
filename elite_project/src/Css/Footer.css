@@ -143,8 +143,15 @@
   justify-content: space-between;
 }
 
+.copy{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .copy p{
   color: var(--color3);
+  margin-left: 35px;
 }
 
 .head .touch{
