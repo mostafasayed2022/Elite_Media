@@ -143,8 +143,8 @@ const About = () => {
                         <div className="paragraph" data-aos="fade-up-left">
                             <h3 className="heading1">About</h3>
                             <p className="paragraph1">
-                                {/* <span>Elite Media Houses</span>  is the epicenter of <span>creative</span>  and <span>unique</span>  advertising solutions. Our team embodies <span>youth, freshness</span> , and <span>originality</span> , making us trendsetters and the first choice for our clients. With a distinctive approach, we stay at the forefront of innovation, ensuring our presence is always top of mind. */}
-                                {about.abouttext_about}
+                                <span>Elite Media Houses</span>  is the epicenter of <span>creative</span>  and <span>unique</span>  advertising solutions. Our team embodies <span>youth, freshness</span> , and <span>originality</span> ,{about.abouttext_about} 
+                                
                             </p>
                         </div>
 
@@ -161,8 +161,8 @@ const About = () => {
                         <div className="paragraph4" data-aos="fade-up-right">
                             <h3 className="heading1">Our Philosophy</h3>
                             <p className="paragraph2">
-                                {/* At <span>Elite Media Houses Advertising  Services</span> , we believe that <span>creativity</span>  and <span>innovation</span>  are the cornerstones of impactful advertising. Our philosophy is rooted in the idea that every brand has a <span>unique story</span>  to tell, and it is our mission to bring that story to life in the most compelling and memorable way. We embrace a <span>fresh</span>  and <span>original</span>   approach, always striving to be trendsetters and pioneers in the advertising industry. */}
-                                {about.text_philo}
+                                At <span>Elite Media Houses Advertising  Services</span> , we believe that <span>creativity</span>  and <span>innovation</span>  {about.text_philo} <span>fresh</span>  and <span>original</span>   approach, always striving to be trendsetters and pioneers in the advertising industry.
+                                
                             </p>
 
                         </div>

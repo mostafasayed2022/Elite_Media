@@ -56,8 +56,8 @@ const TeamSection: React.FC = () => {
                     <p>{error}</p>
                 ) : (
                     <div className="team-grid">
-                        {teamMember.map((member) => (
-                            <div key={member.id} className="team-card">
+                        {teamMember.map((member, index) => (
+                            <div key={index} className="team-card">
                                 {member.image ? (
                                     <img
                                         data-aos="fade-up"
