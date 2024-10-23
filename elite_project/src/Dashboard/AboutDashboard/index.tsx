@@ -156,16 +156,16 @@ const AboutDashboard = () => {
 
     const handleTextChange2 = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const { name, value } = e.target;
-        
+
         // Create a new copy of the array
         const updatedTeamMembers = [...teamMember];
-        
+
         // Update the specific team member at the index
         updatedTeamMembers[index] = {
             ...updatedTeamMembers[index], // Keep the other properties (e.g., image) intact
             [name]: value, // Dynamically update the field (name, title, etc.)
         };
-    
+
         // Set the updated array back to state
         setTeamMember(updatedTeamMembers);
     };
@@ -383,7 +383,7 @@ const AboutDashboard = () => {
                                             className="file-upload-input"
                                         />
                                     </label>
-                        
+
 
                                 </div>
                                 <button className="save-btn" onClick={() => handleSave("image_philo", "text_philo")}>Save </button>
@@ -406,7 +406,7 @@ const AboutDashboard = () => {
                             onChange={handleTextChange}
                         />
                         <div>
-                           
+
                         </div>
                         <div className="service">
                         </div>
@@ -425,42 +425,47 @@ const AboutDashboard = () => {
                                     value={teammembers.title}
                                     onChange={(e) => handleTextChange(e)} // Make sure `handleTextChange` handles index updates correctly
                                 /> */}
-                                 <input
-                                    type="text"
-                                    className="intro-text"
-                                    name="title"
-                                    value={teammembers.title}
-                                    placeholder="Write title here..."
-                                    onChange={(e) => handleTextChange2(e, index)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Write name here..."
-                                    className="intro-text"
-                                    name="name"
-                                    value={teammembers.name}
-                                    onChange={(e) => handleTextChange2(e, index)} // Adjust this for handling names
-                                />
-                                <div>
-                                    <label htmlFor={`team-image-upload-${index}`} className="file-upload-label">
-                                        Upload Image
-                                        <input
-                                            id={`team-image-upload-${index}`}
-                                            type="file"
-                                            accept="image/*, video/*"
-                                            onChange={(e) => handleFileChange2(e, index, 'image')}
-                                            className="file-upload-input"
-                                        />
-                                    </label>
+                                <div className="section-team">
+                                    <input
+                                        type="text"
+                                        placeholder="Write name here..."
+                                        className="input-team"
+                                        name="name"
+                                        value={teammembers.name}
+                                        onChange={(e) => handleTextChange2(e, index)} // Adjust this for handling names
+                                    />
+
+                                    <input
+                                        type="text"
+                                        className="input-team"
+                                        name="title"
+                                        value={teammembers.title}
+                                        placeholder="Write title here..."
+                                        onChange={(e) => handleTextChange2(e, index)}
+                                    />
+
+                                    <div>
+                                        <label htmlFor={`team-image-upload-${index}`} className="file-upload-label">
+                                            Upload Image
+                                            <input
+                                                id={`team-image-upload-${index}`}
+                                                type="file"
+                                                accept="image/*, video/*"
+                                                onChange={(e) => handleFileChange2(e, index, 'image')}
+                                                className="file-upload-input"
+                                            />
+                                        </label>
+                                    </div>
+                                    {teammembers.image && <img src={URL.createObjectURL(teammembers.image)} alt={`Preview ${index}`} className="image-preview" />}
+                                    <button className="save-btn" onClick={() => handleSave3("name", "title", "image", index)}>SAVE</button>
                                 </div>
-                                {teammembers.image && <img src={URL.createObjectURL(teammembers.image)} alt={`Preview ${index}`} className="image-preview" />}
-                                <button className="save-btn" onClick={() => handleSave3("name", "title", "image", index)}>SAVE</button>
                             </div>
                         ))}
+                        <button className="add-service-btn" onClick={handleAddCard}>
+                            + Add New Member
+                        </button>
                     </div>
-                    <button className="add-service-btn" onClick={handleAddCard}>
-                        + Add New Member
-                    </button>
+
 
                 </div>
             </div>

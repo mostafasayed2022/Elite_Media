@@ -384,6 +384,22 @@ label {
   margin-bottom: 10px;
 }
 
+.input-team{
+  width: 30%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin: 20px 10px;
+  
+}
+
+/* .section-team{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+} */
+
 .upload-box {
   display: flex;
   align-items: center;
