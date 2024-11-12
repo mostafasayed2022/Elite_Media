@@ -1,0 +1,25 @@
+:root {
+  --color1: #00AEEF; /* Primary color */
+  --color2: #F3D70F; /* Accent color */
+  --color3: #000000; /* Text color */
+  --color4: #515050; /* Secondary color */
+  --color5: #FFFFFF; /* Background color */
+  --font-family:"Montserrat", sans-serif;
+}
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+    }
+    
