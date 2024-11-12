@@ -70,3 +70,12 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = service
         fields = '__all__'
+
+from rest_framework import serializers
+from .models import FrontendControl
+
+class FrontendControlSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FrontendControl
+        fields = ['is_feature_enabled']
+

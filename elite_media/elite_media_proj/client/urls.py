@@ -21,6 +21,7 @@ from .views import (
 GetClientImageListView,
    ServiceViewSet,
    get_serviceViewSet,
+
 )
 
 router = DefaultRouter()
@@ -48,6 +49,7 @@ router.register(r'get_service', get_serviceViewSet, basename='get_service')
 
 urlpatterns = [
    path('getclient_image/', GetClientImageListView.as_view(), name='get_client_image'),
+
 
     path('', include(router.urls)),
     path('api/register/', RegisterUser.as_view(), name='register'),
