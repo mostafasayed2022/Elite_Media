@@ -372,6 +372,7 @@
     font-size: 80px;
     text-transform: uppercase;
     font-family: var(--font-family);
+    display: none;
   }
   
   /* team section */
