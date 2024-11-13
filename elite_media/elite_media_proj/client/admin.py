@@ -1,13 +1,6 @@
 from django.contrib import admin
 from .models import *
 from django.contrib import admin
-from .models import FrontendControl
-
-@admin.register(FrontendControl)
-class FrontendControlAdmin(admin.ModelAdmin):
-    list_display = ('id', 'is_feature_enabled')
-    list_editable = ('is_feature_enabled',)
-
 
 admin.site.register(jointeam)
 

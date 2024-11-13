@@ -624,23 +624,3 @@ class get_serviceViewSet(viewsets.ModelViewSet):
             return service.objects.all()  
         return service.objects.all() 
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from .models import FrontendControl
-from .serializers import FrontendControlSerializer
-
-class FrontendControlView(APIView):
-    def get(self, request, *args, **kwargs):
-        # Fetch the data from the database
-        frontend_control = FrontendControl.objects.first()  # Assuming there's only one record
-        if frontend_control:
-            serializer = FrontendControlSerializer(frontend_control)
-            return Response(serializer.data)
-        return Response({"is_feature_enabled": False})  # Default value if not found
-
-class UpdateFrontendControlView(APIView):
-    def post(self, request, *args, **kwargs):
-        frontend_control, created = FrontendControl.objects.get_or_create(id=1)
-        frontend_control.is_feature_enabled = request.data.get("is_feature_enabled", False)
-        frontend_control.save()
-        return Response({"message": "Feature status updated successfully"})

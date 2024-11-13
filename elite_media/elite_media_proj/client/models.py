@@ -135,12 +135,6 @@ class dashboard_work(models.Model):
     def __str__(self):
         return self.user.username
     
-from django.db import models
 
-class FrontendControl(models.Model):
-    is_feature_enabled = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Feature Enabled: {self.is_feature_enabled}"
 
 
