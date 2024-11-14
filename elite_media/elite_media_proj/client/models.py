@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
 class jointeam(models.Model):
-    user=models.OneToOneField(User,related_name='jointeam', on_delete=models.CASCADE)
+    user=models.ForeignKey(User,related_name='jointeam', on_delete=models.CASCADE)
     name=models.CharField(max_length=40,null=True,blank=True)
     email=models.EmailField(max_length=40,unique=True,blank=True)
     linkedin_profile=models.CharField(max_length=40,null=True,blank=True)
