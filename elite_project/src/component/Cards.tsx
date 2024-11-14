@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../Css/Home.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Work {
     id: number;
@@ -78,6 +79,9 @@ const Cards: React.FC = () => {
                         <p>{item.deliverables}</p>
                     </div>
                 ))}
+            </div>
+            <div className="btn-work">
+                <Link to={"/work"}><button className="view-work-button btn-work" data-aos="zoom-in-down">VIEW ALL WORK</button></Link>
             </div>
         </div>
     );

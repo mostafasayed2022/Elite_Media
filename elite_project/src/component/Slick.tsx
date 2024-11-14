@@ -42,9 +42,46 @@ const Slick = () => {
     autoplay: true,
     speed: 3000,
     autoplaySpeed: 2000,
-    cssEase: "linear"
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1200, // screens up to 1200px
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 992, // screens up to 992px
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768, // screens up to 768px
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 576, // screens up to 576px
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480, // screens up to 480px
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
-
+  
   if (loading) {
     return <div>Loading...</div>;
   }

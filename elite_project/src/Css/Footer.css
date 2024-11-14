@@ -28,7 +28,6 @@
       padding: 60px;
       text-align: center; 
       height: 260px;
-      
     }
     
     .footer-content {
@@ -42,6 +41,7 @@
     .footer-logo {
       width: 100px; /* Adjust logo size as needed */
       margin-bottom: 15px;
+      order: 1; /* specify the default order */
     }
     
     .footer a {
@@ -55,10 +55,20 @@
       padding: 0; 
       margin-left:20px;
       text-align: center; 
-      display: flex;
+      /* display: flex; */
       align-items: center;
       
     }
+    
+    .head{
+      order: 2;
+    }
+    
+    .touch-1{
+      order: 3;
+    }
+    
+    
     .head h4{
       color: var(--color3);
       font-family: var(--font-family);
@@ -153,6 +163,7 @@
   margin-left: 35px;
 }
 
+
 .head .touch{
   display: flex;
   align-items: center;
@@ -185,6 +196,14 @@
   .footer{
     height: 520px;
   }
+  
+  .head{
+    order: 3;
+  }
+  
+  .touch-1{
+    order: 2;
+  }
   .footer-content {
     flex-direction: column; /* Stack footer content vertically */
     align-items: center; /* Center items on medium screens */
@@ -201,6 +220,15 @@
 @media (max-width: 767px) {
   .footer{
     height: 500px;
+  }
+  
+  .head{
+    order: 3;
+    margin: 30px 0;
+  }
+  
+  .touch-1{
+    order: 2;
   }
   .footer-content {
     flex-direction: column; 

@@ -1,8 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import  { useEffect, useState } from "react";
 import "../Css/Footer.css";
 import logo from "../assets/logos/logo1.png"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -20,11 +19,9 @@ interface Contact {
 const Footer = () => {
 
     // const [isEditing, setIsEditing] = useState<boolean>(false);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [, setContactExists] = useState<boolean>(true);
     const navigate = useNavigate(); // Hook for redirection
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [contact, setContact] = useState<Contact>({
         address: "",
         phone: "",
@@ -99,7 +96,6 @@ const Footer = () => {
                             <li>Graphic Design</li>
                         </ul>
                     </div>
-
                 </div>
                 <div className="footer-but">
                     <div className="social-icons-footer">
@@ -108,7 +104,7 @@ const Footer = () => {
                         <a href={contact.linkedin_profile}><i className="fab fa-linkedin-in"></i></a>
                     </div>
                     <div className="copy">
-                        <Link to="/login">sign In</Link>
+                        {/* <Link to="/login">sign In</Link> */}
                         <p>© 2024 Elite Media Houses. All rights reserved.</p>
                     </div>
                 </div>

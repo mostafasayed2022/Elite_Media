@@ -4,7 +4,7 @@
     --color3: #000000; 
     --color4: #515050; 
     --color5: #FFFFFF;
-    --font-family: "Montserrat", sans-serif;
+    --font-family: "Montserrat";
   }
   
   * {
@@ -19,7 +19,7 @@
   }
   
   body {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat";
   }
   
   
@@ -85,6 +85,25 @@
 }
 
 
+.text-team .team-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.team-text h4, 
+.team-text p
+{
+  color:var(--color4);
+  font-weight: 300;
+}
+
+.title-services-text{
+  color: var(--color1);
+  font-weight: bold;
+  font-family: var(--font-family);
+  font-size: 50px;
+}
 .form-1,
 .form-2{
   display: flex;
@@ -324,8 +343,11 @@ outline: none;
   color: var(--color3);
   cursor: pointer;
   font-weight:bold;
-  transition: 0.5s ease-in-out;
   font-family: var(--font-family);
+}
+.contact-btn-team:hover{
+  color: var(--color5);
+  border-radius: 5px;
 }
 
 .btn-4-team{
@@ -396,23 +418,28 @@ width: 50%;
 
   .input-group .inp, 
   .input-group textarea {
-    width: 225%; /* Make inputs full width on tablet screens */
+    width: 225%; 
   }
 }
 
-/* Smartphones and smaller devices */
 @media (max-width: 767px) {
   .contact-info-container {
     flex-direction: column;
     padding: 10px;
   }
-
+  .title-services-text{
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .text-team .team-text {
+    font-size: 11px;
+  }
   .contact-cont, 
   .form-1, 
   .form-2, 
   .form-3 {
-    width: 100%; /* Full width for mobile */
-    /* flex-direction: column; */
+    width: 100%; 
     gap: 0px;
   }
   

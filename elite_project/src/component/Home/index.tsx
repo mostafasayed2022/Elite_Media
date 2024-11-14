@@ -136,9 +136,6 @@ const Home = () => {
 
             <section>
                 <Cards />
-                {/* <div className="btn-work">
-                            <Link to={"/work"}><button className="view-work-button btn-work" data-aos="zoom-in-down">VIEW ALL WORK</button></Link>
-                        </div> */}
             </section>
             <section className="CallToAction">
                 <div className="action">

@@ -4,40 +4,14 @@
   --color3: #000000; /* Text color */
   --color4: #515050; /* Secondary color */
   --color5: #FFFFFF; /* Background color */
-  --font-family:"Montserrat", sans-serif;
+  --font-family:"Montserrat";
 }
-
-
-.logo-container-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-family);
-}
-
-.made-by {
-  font-size: 40px;
-  font-weight: bold;
-  color: var(--color1); 
-}
-
-.separator {
-  margin: 0 10px;
-  font-size: 35px;
-  color: var(--color1); 
-}
-
-.elites {
-  font-size: 15px;
-  color: var(--color1); 
-}
-
-
 
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; 
+    
 
   }
   
@@ -46,7 +20,7 @@
   }
   
   body {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat";
     }
     
     /* start banner home */
@@ -132,6 +106,7 @@
 .services-section {
   padding: 40px;
   background-color: #fff;
+  margin: 0 70px;
 }
 
 .services-header {
@@ -161,9 +136,52 @@
   font-family: var(--font-family);
 }
 
+
+.logo-container-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+}
+
+
+
+.made-by {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--color1); 
+}
+
+.separator {
+  margin: 0 10px;
+  font-size: 35px;
+  color: var(--color1); 
+}
+
+.elites {
+  font-size: 15px;
+  color: var(--color1); 
+}
+
+
 @media (max-width:767px) {
     .services-title{
-      font-size: 40px;
+      font-size: 25px;
+    }
+    .made-by{
+      font-size:30px;
+    }
+    .emh-logo{
+      display: none;
+    }
+    .logo-container-media{
+      justify-content: left;
+    }
+    .services-subtitle{
+      font-size: 35px;
+    }
+    .services-section{
+      margin: 0;
     }
 }
 
@@ -241,12 +259,12 @@
   object-fit: cover;
   border-radius: 8px;
 }
-
 .media-image {
   width: 300px;
-  height:290px;
+  height:280px;
   object-fit: cover;
   border-radius: 8px;
+  margin: 5px -10px;
 }
 
 
@@ -257,6 +275,7 @@
   color:var(--color5);
   left: 5%;
   top: 4%;
+  text-shadow: 0px 14px 50px rgba(0,0,0,0.6);
 }
 
 
@@ -273,7 +292,9 @@
   .image-item{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    margin-top: -15px;
+
   }
 
 }
@@ -296,8 +317,10 @@
   .image-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 20px;
+    margin-top: -20px;
+
   }
 
   .media-image {
@@ -332,8 +355,8 @@
   }
 
   .media-image {
-    width: 130px;
-    height: 180px;
+    width: 160px;
+    height: 140px;
   }
 
   .media-video-work {
@@ -344,7 +367,8 @@
   .image-item{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    margin-top: -15px;
   }
 
   .video-container {
@@ -391,12 +415,15 @@
   .cards .card img{
     width: 360px;
   }
+  .title{
+    font-size: 30px;
+  }
   
 }
 
 
 .title-services{
-  margin: 80px 55px;
+  margin: 30px 100px;
   max-width: 950px;
 }
 
@@ -425,13 +452,13 @@
 /* Start cards */
 .container {
   padding: 20px;
+  margin: 30px 70px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin-bottom: 50px;
 }
 
 .cardss {
@@ -463,6 +490,8 @@
   transition: opacity 0.3s ease; 
 }
 
+
+
 .cardss:hover .card-image{
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     border-radius: 10px;
@@ -475,10 +504,20 @@
   height: 99%;
 }
 
+.cardss p{
+  color: var(--color4);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .grid {
       grid-template-columns: 1fr; 
+  }
+  .title-services{
+    margin: 30px 55px;
+  }
+  .container{
+    margin: 30px 20px;
   }
 }
 
@@ -499,13 +538,14 @@
 
   .CallToAction{
     background-image: url("../../src//assets//home//background-team.png");
-    width: 100%;
+    width: 92%;
     height: 90vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     position: relative;
-    margin-bottom: 150px;
+    object-fit: scale-down;
+    margin: 0 auto;
   }
   
   
@@ -519,12 +559,12 @@
   }
   
   .action .text-action .text-action-1 {
-    font-size: 65px;
+    font-size: 70px;
     font-family: var(--font-family);
     color: var(--color1);
     line-height: 1;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 400;
   }
   
   .action .text-action .text-action-2 {
@@ -550,7 +590,13 @@
       left: 50%;
       transform: translate(-50%, -50%); /* Center the text on mobile devices */
     }
-  
+    .CallToAction{
+      width: 345px;
+      height: 70vh
+    }
+    .title-services h1{
+      font-size: 35px;
+    }
     .action .text-action .text-action-1 {
       font-size: 25px; /* Further reduce font size for mobile devices */
     }
@@ -562,11 +608,13 @@
   
   @media (max-width: 480px) {
     .action .text-action .text-action-1 {
-      font-size: 28px; /* Smaller font size for very small screens */
+      font-size: 20px; /* Smaller font size for very small screens */
+      font-weight:600 ;
+      width: 273px;
     }
   
     .action .text-action .text-action-2 {
-      font-size: 14px; /* Smaller subtext for very small screens */
+      font-size: 13px; /* Smaller subtext for very small screens */
     }
   }
   
@@ -663,7 +711,11 @@
   }
 
   .action2 .text-action-2 {
-    font-size: 35px; /* Reduce font size for medium screens */
+    font-size: 25px; /* Reduce font size for medium screens */
+  }
+  
+  .title-services .title-text{
+    width: 225%;
   }
 
   .action2 .text-action-3 {
@@ -674,7 +726,7 @@
 /* Small devices (mobile, 480px and below) */
 @media (max-width: 480px) {
   .contact-message {
-    width: 100%; /* Full width for mobile */
+    width: 85%; /* Full width for mobile */
     padding: 10px; /* Further reduce padding for mobile */
   }
 
@@ -683,7 +735,7 @@
   }
 
   .action2 .text-action-2 {
-    font-size: 28px; /* Reduce font size for mobile */
+    font-size: 19px; /* Reduce font size for mobile */
   }
 
   .action2 .text-action-3 {

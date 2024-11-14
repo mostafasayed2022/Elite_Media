@@ -100,7 +100,7 @@ const About = () => {
                         <span className="elites" >Elites <br /> For Elites</span>
                     </div>
                 </header>
-                <hr className="horizontal" />
+                {/* <hr className="horizontal" /> */}
                 <section className="partners-section" >
                     <h3> Proud Partners in Success!</h3>
                     <p className="section-pha" >Celebrating the Achievements of Our Valued Clients.</p>
@@ -129,7 +129,7 @@ const About = () => {
                                 5. ⁠FreshPerspective<br />
                             </p>
                             <div className="container-btn">
-                                <a href="/contact" className="contact-button-about">CONTACT</a>
+                                <a href="/contact" className="contact-button">CONTACT</a>
                             </div>
                         </div>
 
@@ -148,7 +148,7 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="image">
+                        <div className="image image-section2">
                             <img data-aos="fade-up-right" src={about.aboutimage} alt="section2" />
                         </div>
                     </div>
@@ -172,9 +172,7 @@ const About = () => {
                 <section>
                     <div className="services-media">
                         <video className="media-video" src={mediaVideo2} autoPlay loop muted />
-                        <div className="media-overlay media-about">
-                            <h2 className="media-text text-about">Our Values</h2>
-                        </div>
+                        <h2 className="media-text-about" >Our Values</h2>
                     </div>
                 </section>
             </div>
