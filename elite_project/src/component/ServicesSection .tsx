@@ -29,7 +29,7 @@ const ServicesSection = () => {
 
     const navigate = useNavigate();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [home, setHome] = useState<Home>({
+    const [, setHome] = useState<Home>({
         text: "",
         video: null,
         image: null,
