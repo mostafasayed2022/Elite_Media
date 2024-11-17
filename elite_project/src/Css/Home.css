@@ -749,7 +749,7 @@
   .contact-message {
     width: 85%; /* Full width for mobile */
     padding: 10px;
-    height: 57vh; /* Further reduce padding for mobile */
+    height: 42vh; /* Further reduce padding for mobile */
   }
 
   .title-services {
