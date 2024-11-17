@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../Css/Home.css";
-import logo from "../../assets/logos/logo1.png";
+import logo from "../../assets/logos/EMH logo 2.png";
 import Slick from "../Slick";
 import ServicesSection from "../ServicesSection ";
 import Cards from "../Cards";
@@ -92,7 +92,7 @@ const Home = () => {
                         Elite Media Houses <br />
                         {/* <span className="sub-title" data-aos="fade-right">Made By <span className="highlight">Elites  span For Elite</span></span> */}
                     </h1>
-                    <div className="logo-container-media">
+                    <div className="logo-container-media-home">
                         <span className="made-by" data-aos="fade-right">Made By</span>
                         <span className="separator" data-aos="fade-right">|</span>
                         <span className="elites" data-aos="fade-right">Elites <br /> For Elites</span>

@@ -150,6 +150,7 @@ body {
   .nav-list {
     flex-direction: column;
     gap: 0;
+    height: 48vh;
   }
 
   .nav-item .nav-link {

@@ -17,20 +17,20 @@ const Cards: React.FC = () => {
     // Initialize videoRefs with an array of nullable HTMLVideoElement
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-    const handleMouseEnter = (index: number) => {
-        const videoElement = videoRefs.current[index];
-        if (videoElement) {
-            videoElement.play(); // Play video if it exists
-        }
-    };
+    // const handleMouseEnter = (index: number) => {
+    //     const videoElement = videoRefs.current[index];
+    //     if (videoElement) {
+    //         videoElement.play(); // Play video if it exists
+    //     }
+    // };
 
-    const handleMouseLeave = (index: number) => {
-        const videoElement = videoRefs.current[index];
-        if (videoElement) {
-            videoElement.pause(); // Pause video if it exists
-            videoElement.currentTime = 0; // Reset video
-        }
-    };
+    // const handleMouseLeave = (index: number) => {
+    //     const videoElement = videoRefs.current[index];
+    //     if (videoElement) {
+    //         videoElement.pause(); // Pause video if it exists
+    //         videoElement.currentTime = 0; // Reset video
+    //     }
+    // };
 
     // Fetch data from the backend
     useEffect(() => {
@@ -55,8 +55,9 @@ const Cards: React.FC = () => {
                     <div
                         className="cardss"
                         key={index}
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={() => handleMouseLeave(index)}
+                        // onMouseEnter={() => handleMouseEnter(index)}
+                        // onMouseLeave={() => handleMouseLeave(index)}
+                        
                     >
                         <div className="card-logo">
                             {/* Display logo if it exists */}
@@ -69,9 +70,8 @@ const Cards: React.FC = () => {
                                 <video
                                     src={item.video}
                                     className="video"
-                                    muted
-                                    loop
                                     ref={el => (videoRefs.current[index] = el)}
+                                    autoPlay loop muted
                                 />
                             )}
                         </div>

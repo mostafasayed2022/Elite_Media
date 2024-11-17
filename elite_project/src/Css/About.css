@@ -35,11 +35,13 @@
       background-position: left; 
       border-bottom: 25px solid var(--color1);
       background-size: contain;
+      margin: 0 auto;
       height: 600px;
       color: #FFFFFF; 
       text-align: center; 
       padding: 100px 20px; 
       margin-bottom: 80px;
+      width: 100%;
     }
     
 
@@ -99,6 +101,7 @@
   
   .about-header{
     background-position: bottom; 
+    width: 100%;
   }
   .about-header h1{
     font-size: 37px;
@@ -117,6 +120,9 @@
   }
 }
 @media (max-width: 480px) {
+  .logo-container-media{
+    justify-content: center;
+  }
   .about-content {
     margin: 0 15px;
   }
@@ -307,49 +313,7 @@
 }
 
 /* Responsive styles for small screens */
-@media (max-width: 767px) {
-  .about-section {
-    flex-wrap: wrap;
-    margin: 50px 20px;
-  }
-  
-  .paragraph{
-    order: 2;
-  }
-  
-  .image-section2{
-    order: 1;
-  }
-  .partners-section h3{
-    font-size: 23px;
-  }
-  .partners-section p{
-      font-size: 17px;
-    }
-    .join-team {
-      justify-content: center;
-    }
 
-  .about-section .image img {
-    width: 100%;
-    max-width: 350px;
-    margin-left: 30px;
-  }
-
-  .paragraph {
-    margin: 30px 0;
-  }
-  
-  .paragraph4{
-    margin-left: -20px;
-  }
-
-  .about-section .image3 img {
-    max-width: 380px;
-    margin-bottom: 35px;
-  }
-
-}
 
 /* Responsive styles for medium screens (tablets) */
 @media (max-width: 1024px) {
@@ -624,4 +588,47 @@
     left: 40%;
     top: 2%;
   }
+  @media (max-width: 767px) {
+    .about-section {
+      flex-wrap: wrap;
+      margin: 50px 20px;
+    }
+    
+    .paragraph{
+      order: 2;
+    }
+    
+    .image-section2{
+      order: 1;
+    }
+    .partners-section h3{
+      font-size: 23px;
+    }
+    .partners-section p{
+        font-size: 17px;
+      }
+      .join-team {
+        margin-left: 0;
+        justify-content: center;
+      }
   
+    .about-section .image img {
+      width: 100%;
+      max-width: 350px;
+      margin-left: 30px;
+    }
+  
+    .paragraph {
+      margin: 30px 0;
+    }
+    
+    .paragraph4{
+      margin-left: -20px;
+    }
+  
+    .about-section .image3 img {
+      max-width: 380px;
+      margin-bottom: 35px;
+    }
+  
+  }
