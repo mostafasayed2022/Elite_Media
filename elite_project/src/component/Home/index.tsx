@@ -11,7 +11,7 @@ import Footer from "../Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import axios from "axios";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 
 
 
@@ -83,13 +83,13 @@ const Home = () => {
 
     return (
         <>
-          <Helmet>
+          {/* <Helmet>
         <title> Elite Media Houses | Creative Marketing Solutions for Every Brand.</title>
         <meta
           name="description"
           content="Welcome to Elite Media Houses, your partner in innovative marketing strategies. We provide exceptional media production, web & app development, branding and identity, and graphic design services to elevate your brand's visibility and success."
         />
-      </Helmet>
+      </Helmet> */}
             {/* {!choiceMade && <ChoiceModal setChoiceMade={setChoiceMade} />} 
             {choiceMade && ( 
                 <> */}
