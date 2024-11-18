@@ -14,7 +14,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 
 
 interface About {
@@ -84,13 +84,13 @@ const About = () => {
 
     return (
         <>
-            <Helmet>
+            {/* <Helmet>
         <title> About | Elite Media Houses – Your Marketing Innovation Partner</title>
         <meta
           name="description"
           content="Learn about Elite Media Houses, an Advertising agency built on creativity, collaboration, and results. Our team is dedicated to delivering excellence through innovative strategies."
         />
-      </Helmet>
+      </Helmet> */}
             <Header />
             <div className="about-container" >
                 <header className="about-header" >
