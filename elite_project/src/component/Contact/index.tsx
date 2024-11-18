@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
                     <div className="contact-cont">
                         <div className="contact-details">
                             <h2>CONTACT INFORMATION</h2>
-                            <p className="address"><i className="fas fa-map-marker-alt"></i> {contact.address}</p>
+                            <p className="address"><i className="fas fa-map-marker-alt"></i> <a href="https://g.co/kgs/6qQLj2X">{contact.address}</a></p>
                             <div className="mail-phone">
                                 <p className="mail"><i className="fas fa-envelope"></i>  <a href="mailto:hello@elitemediahouses.com">{contact.email}</a></p>
                                 <p className="phone"><i className="fas fa-phone"></i>  Egypt (+20) {contact.phone}</p>

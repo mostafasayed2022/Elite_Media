@@ -130,13 +130,14 @@
   font-weight: bold;
 }
 
-.contact-details p{
+.contact-details p a{
   text-align: left;
   margin-bottom: 20px;
   text-decoration: none;
   font-size: 18px;
   font-family: var(--font-family);
-  line-height: 3;
+  color: var(--color5);
+  /* line-height: 3; */
 }
 
 .contact-details .address{

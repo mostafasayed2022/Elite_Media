@@ -100,6 +100,9 @@ const Home = () => {
                     <p className="description" data-aos="fade-right">
                         Welcome To The Home Of Creativity, Uniqueness, Freshness, Originality And More.
                     </p>
+                    <div className="btn-work-home">
+                        <Link to={"/contact"}><button className="view-work-button btn-work" data-aos="fade-right">CONTACT</button></Link>
+                    </div>
                 </div>
                 <div className="logo-container-home">
                     <img data-aos="fade-left" src={logo} alt="EMH Logo" className="emh-logo" />

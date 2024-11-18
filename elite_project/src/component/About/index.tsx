@@ -129,7 +129,7 @@ const About = () => {
                                 5. ⁠FreshPerspective<br />
                             </p>
                             <div className="container-btn">
-                                <a href="/contact" className="contact-button">CONTACT</a>
+                                <a href="/contact" className="contact-button-about">CONTACT</a>
                             </div>
                         </div>
 
