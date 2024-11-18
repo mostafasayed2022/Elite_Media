@@ -150,7 +150,10 @@
 .contact-details .mail a{
   color: var(--color5);
 }
-
+.mail-phone .mail p i {
+ display: flex;
+ align-items: baseline;
+}
 .contact-details .phone{
   text-decoration: none;
 }
@@ -159,7 +162,7 @@
   line-height: 3;
 }
 .contact-details p i{
-  margin: auto;
+  align-items: baseline;
 }
 
 .contact-form {
