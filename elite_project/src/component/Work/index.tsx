@@ -6,6 +6,7 @@ import CardsWork from "../CardsWork";
 import Footer from "../Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import the CSS file for AOS animations
+import { Helmet } from "react-helmet-async";
 const Work = () => {
     useEffect(() => {
         AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
@@ -14,6 +15,13 @@ const Work = () => {
 
     return (
         <>
+                  <Helmet>
+        <title> Work | Elite Media Houses – Success Stories in Marketing</title>
+        <meta
+          name="description"
+          content="Explore our portfolio of successful projects across various industries. From creative campaigns to impactful media production, see how we’ve helped brands grow and thrive."
+        />
+      </Helmet>
             <Header />
             <section className="work-container">
                 <header className="about-header" >
