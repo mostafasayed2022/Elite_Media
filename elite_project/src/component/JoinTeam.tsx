@@ -175,7 +175,7 @@ const JoinTeam: React.FC = () => {
                     </form>
                 </div>
                 <div className="vid">
-                    <video className="contact-video" src={video} loop autoPlay muted>
+                    <video className="contact-video" src={video}  playsInline autoPlay muted loop>
                         Your browser does not support the video tag.
                     </video>
                 </div>

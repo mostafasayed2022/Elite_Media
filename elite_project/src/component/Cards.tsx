@@ -71,7 +71,7 @@ const Cards: React.FC = () => {
                                     src={item.video}
                                     className="video"
                                     ref={el => (videoRefs.current[index] = el)}
-                                    autoPlay loop muted
+                                    playsInline autoPlay muted loop
                                 />
                             )}
                         </div>

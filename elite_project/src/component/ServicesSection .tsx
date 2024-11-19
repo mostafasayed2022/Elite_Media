@@ -85,7 +85,7 @@ const ServicesSection = () => {
             <div className="services-media-grid">
                 <div className="media-item video-container">
                     {/* {home.servicevideo ? ( */}
-                        <video className="media-video-work" src={video} autoPlay loop muted />
+                        <video className="media-video-work" src={video} playsInline autoPlay muted loop />
                     {/* ) : (
                         <p>Loading video...</p>
                     )} */}
