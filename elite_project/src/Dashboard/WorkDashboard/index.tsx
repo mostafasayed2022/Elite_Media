@@ -82,17 +82,13 @@ const WorkDashboard = () => {
     const handleSave = async (
         index: number,
         section1: keyof Work,
-        section2: keyof Work,
-        section3: keyof Work,
-        section4: keyof Work
+
     ) => {
         const work = works[index];
         const formData = new FormData();
 
-        if (work[section1]) formData.append(section1, work[section1] as Blob);
-        if (work[section2]) formData.append(section2, work[section2] as Blob);
-        if (work[section3]) formData.append(section3, work[section3] as Blob);
-        if (work[section4]) formData.append(section4, work[section4] as Blob);
+        if (work[section1]) formData.append(section1, work[section1] as Blob|string);
+       
 
         try {
             if (work.id) {
@@ -188,13 +184,19 @@ const WorkDashboard = () => {
                                             </label>
                                         </div>
                                     </div>
-
                                     <button
-                                        className="save-btn"
-                                        onClick={() => handleSave(index, "title", "logo", "deliverables", "video")}
-                                    >
-                                        SAVE
-                                    </button>
+                            className="save-btn"
+                            onClick={() => {
+                                handleSave(index, "title") ||  // Call the first function
+                                handleSave(index, "logo")||  // Call the first function
+                                handleSave(index, "deliverables")||  // Call the first function
+                                handleSave(index, "video");  // Call the second function
+                            }}
+                        >
+                            SAVE
+                        </button>
+
+                                    
                                 </div>
                             ))}
                         </div>

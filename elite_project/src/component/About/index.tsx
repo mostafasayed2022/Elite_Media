@@ -6,7 +6,7 @@ import Slick from "../Slick";
 // import section1 from "../../assets/about/section1.png";
 // import section2 from "../../assets/about/section2.png";
 // import section3 from "../../assets/about/section3.png";
-import mediaVideo2 from "../../assets/about/media2.mp4"
+
 import Footer from "../Footer";
 import TeamSection from "../TeamSection";
 
@@ -33,9 +33,24 @@ interface About {
     teamtext: string;
     id?: number;
 }
+interface Home {
+  
+    teamvideo: string;
+ 
+}
+
+
+
 
 
 const About = () => {
+
+    const [video, setVideo] = useState<Home>({
+          
+            teamvideo: "",
+
+        });
+    
     // const [imageFileNames, setImageFileNames] = useState<string[]>(["Click to upload image"]);
     // const [, setFileName] = useState<string>('Click to upload');
     const navigate = useNavigate();
@@ -54,7 +69,28 @@ const About = () => {
         philoImagePreviewUrl: null,
         teamtext: "",
     });
+    useEffect(() => {
+        const fetchHomeData = async () => {
 
+            try {
+                const response = await axios.get("https://api.elitemediahouses.com/home/", {
+                });
+
+                if (response.data.length > 0) {
+                    setVideo(response.data[0]);
+
+                }
+            } catch (error: unknown) {
+                if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+                    navigate("/login");
+                } else {
+                    console.error("Error fetching data:", error);
+                }
+            }
+        };
+
+        fetchHomeData();
+    }, [navigate]);  
     useEffect(() => {
         const fetchAboutData = async () => {
             try {
@@ -180,7 +216,7 @@ const About = () => {
                 </section>
                 <section>
                     <div className="services-media">
-                        <video className="media-video" src={mediaVideo2} autoPlay loop muted />
+                        <video className="media-video" src={video.teamvideo} autoPlay loop muted />
                         <h2 className="media-text-about" >Our Values</h2>
                     </div>
                 </section>

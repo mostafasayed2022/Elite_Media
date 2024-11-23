@@ -32,6 +32,8 @@ interface Service {
     servicename: string;
     serviceimage: File | null;
     servicevideo: File | null;
+    serviceimagePreviewUrl:string|null;
+    servicevideoPreviewUrl:string|null;
     id?: number;
 }
 
@@ -57,11 +59,15 @@ const HomeDashboard: React.FC = () => {
         clientimagePreviewUrl: ""
     }]);
     const MAX_CLIENT_IMAGES = 9; // Set your limit here
-    const [homeServices, setHomeServices] = useState<Service[]>([{
-        servicename: "",
-        serviceimage: null,
-        servicevideo: null
-    }]);
+    const [homeServices, setHomeServices] = useState<Service[]>([
+        {
+            servicename: "",
+            serviceimage: null,
+            servicevideo: null,
+            serviceimagePreviewUrl: null, // Add preview URL keys
+            servicevideoPreviewUrl: null,
+        },
+    ]);
 
     const [imageFileNames, setImageFileNames] = useState<string[]>(["Click to upload image"]);
     const [, setFileName] = useState<string>('Click to upload');
@@ -99,6 +105,50 @@ const HomeDashboard: React.FC = () => {
         fetchHomeData();
     }, [navigate]);
 
+    useEffect(() => {
+        const fetchSERVICEData = async () => {
+            const token = localStorage.getItem("access_token");
+    
+            if (!token) {
+                navigate("/login"); // Redirect if no token is found
+                return;
+            }
+    
+            try {
+                const response = await axios.get("https://api.elitemediahouses.com/service/", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+    
+                if (response.data.length > 0) {
+                    // Map the response data to include preview URLs for images/videos
+                    const serviceData = response.data.map((item: any) => ({
+                        ...item,
+                        serviceimagePreviewUrl: item.serviceimage
+                            ? `${item.serviceimage}` // Adjust base URL if needed
+                            : null,
+                        servicevideoPreviewUrl: item.servicevideo
+                            ? `${item.servicevideo}` // Adjust base URL if needed
+                            : null,
+                    }));
+    
+                    // Update the state with the fetched service data
+                    setHomeServices(serviceData);
+                }
+            } catch (error) {
+                if (axios.isAxiosError(error) && error.response?.status === 401) {
+                    navigate("/login"); // Redirect on unauthorized error
+                } else {
+                    console.error("Error fetching services:", error);
+                }
+            }
+        };
+    
+        fetchSERVICEData();
+    }, [navigate]);
+    
+    
     // useEffect for fetching Team Member data
     useEffect(() => {
         const fetchDataClient = async () => {
@@ -302,12 +352,16 @@ const HomeDashboard: React.FC = () => {
 
 
 
-    const handleSave2 = async (section: keyof Home, section2: keyof Home) => {
+
+
+
+    const handleSave = async (section: keyof Home) => {
         const formData = new FormData();
+
         // Append all fields to FormData
-        if (home[section] && home[section2]) {
-            formData.append(section, home[section] as Blob);
-            formData.append(section2, home[section2] as Blob);
+        if (home[section] ) {
+            formData.append(section, home[section] as Blob|string);
+            
         }
 
 
@@ -336,52 +390,15 @@ const HomeDashboard: React.FC = () => {
     };
 
 
-    const handleSave = async (section: keyof Home, section2: keyof Home, section3: keyof Home) => {
-        const formData = new FormData();
-
-        // Append all fields to FormData
-        if (home[section] && home[section2] && home[section3]) {
-            formData.append(section, home[section] as Blob);
-            formData.append(section2, home[section2] as Blob);
-            formData.append(section3, home[section3] as Blob);
-        }
-
-
-        try {
-            // const token = localStorage.getItem("access_token");
-            if (home.id) {
-                const response = await axios.put(`https://api.elitemediahouses.com/home_dashboard/${home.id}/`, formData, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                        'Content-Type': 'multipart/form-data', // Important for file uploads
-                    },
-                });
-                console.log("Home updated:", response.data);
-            } else {
-                const response = await axios.post("https://api.elitemediahouses.com/home_dashboard/", formData, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                        'Content-Type': 'multipart/form-data', // Important for file uploads
-                    },
-                });
-                console.log("Home saved:", response.data);
-            }
-        } catch (error) {
-            console.error("Error saving data:", error);
-        }
-    };
-
-
-    const handleSaveService3 = async (section: keyof Service, section2: keyof Service, section3: keyof Service, index: number) => {
+    const handleSaveService3 = async (section: keyof Service , index: number) => {
         const homeServices1 = homeServices[index];
 
         const formData = new FormData();
 
         // Append all fields to FormData
-        if (homeServices1[section] && homeServices1[section2] && homeServices1[section3]) {
-            formData.append(section, homeServices1[section] as Blob);
-            formData.append(section2, homeServices1[section2] as Blob);
-            formData.append(section3, homeServices1[section3] as Blob);
+        if (homeServices1[section] ) {
+            formData.append(section, homeServices1[section] as Blob|string);
+            
         }
 
 
@@ -420,11 +437,21 @@ const HomeDashboard: React.FC = () => {
 
 
     const handleAddService = () => {
-        if (homeServices.length) {
-            setHomeServices([...homeServices, { servicename: '', serviceimage: null, servicevideo: null }]);
-            setImageFileNames([...imageFileNames, "Click to upload image"]);
-        }
+        setHomeServices([
+            ...homeServices,
+            {
+                servicename: '',
+                serviceimage: null,
+                servicevideo: null,
+                serviceimagePreviewUrl: null, // Include preview URLs
+                servicevideoPreviewUrl: null,
+            },
+        ]);
+    
+        // Ensure the `imageFileNames` array stays in sync
+        setImageFileNames([...imageFileNames, "Click to upload image"]);
     };
+    
 
 
 
@@ -474,7 +501,18 @@ const HomeDashboard: React.FC = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="save-btn" onClick={() => handleSave("text", "image", "video")}>SAVE</button>
+                        <button
+                            className="save-btn"
+                            onClick={() => {
+                                handleSave("text") || 
+                                handleSave("image")||
+                                handleSave("video"); // Call the first function
+                                  // Call the second function
+                            }}
+                        >
+                            SAVE
+                        </button>
+                        
 
 
                     </div>
@@ -549,7 +587,18 @@ const HomeDashboard: React.FC = () => {
                                             />
                                         </label>
                                     </div>
-                                    <button className="save-btn" onClick={() => handleSaveService3("servicename", "serviceimage", "servicevideo", index)}>SAVE</button>
+                                    <button
+                            className="save-btn"
+                            onClick={() => {
+                                handleSaveService3("servicename",index) || 
+                                handleSaveService3("serviceimage",index)||
+                                 handleSaveService3("servicevideo",index); // Call the first function
+                                  // Call the second function
+                            }}
+                        >
+                            SAVE
+                        </button>
+                                    
                                 </div>
                             ))}
                         </div>
@@ -583,7 +632,17 @@ const HomeDashboard: React.FC = () => {
                             </div>
 
                         </div>
-                        <button className="save-btn" onClick={() => handleSave2("teamtext", "teamimage")}>SAVE</button>
+                        <button
+                            className="save-btn"
+                            onClick={() => {
+                                handleSave("teamtext") || 
+                                handleSave("teamimage"); // Call the first function
+                                  // Call the second function
+                            }}
+                        >
+                            SAVE
+                        </button>
+                        
                     </div>
                 </div>
             </div>
