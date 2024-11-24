@@ -352,16 +352,12 @@ const HomeDashboard: React.FC = () => {
 
 
 
-
-
-
-    const handleSave = async (section: keyof Home) => {
+    const handleSave2 = async (section: keyof Home, section2: keyof Home) => {
         const formData = new FormData();
-
         // Append all fields to FormData
-        if (home[section] ) {
-            formData.append(section, home[section] as Blob|string);
-            
+        if (home[section] && home[section2]) {
+            formData.append(section, home[section] as Blob);
+            formData.append(section2, home[section2] as Blob);
         }
 
 
@@ -390,14 +386,53 @@ const HomeDashboard: React.FC = () => {
     };
 
 
-    const handleSaveService3 = async (section: keyof Service , index: number) => {
+    const handleSave = async (section: keyof Home, section2: keyof Home, section3: keyof Home) => {
+        const formData = new FormData();
+
+        // Append all fields to FormData
+        if (home[section] && home[section2] && home[section3]) {
+            formData.append(section, home[section] as Blob);
+            formData.append(section2, home[section2] as Blob);
+            formData.append(section3, home[section3] as Blob);
+        }
+
+
+        try {
+            // const token = localStorage.getItem("access_token");
+            if (home.id) {
+                const response = await axios.patch(`https://api.elitemediahouses.com/home_dashboard/${home.id}/`, formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                console.log("Home updated:", response.data);
+            } else {
+                const response = await axios.post("https://api.elitemediahouses.com/home_dashboard/", formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                console.log("Home saved:", response.data);
+            }
+        } catch (error) {
+            console.error("Error saving data:", error);
+        }
+    };
+
+
+    const handleSaveService3 = async (section: keyof Service, section2: keyof Service, section3: keyof Service, index: number) => {
         const homeServices1 = homeServices[index];
 
         const formData = new FormData();
 
         // Append all fields to FormData
-        if (homeServices1[section] ) {
-            formData.append(section, homeServices1[section] as Blob|string);
+       
+            if (homeServices1[section] && homeServices1[section2] && homeServices1[section3]) {
+                formData.append(section, homeServices1[section] as Blob);
+                formData.append(section2, homeServices1[section2] as Blob);
+                formData.append(section3, homeServices1[section3] as Blob);
             
         }
 
@@ -501,17 +536,7 @@ const HomeDashboard: React.FC = () => {
                                 </label>
                             </div>
                         </div>
-                        <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave("text") || 
-                                handleSave("image")||
-                                handleSave("video"); // Call the first function
-                                  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
+                        <button className="save-btn" onClick={() => handleSave("text", "image", "video")}>SAVE</button>
                         
 
 
@@ -587,17 +612,7 @@ const HomeDashboard: React.FC = () => {
                                             />
                                         </label>
                                     </div>
-                                    <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSaveService3("servicename",index) || 
-                                handleSaveService3("serviceimage",index)||
-                                 handleSaveService3("servicevideo",index); // Call the first function
-                                  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
+                                    <button className="save-btn" onClick={() => handleSaveService3("servicename", "serviceimage", "servicevideo", index)}>SAVE</button>
                                     
                                 </div>
                             ))}
@@ -632,16 +647,7 @@ const HomeDashboard: React.FC = () => {
                             </div>
 
                         </div>
-                        <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave("teamtext") || 
-                                handleSave("teamimage"); // Call the first function
-                                  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
+                        <button className="save-btn" onClick={() => handleSave2("teamtext", "teamimage")}>SAVE</button>
                         
                     </div>
                 </div>

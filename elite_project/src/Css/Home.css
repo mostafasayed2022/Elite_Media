@@ -580,7 +580,7 @@
 /* start CallAction */
 
   .CallToAction{
-    background-image: url("../../src//assets//home//background-team.png");
+    /* background-image: url("../../src//assets//home//background-team.png"); */
     width: 92%;
     height: 90vh;
     background-repeat: no-repeat;

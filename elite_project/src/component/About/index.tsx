@@ -69,6 +69,7 @@ const About = () => {
         philoImagePreviewUrl: null,
         teamtext: "",
     });
+  
     useEffect(() => {
         const fetchHomeData = async () => {
 
@@ -117,9 +118,14 @@ const About = () => {
     useEffect(() => {
         AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
     }, []);
-
+    const formattedText = about.text.split("/").map((item, index) => (
+        <div key={index}>{item.trim()}</div>
+      ));
+      
+     
     return (
         <>
+         
             {/* <Helmet>
         <title> About | Elite Media Houses – Your Marketing Innovation Partner</title>
         <meta
@@ -167,11 +173,9 @@ const About = () => {
                             </p>
 
                             <p className="pha3">
-                                1. Innovative Approaches<br />
-                                2. ⁠Agility and Flexibility<br />
-                                3. ⁠Personalized Service<br />
-                                4. ⁠Commitment to Your Success<br />
-                                5. ⁠FreshPerspective<br />
+                              
+                                
+                                {formattedText}
                             </p>
                             <div className="container-btn">
                                 <a href="/contact" className="contact-button-about">CONTACT</a>
