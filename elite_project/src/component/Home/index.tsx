@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "../../Css/Home.css";
-import logo from "../../assets/logos/EMH logo 2.png";
 import Slick from "../Slick";
 import ServicesSection from "../ServicesSection ";
 import Cards from "../Cards";
@@ -20,7 +19,7 @@ import axios from "axios";
 interface Home {
     text: string;
     video: File | null;
-    image: File | null;
+    image: string | null;
     clientvideo: File | null;
     clientimage: File | null;
     teamtext: string;
@@ -37,7 +36,7 @@ interface Home {
 const Home = () => {
     // const [choiceMade, setChoiceMade] = useState(false);
     const navigate = useNavigate();
-    const [, setHome] = useState<Home>({
+    const [home, setHome] = useState<Home>({
         text: "",
         video: null,
         image: null,
@@ -79,27 +78,14 @@ const Home = () => {
         fetchHomeData();
     }, [navigate]);
 
-
-
     return (
         <>
-          {/* <Helmet>
-        <title> Elite Media Houses | Creative Marketing Solutions for Every Brand.</title>
-        <meta
-          name="description"
-          content="Welcome to Elite Media Houses, your partner in innovative marketing strategies. We provide exceptional media production, web & app development, branding and identity, and graphic design services to elevate your brand's visibility and success."
-        />
-      </Helmet> */}
-            {/* {!choiceMade && <ChoiceModal setChoiceMade={setChoiceMade} />} 
-            {choiceMade && ( 
-                <> */}
             <Header />
             <div className="media-header-container">
                 <div className="media-info">
                     <span className="badge" data-aos="fade-right">A MEDIA SERVICES</span>
                     <h1 className="title" data-aos="fade-right">
                         Elite Media Houses <br />
-                        {/* <span className="sub-title" data-aos="fade-right">Made By <span className="highlight">Elites  span For Elite</span></span> */}
                     </h1>
                     <div className="logo-container-media-home">
                         <span className="made-by" data-aos="fade-right">Made By</span>
@@ -107,15 +93,23 @@ const Home = () => {
                         <span className="elites" data-aos="fade-right">Elites <br /> For Elites</span>
                     </div>
                     <p className="description" data-aos="fade-right">
-                        Welcome To The Home Of Creativity, Uniqueness, Freshness, Originality And More.
+                        {home.text}
                     </p>
                     <div className="btn-work-home">
                         <Link to={"/contact"}><button className="view-work-button btn-work" data-aos="fade-right">CONTACT</button></Link>
                     </div>
                 </div>
                 <div className="logo-container-home">
-                    <img data-aos="fade-left" src={logo} alt="EMH Logo" className="emh-logo" />
+                    {home.image && (
+                        <img
+                            data-aos="fade-left"
+                            src={home.image}
+                            alt="EMH Logo"
+                            className="emh-logo"
+                        />
+                    )}
                 </div>
+
             </div>
 
             <section >

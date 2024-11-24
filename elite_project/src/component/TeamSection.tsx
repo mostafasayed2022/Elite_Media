@@ -16,7 +16,6 @@ const TeamSection: React.FC = () => {
     const [teamMember, setTeamMember] = useState<TeamMember[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     // const navigate = useNavigate();
 
     useEffect(() => {
