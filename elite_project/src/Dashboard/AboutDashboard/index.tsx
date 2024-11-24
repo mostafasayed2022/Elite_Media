@@ -303,20 +303,14 @@ const AboutDashboard = () => {
     // text change 2
     const handleTextChange2 = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const { name, value } = e.target;
-
-        // Create a new copy of the array
         const updatedTeamMembers = [...teamMember];
-
-        // Update the specific team member at the index
         updatedTeamMembers[index] = {
-            ...updatedTeamMembers[index], // Keep the other properties (e.g., image) intact
-            [name]: value, // Dynamically update the field (name, title, etc.)
+            ...updatedTeamMembers[index],
+            [name]: value,
         };
-
-        // Set the updated array back to state
         setTeamMember(updatedTeamMembers);
     };
-
+    
 
     const handleSave = async (section: keyof About) => {
         const formData = new FormData();
@@ -411,54 +405,65 @@ const AboutDashboard = () => {
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleSave3 = async (section1: keyof TeamMember, index: number,) => {
+    const handleSave3 = async (section1: keyof TeamMember, section2: keyof TeamMember, section3: keyof TeamMember, index: number) => {
         const teammembers = teamMember[index];
         const formData = new FormData();
-
-        // Append all fields to FormData
+    
+        // Dynamically append the field specified by `section1`
         if (teammembers[section1]) formData.append(section1, teammembers[section1] as Blob);
-        
+        if (teammembers[section2]) formData.append(section2, teammembers[section2] as Blob);
+        if (teammembers[section3]) formData.append(section3, teammembers[section3] as Blob);
+    
         try {
             const headers = {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'multipart/form-data',
             };
-
+    
             if (teammembers.id) {
-                const response = await axios.patch(`https://api.elitemediahouses.com/team_member/${teammembers.id}/`, formData, { headers });
-                console.log("About updated:", response.data);
+                const response = await axios.patch(
+                    `https://api.elitemediahouses.com/team_member/${teammembers.id}/`,
+                    formData,
+                    { headers }
+                );
+                console.log("Team member updated:", response.data);
             } else {
-                const response = await axios.post("https://api.elitemediahouses.com/team_member/", formData, { headers });
-                console.log("About saved:", response.data);
+                const response = await axios.post(
+                    "https://api.elitemediahouses.com/team_member/",
+                    formData,
+                    { headers }
+                );
+                console.log("Team member saved:", response.data);
             }
         } catch (error) {
             console.error("Error saving data:", error);
         }
     };
-    const handleSave4 = async (section1: keyof TeamMember, index: number,) => {
-        const teammembers = teamMember[index];
-        const formData = new FormData();
+    
+    // const handleSave4 = async (section1: keyof TeamMember, index: number,) => {
+    //     const teammembers = teamMember[index];
+    //     const formData = new FormData();
 
-        // Append all fields to FormData
-        if (teammembers[section1]) formData.append(section1, teammembers[section1] as string);
+    //     // Append all fields to FormData
+    //     if (teammembers[section1]) formData.append(section1, teammembers[section1] as string);
         
-        try {
-            const headers = {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                'Content-Type': 'multipart/form-data',
-            };
+    //     try {
+    //         const headers = {
+    //             Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    //             'Content-Type': 'multipart/form-data',
+    //         };
 
-            if (teammembers.id) {
-                const response = await axios.patch(`https://api.elitemediahouses.com/team_member/${teammembers.id}/`, formData, { headers });
-                console.log("About updated:", response.data);
-            } else {
-                const response = await axios.post("https://api.elitemediahouses.com/team_member/", formData, { headers });
-                console.log("About saved:", response.data);
-            }
-        } catch (error) {
-            console.error("Error saving data:", error);
-        }
-    };
+    //         if (teammembers.id) {
+    //             const response = await axios.patch(`https://api.elitemediahouses.com/team_member/${teammembers.id}/`, formData, { headers });
+    //             console.log("About updated:", response.data);
+    //         } else {
+    //             const response = await axios.post("https://api.elitemediahouses.com/team_member/", formData, { headers });
+    //             console.log("About saved:", response.data);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error saving data:", error);
+    //     }
+    // };
 
     const handleAddCard = () => {
         setTeamMember([...teamMember, { title: "", image: null, name: "" }]);
@@ -672,13 +677,7 @@ const AboutDashboard = () => {
                         {teamMember.map((teammembers, index) => (
                             <div key={index}>
                                 <h3>Team Member {index + 1}</h3>
-                                {/* <textarea
-                                    placeholder="Write title here..."
-                                    className="intro-text"
-                                    name={`teamMember[${index}].title`}
-                                    value={teammembers.title}
-                                    onChange={(e) => handleTextChange(e)} // Make sure `handleTextChange` handles index updates correctly
-                                /> */}
+                                
                                 <div className="section-team">
                                     <input
                                         type="text"
@@ -710,18 +709,17 @@ const AboutDashboard = () => {
                                             />
                                         </label>
                                     </div>
-                                    {teammembers.image && <img src={URL.createObjectURL(teammembers.image)} alt={`Preview ${index}`} className="image-preview" />}
+                                    {/* {teammembers.image && <img src={URL.createObjectURL(teammembers.image)} alt={`Preview ${index}`} className="image-preview" />} */}
                                 </div>
-                                <button
+                                {/* <button
                             className="save-btn"
                             onClick={() => {
-                                handleSave3("image", index) || handleSave4("name", index)|| handleSave4("title", index); // Call the first function
-                                  // Call the second function
+                                handleSave3("image", index) || handleSave3("name", index)|| handleSave3("title", index); 
                             }}
                         >
                             SAVE
-                        </button>
-                                
+                        </button> */}
+                                <button className="save-btn" onClick={() => handleSave3("name", "title", "image", index)}>SAVE</button>
                             </div>
                         ))}
                         <button className="add-service-btn" onClick={handleAddCard}>
