@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import "../../Css/About.css"
 import "../../Css/Home.css"
@@ -14,11 +14,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { Helmet } from "react-helmet-async";
 
 
 interface About {
-    text: string;
+    text: string[];
     image: File | null;
     imagePreviewUrl: string | null; // Preview URL for the "Clients" section
     abouttext_about: string;
@@ -34,9 +33,9 @@ interface About {
     id?: number;
 }
 interface Home {
-  
+
     teamvideo: string;
- 
+
 }
 
 
@@ -46,16 +45,16 @@ interface Home {
 const About = () => {
 
     const [video, setVideo] = useState<Home>({
-          
-            teamvideo: "",
 
-        });
-    
+        teamvideo: "",
+
+    });
+
     // const [imageFileNames, setImageFileNames] = useState<string[]>(["Click to upload image"]);
     // const [, setFileName] = useState<string>('Click to upload');
     const navigate = useNavigate();
     const [about, setAbout] = useState<About>({
-        text: "",
+        text: [],
         image: null,
         imagePreviewUrl: null,
         abouttext_about: "",
@@ -90,25 +89,26 @@ const About = () => {
         };
 
         fetchHomeData();
-    }, [navigate]);  
+    }, [navigate]);
     useEffect(() => {
         const fetchAboutData = async () => {
             try {
-                const response = await axios.get("https://api.elitemediahouses.com/about/", {
-                });
-
+                const response = await axios.get("https://api.elitemediahouses.com/about/");
                 if (response.data.length > 0) {
-                    setAbout(response.data[0]);
+                    const fetchedAbout = response.data[0];
+                    setAbout({
+                        ...fetchedAbout,
+                        text: fetchedAbout.text?.split(". ") || [], // Convert string to an array if needed
+                    });
                 }
             } catch (error) {
-                if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+                if (axios.isAxiosError(error) && error.response?.status === 401) {
                     navigate("/login");
                 } else {
                     console.error("Error fetching data:", error);
                 }
             }
         };
-
         fetchAboutData();
     }, [navigate]);
 
@@ -120,13 +120,6 @@ const About = () => {
 
     return (
         <>
-            {/* <Helmet>
-        <title> About | Elite Media Houses – Your Marketing Innovation Partner</title>
-        <meta
-          name="description"
-          content="Learn about Elite Media Houses, an Advertising agency built on creativity, collaboration, and results. Our team is dedicated to delivering excellence through innovative strategies."
-        />
-      </Helmet> */}
             <Header />
             <div className="about-container" >
                 <header className="about-header" >
@@ -166,13 +159,16 @@ const About = () => {
                                 {about.why_choose_ustext}
                             </p>
 
-                            <p className="pha3">
-                                1. Innovative Approaches<br />
-                                2. ⁠Agility and Flexibility<br />
-                                3. ⁠Personalized Service<br />
-                                4. ⁠Commitment to Your Success<br />
-                                5. ⁠FreshPerspective<br />
-                            </p>
+                            <ul className="pha3">
+                                {about.text.slice(0, 3).map((item, index) => ( // Change 3 to the desired number of items to display
+                                    <React.Fragment key={index}>
+                                        <li>{item}</li>
+                                        <br />
+                                    </React.Fragment>
+                                ))}
+                            </ul>
+
+
                             <div className="container-btn">
                                 <a href="/contact" className="contact-button-about">CONTACT</a>
                             </div>
