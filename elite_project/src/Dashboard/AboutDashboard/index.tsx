@@ -18,10 +18,6 @@ interface About {
 
     image_philo: File | null;
     philoImagePreviewUrl: string | null; // Preview URL for the "Our Philosophy" section
-
-    id?: number;
-}
-interface Text1 {
     text: string;
     // Preview URL for the "Clients" section
     abouttext_about: string;
@@ -31,8 +27,9 @@ interface Text1 {
     text_philo: string;
     // Preview URL for the "Our Philosophy" section
     teamtext: string;
-
+    id?: number;
 }
+
 interface TeamMember {
     name: string;
     title: string;
@@ -89,9 +86,6 @@ const AboutDashboard = () => {
 
         image_philo: null,
         philoImagePreviewUrl: null,
-
-    });
-    const [text1, setText] = useState<Text1>({
         text: "",
 
         abouttext_about: "",
@@ -101,7 +95,11 @@ const AboutDashboard = () => {
         text_philo: "",
 
         teamtext: "",
+
     });
+    // const [text1, setText] = useState<Text1>({
+       
+    // });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [teamMember, setTeamMember] = useState<TeamMember[]>([{
         name: "",
@@ -177,36 +175,36 @@ const AboutDashboard = () => {
     }, [navigate]);
 
 
-    useEffect(() => {
-        const fetchAboutData1 = async () => {
-            const token = localStorage.getItem("access_token");
+    // useEffect(() => {
+    //     const fetchAboutData1 = async () => {
+    //         const token = localStorage.getItem("access_token");
 
-            if (!token) {
-                navigate("/login");
-                return;
-            }
+    //         if (!token) {
+    //             navigate("/login");
+    //             return;
+    //         }
 
-            try {
-                const response = await axios.get("https://api.elitemediahouses.com/about_dashboard/", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+    //         try {
+    //             const response = await axios.get("https://api.elitemediahouses.com/about_dashboard/", {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             });
 
-                if (response.data.length > 0) {
-                    setText(response.data[0]);
-                }
-            } catch (error) {
-                if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
-                    navigate("/login");
-                } else {
-                    console.error("Error fetching data:", error);
-                }
-            }
-        };
+    //             if (response.data.length > 0) {
+    //                 setText(response.data[0]);
+    //             }
+    //         } catch (error) {
+    //             if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+    //                 navigate("/login");
+    //             } else {
+    //                 console.error("Error fetching data:", error);
+    //             }
+    //         }
+    //     };
 
-        fetchAboutData1();
-    }, [navigate]);
+    //     fetchAboutData1();
+    // }, [navigate]);
 
     // useEffect for fetching Team Member data
     useEffect(() => {
@@ -297,34 +295,63 @@ const AboutDashboard = () => {
     // text change 1
     const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setText({ ...text1, [name]: value });
+        setAbout({ ...about, [name]: value });
     };
 
     // text change 2
     const handleTextChange2 = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const { name, value } = e.target;
-
-        // Create a new copy of the array
         const updatedTeamMembers = [...teamMember];
-
-        // Update the specific team member at the index
         updatedTeamMembers[index] = {
-            ...updatedTeamMembers[index], // Keep the other properties (e.g., image) intact
-            [name]: value, // Dynamically update the field (name, title, etc.)
+            ...updatedTeamMembers[index],
+            [name]: value,
         };
-
-        // Set the updated array back to state
         setTeamMember(updatedTeamMembers);
     };
+   
 
-
-    const handleSave = async (section: keyof About) => {
+    const handleSave = async (section: keyof About, section2: keyof About) => {
         const formData = new FormData();
 
         // Append all fields to FormData
-        if (about[section]) {
+        if (about[section] && about[section2]) {
             formData.append(section, about[section] as Blob);
+            formData.append(section2, about[section2] as string);
+        }
 
+        // if (text1[section2]) {
+
+        //     formData.append(section2, text1[section2] as string);
+        // }
+
+        try {
+            const headers = {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                'Content-Type': 'multipart/form-data',
+            };
+
+            if (about.id) {
+                const response = await axios.patch(`https://api.elitemediahouses.com/about_dashboard/${about.id}/`, formData, { headers });
+                console.log("About updated:", response.data);
+            } else {
+                const response = await axios.post("https://api.elitemediahouses.com/about_dashboard/", formData, { headers });
+                console.log("About saved:", response.data);
+            }
+        } catch (error: any) {
+            if (error.response?.data) {
+                console.error("Server responded with errors:", error.response.data);
+            } else {
+                console.error("Error saving data:", error.message);
+            }
+        }
+    };
+    const handleSave2 = async (section: keyof About) => {
+        const formData = new FormData();
+
+        // Append all fields to FormData
+        if (about[section] ) {
+            formData.append(section, about[section] as Blob);
+          
         }
 
         // if (text1[section2]) {
@@ -384,82 +411,75 @@ const AboutDashboard = () => {
             console.error("Error saving data:", error);
         }
     };
-    const handleSave2 = async (section: keyof Text1) => {
-        const formData = new FormData();
-
-        // Append all fields to FormData
-        if (text1[section]) {
-            formData.append(section, text1[section] as string);
-        }
-
-        try {
-            const headers = {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                'Content-Type': 'multipart/form-data',
-            };
-
-            if (about.id) {
-                const response = await axios.patch(`https://api.elitemediahouses.com/about_dashboard/${about.id}/`, formData, { headers });
-                console.log("About updated:", response.data);
-            } else {
-                const response = await axios.post("https://api.elitemediahouses.com/about_dashboard/", formData, { headers });
-                console.log("About saved:", response.data);
-            }
-        } catch (error) {
-            console.error("Error saving data:", error);
-        }
-    };
+    
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleSave3 = async (section1: keyof TeamMember, index: number,) => {
+    const handleSave3 = async (section1: keyof TeamMember, section2: keyof TeamMember, section3: keyof TeamMember, index: number) => {
         const teammembers = teamMember[index];
         const formData = new FormData();
-
-        // Append all fields to FormData
+    
+        // Dynamically append the field specified by `section1`
         if (teammembers[section1]) formData.append(section1, teammembers[section1] as Blob);
-        
+        if (teammembers[section2]) formData.append(section2, teammembers[section2] as Blob);
+        if (teammembers[section3]) formData.append(section3, teammembers[section3] as Blob);
+    
         try {
             const headers = {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'multipart/form-data',
             };
-
+    
             if (teammembers.id) {
-                const response = await axios.patch(`https://api.elitemediahouses.com/team_member/${teammembers.id}/`, formData, { headers });
-                console.log("About updated:", response.data);
+                const response = await axios.patch(
+                    `https://api.elitemediahouses.com/team_member/${teammembers.id}/`,
+                    formData,
+                    { headers }
+                );
+                console.log("Team member updated:", response.data);
             } else {
-                const response = await axios.post("https://api.elitemediahouses.com/team_member/", formData, { headers });
-                console.log("About saved:", response.data);
+                const response = await axios.post(
+                    "https://api.elitemediahouses.com/team_member/",
+                    formData,
+                    { headers }
+                );
+                console.log("Team member saved:", response.data);
             }
         } catch (error) {
             console.error("Error saving data:", error);
         }
     };
-    const handleSave4 = async (section1: keyof TeamMember, index: number,) => {
-        const teammembers = teamMember[index];
-        const formData = new FormData();
+   
 
-        // Append all fields to FormData
-        if (teammembers[section1]) formData.append(section1, teammembers[section1] as string);
-        
-        try {
-            const headers = {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                'Content-Type': 'multipart/form-data',
-            };
+// const handleSave7 = async (section1: keyof About, section2: keyof About, index: number) => {
+//         const abouts = about[index];
+//         const formData = new FormData();
+    
+//         // Dynamically append the field specified by `section1`
+//         if (abouts[section1]) formData.append(section1, abouts[section1] as Blob);
+//         if (abouts[section2]) formData.append(section2, abouts[section2] as Blob);
 
-            if (teammembers.id) {
-                const response = await axios.patch(`https://api.elitemediahouses.com/team_member/${teammembers.id}/`, formData, { headers });
-                console.log("About updated:", response.data);
-            } else {
-                const response = await axios.post("https://api.elitemediahouses.com/team_member/", formData, { headers });
-                console.log("About saved:", response.data);
-            }
-        } catch (error) {
-            console.error("Error saving data:", error);
-        }
-    };
+    
+//         try {
+//             const headers = {
+//                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+//                 'Content-Type': 'multipart/form-data',
+//             };
 
+//             if (about.id) {
+//                 const response = await axios.patch(`https://api.elitemediahouses.com/about_dashboard/${about.id}/`, formData, { headers });
+//                 console.log("About updated:", response.data);
+//             } else {
+//                 const response = await axios.post("https://api.elitemediahouses.com/about_dashboard/", formData, { headers });
+//                 console.log("About saved:", response.data);
+//             }
+//         } catch (error: any) {
+//             if (error.response?.data) {
+//                 console.error("Server responded with errors:", error.response.data);
+//             } else {
+//                 console.error("Error saving data:", error.message);
+//             }
+//         }
+//     };
     const handleAddCard = () => {
         setTeamMember([...teamMember, { title: "", image: null, name: "" }]);
         setImageFileNames([...imageFileNames, "Click to upload image"]);
@@ -482,7 +502,7 @@ const AboutDashboard = () => {
                                 placeholder="Write here..."
                                 className="intro-text"
                                 name="why_choose_ustext"
-                                value={text1.why_choose_ustext}
+                                value={about.why_choose_ustext}
                                 onChange={handleTextChange}
                             />
                             <div>
@@ -495,21 +515,14 @@ const AboutDashboard = () => {
                                         onChange={(e) => handleFileChange(e, "why_choose_usimage", "whyChooseUsImagePreviewUrl")}
                                         className="file-upload-input"
                                         required
+                                        
                                     />
                                 </label>
                             </div>
                             {about.whyChooseUsImagePreviewUrl && <img src={about.whyChooseUsImagePreviewUrl} alt="Preview" className="image-preview" />}
 
                         </div>
-                        <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave2("why_choose_ustext") ||  // Call the first function
-                                handleSave("why_choose_usimage");  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
+                        <button className="save-btn" onClick={() => handleSave("why_choose_usimage", "why_choose_ustext")}>SAVE</button>
                     </div>
                     <div className="section intro-session">
                         <h2>Clients Session</h2>
@@ -519,7 +532,7 @@ const AboutDashboard = () => {
                                 placeholder="Write here..."
                                 className="intro-text"
                                 name="text"
-                                value={text1.text}
+                                value={about.text}
                                 onChange={handleTextChange}
                             />
                             <div>
@@ -536,15 +549,7 @@ const AboutDashboard = () => {
                             </div>
                             {about.imagePreviewUrl && <img src={about.imagePreviewUrl} alt="Preview" className="image-preview" />}
                         </div>
-                        <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave2("text") || // Call the first function
-                                handleSave("image");  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
+                        <button className="save-btn" onClick={() => handleSave("image", "text")}>SAVE</button>
                         
                     </div>
                     {/* Additional sections here */}
@@ -559,7 +564,7 @@ const AboutDashboard = () => {
                                     placeholder="Write here..."
                                     className="intro-text"
                                     name="abouttext_about"
-                                    value={text1.abouttext_about}
+                                    value={about.abouttext_about}
                                     onChange={handleTextChange}
                                 />
                                 <div>
@@ -574,15 +579,7 @@ const AboutDashboard = () => {
                                         />
                                     </label>
                                 </div>
-                                <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave2("abouttext_about") ||  // Call the first function
-                                handleSave("aboutimage");  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
+                                <button className="save-btn" onClick={() => handleSave("aboutimage", "abouttext_about")}>Save </button>
                                 
                                 {about.aboutImagePreviewUrl && <img src={about.aboutImagePreviewUrl} alt="Preview" className="image-preview" />}
                             </div>
@@ -593,7 +590,7 @@ const AboutDashboard = () => {
                                     placeholder="Write here..."
                                     className="intro-text"
                                     name="text_philo"
-                                    value={text1.text_philo}
+                                    value={about.text_philo}
                                     onChange={handleTextChange}
                                 />
                                 <div>
@@ -610,16 +607,7 @@ const AboutDashboard = () => {
 
 
                                 </div>
-                                <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave2("text_philo") || handleSave("image_philo"); // Call the first function
-                                  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
-                                
+                                <button className="save-btn" onClick={() => handleSave("image_philo", "text_philo")}>Save </button>
 
 
 
@@ -656,7 +644,7 @@ const AboutDashboard = () => {
                             placeholder="Write here..."
                             className="intro-text"
                             name="teamtext"
-                            value={text1.teamtext}
+                            value={about.teamtext}
                             onChange={handleTextChange}
                         />
                         <div>
@@ -672,13 +660,7 @@ const AboutDashboard = () => {
                         {teamMember.map((teammembers, index) => (
                             <div key={index}>
                                 <h3>Team Member {index + 1}</h3>
-                                {/* <textarea
-                                    placeholder="Write title here..."
-                                    className="intro-text"
-                                    name={`teamMember[${index}].title`}
-                                    value={teammembers.title}
-                                    onChange={(e) => handleTextChange(e)} // Make sure `handleTextChange` handles index updates correctly
-                                /> */}
+                                
                                 <div className="section-team">
                                     <input
                                         type="text"
@@ -712,16 +694,8 @@ const AboutDashboard = () => {
                                     </div>
                                     {teammembers.image && <img src={URL.createObjectURL(teammembers.image)} alt={`Preview ${index}`} className="image-preview" />}
                                 </div>
-                                <button
-                            className="save-btn"
-                            onClick={() => {
-                                handleSave3("image", index) || handleSave4("name", index)|| handleSave4("title", index); // Call the first function
-                                  // Call the second function
-                            }}
-                        >
-                            SAVE
-                        </button>
-                                
+                              
+                                <button className="save-btn" onClick={() => handleSave3("name", "title", "image", index)}>SAVE</button>
                             </div>
                         ))}
                         <button className="add-service-btn" onClick={handleAddCard}>

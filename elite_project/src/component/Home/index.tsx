@@ -24,7 +24,7 @@ interface Home {
     clientimage: File | null;
     teamtext: string;
     teamvideo: File | null;
-    teamimage: File | null;
+    teamimage: string ;
     servicename: string;
     serviceimage: File | null;
     servicevideo: File | null;
@@ -44,7 +44,7 @@ const Home = () => {
         clientimage: null,
         teamtext: "",
         teamvideo: null,
-        teamimage: null,
+        teamimage: "",
         servicename: "",
         serviceimage: null,
         servicevideo: null,
@@ -144,12 +144,25 @@ const Home = () => {
                 <Cards />
             </section>
             <section className="CallToAction">
+            <img 
+        src={home.teamimage} 
+        alt="Team Background" 
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          zIndex: -1, // Ensure the text and button are on top of the image
+        }} 
+      />
                 <div className="action">
                     <div className="text-action">
                         <p className="text-action-1" data-aos="zoom-in-down">Ready to Elevate Your Career ?
                             Join Our Elite Squad of Innovators !
                         </p>
-                        <p className="text-action-2" data-aos="zoom-in-up">Unleash Your Potential and Become Part of the Creative Force Shaping the<br /> Future of Marketing !
+                        <p className="text-action-2" data-aos="zoom-in-up">{home.teamtext}
                         </p>
                     </div>
                     <div className="btn-work">

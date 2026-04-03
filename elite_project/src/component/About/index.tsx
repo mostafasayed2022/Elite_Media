@@ -68,6 +68,7 @@ const About = () => {
         philoImagePreviewUrl: null,
         teamtext: "",
     });
+  
     useEffect(() => {
         const fetchHomeData = async () => {
 
@@ -117,9 +118,24 @@ const About = () => {
     useEffect(() => {
         AOS.init({ duration: 1000 }); // Initialize AOS with a default duration for the animations
     }, []);
-
+    const formattedText = about.text.split("/").map((item, index) => (
+        <div key={index}>{item.trim()}</div>
+      ));
+      
+     
     return (
         <>
+<<<<<<< HEAD
+=======
+         
+            {/* <Helmet>
+        <title> About | Elite Media Houses – Your Marketing Innovation Partner</title>
+        <meta
+          name="description"
+          content="Learn about Elite Media Houses, an Advertising agency built on creativity, collaboration, and results. Our team is dedicated to delivering excellence through innovative strategies."
+        />
+      </Helmet> */}
+>>>>>>> 7420cb2b97c57da04a69312868cfa6c58e15ba0d
             <Header />
             <div className="about-container" >
                 <header className="about-header" >
@@ -159,6 +175,7 @@ const About = () => {
                                 {about.why_choose_ustext}
                             </p>
 
+<<<<<<< HEAD
                             <ul className="pha3">
                                 {about.text.slice(0, 3).map((item, index) => ( // Change 3 to the desired number of items to display
                                     <React.Fragment key={index}>
@@ -169,6 +186,13 @@ const About = () => {
                             </ul>
 
 
+=======
+                            <p className="pha3">
+                              
+                                
+                                {formattedText}
+                            </p>
+>>>>>>> 7420cb2b97c57da04a69312868cfa6c58e15ba0d
                             <div className="container-btn">
                                 <a href="/contact" className="contact-button-about">CONTACT</a>
                             </div>
