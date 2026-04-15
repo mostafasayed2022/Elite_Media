@@ -1,25 +1,37 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
-// import Header from './component/Header';
-import Home from './component/Home';
-import About from './component/About';
-import Work from './component/Work';
-import Login from './component/Login';
-import Register from './component/Register';
-import Contact from './component/Contact';
-import JoinTeam from './component/JoinTeam';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import './App.css';
+
+// Pages
+import Home from './pages/Home';
+import About from './pages/About';
+import Work from './pages/Work';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Contact from './pages/Contact';
+import JoinTeam from './pages/JoinTeam';
+
+// Dashboard (To be refactored if needed, but keeping for now)
 import Dashboard from './Dashboard/Dashboard';
 import HomeDashboard from './Dashboard/HomeDashboard';
 import ContactDashboard from './Dashboard/ContactDashboard';
 import AboutDashboard from './Dashboard/AboutDashboard';
 import WorkDashboard from './Dashboard/WorkDashboard';
 
-function App() {
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+      staleTime: 1000 * 60 * 5, // 5 minutes default
+    },
+  },
+});
 
+function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Router>
-        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -28,6 +40,8 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/join' element={<JoinTeam />} />
+          
+          {/* Dashboard Routes */}
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path="/HomeDashboard" element={<HomeDashboard />} />
           <Route path="/AboutDashboard" element={<AboutDashboard />} />
@@ -35,8 +49,8 @@ function App() {
           <Route path="/ContactDashboard" element={<ContactDashboard />} />
         </Routes>
       </Router>
-    </>
-  )
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

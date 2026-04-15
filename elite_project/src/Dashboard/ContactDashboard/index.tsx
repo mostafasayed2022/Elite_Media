@@ -1,7 +1,7 @@
 import React, { useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../Sidebar";
-import SearchBar from "../SearchBar";
+import Sidebar from "../../components/features/dashboard/Sidebar";
+import SearchBar from "../../components/features/dashboard/SearchBar";
 import axios from "axios";
 
 interface Contact {

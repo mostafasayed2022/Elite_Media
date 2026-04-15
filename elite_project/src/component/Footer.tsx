@@ -1,118 +1,98 @@
-import  { useEffect, useState } from "react";
-import "../Css/Footer.css";
-import logo from "../assets/logos/logo1.png"
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-// import '@fortawesome/fontawesome-free/css/all.min.css';
-
-
-interface Contact {
-    address: string;
-    phone: string;
-    email: string;
-    facebook_profile: string;
-    instagram_profile: string;
-    linkedin_profile: string;
-    id?: number; // Optional since it might be absent initially
-}
+import React from "react";
+import logo from "../assets/logos/logo1.png";
+import { useContact } from "../hooks/queries/useContact";
+import { Container } from "../components/ui/Container";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+    const { data: contact } = useContact();
 
-    // const [isEditing, setIsEditing] = useState<boolean>(false);
-    const [, setContactExists] = useState<boolean>(true);
-    const navigate = useNavigate(); // Hook for redirection
-
-    const [contact, setContact] = useState<Contact>({
-        address: "",
-        phone: "",
-        email: "",
-        facebook_profile: "",
-        instagram_profile: "",
-        linkedin_profile: "",
-    });
-
-
-    useEffect(() => {
-        const fetchContactData = async () => {
-
-            try {
-                const response = await axios.get("https://api.elitemediahouses.com/contact/", {
-
-                });
-
-                if (response.data.length > 0) {
-                    setContact(response.data[0]); // Assuming the user has only one contact
-                    setContactExists(true); // Contact exists
-                } else {
-                    setContactExists(true); // No contact exists, user will create one
-                    // Optionally, initialize a blank contact for the user to fill out
-                    setContact({
-                        address: "",
-                        phone: "",
-                        email: "",
-                        facebook_profile: "",
-                        instagram_profile: "",
-                        linkedin_profile: "",
-                    });
-                }
-            } catch (error: unknown) {
-                if (axios.isAxiosError(error) && error.response) {
-                    console.error("Error fetching contact data:", error.response);
-                    // Only redirect to login for authentication errors (401)
-                    if (error.response.status === 401) {
-                        navigate("/login");
-                    }
-                } else {
-                    console.error("Error fetching contact data:", error);
-                }
-            }
-        };
-
-        fetchContactData();
-    }, [navigate]);
-
-
+    const services = [
+        "Media Production",
+        "Websites & Applications",
+        "Branding & Identity",
+        "Graphic Design",
+    ];
 
     return (
-        <>
-            <footer className="footer">
-                <div className="footer-content">
-                    <img src={logo} alt="Logo" className="footer-logo" />
-                    <div className="head">
-                        <h4>Get in touch</h4>
-                        <div className="touch">
-                            <a href="mailto:hello@elitemediahouses.com">{contact.email}</a>
-                            <ul className="footer-contact">
-                                <li>Egypt|(+20) {contact.phone}</li>
-                            </ul>
-                        </div>
+        <footer className="bg-neutral-900 pt-20 pb-10 text-white font-montserrat">
+            <Container>
+                <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-16 lg:grid-cols-4">
+                    {/* Logo & Branding */}
+                    <div className="lg:col-span-1">
+                        <Link to="/">
+                            <img src={logo} alt="Elite Media Logo" className="mb-8 h-16 w-auto brightness-0 invert" />
+                        </Link>
+                        <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
+                            Elevating brands through strategic creativity and innovative media solutions. Elite Media for Elites.
+                        </p>
                     </div>
-                    <div className="touch-1">
-                        <h4>Services</h4>
-                        <ul className="footer-services">
-                            <li>Media Production</li>
-                            <li>Websites & Applications</li>
-                            <li>Branding & Identity</li>
-                            <li>Graphic Design</li>
+
+                    {/* Contact Info */}
+                    <div className="lg:col-span-1">
+                        <h4 className="mb-8 text-xl font-black uppercase tracking-tight text-primary">Get In Touch</h4>
+                        <ul className="space-y-4">
+                            <li>
+                                <a href={`mailto:${contact?.email}`} className="text-neutral-300 transition-colors hover:text-accent">
+                                    {contact?.email}
+                                </a>
+                            </li>
+                            <li className="text-neutral-400">
+                                Egypt | (+20) {contact?.phone}
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Services Links */}
+                    <div className="lg:col-span-1">
+                        <h4 className="mb-8 text-xl font-black uppercase tracking-tight text-primary">Services</h4>
+                        <ul className="space-y-4">
+                            {services.map((service) => (
+                                <li key={service} className="text-neutral-400 transition-colors hover:text-white cursor-pointer">
+                                    {service}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div className="lg:col-span-1">
+                        <h4 className="mb-8 text-xl font-black uppercase tracking-tight text-primary">Quick Links</h4>
+                        <ul className="space-y-4">
+                            <li><Link to="/about" className="text-neutral-400 hover:text-white">About Us</Link></li>
+                            <li><Link to="/work" className="text-neutral-400 hover:text-white">Our Work</Link></li>
+                            <li><Link to="/contact" className="text-neutral-400 hover:text-white">Career</Link></li>
                         </ul>
                     </div>
                 </div>
-                <div className="footer-but">
-                    <div className="social-icons-footer">
-                        <a href={contact.facebook_profile}><i className="fab fa-facebook-f"></i></a>
-                        <a href={contact.instagram_profile}><i className="fab fa-instagram"></i></a>
-                        <a href={contact.linkedin_profile}><i className="fab fa-linkedin-in"></i></a>
+
+                <div className="mt-10 flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
+                    <div className="flex space-x-6">
+                        {[
+                            { icon: <FaFacebookF />, url: contact?.facebook_profile },
+                            { icon: <FaInstagram />, url: contact?.instagram_profile },
+                            { icon: <FaLinkedinIn />, url: contact?.linkedin_profile },
+                        ].map((social, i) => (
+                            <a 
+                                key={i}
+                                href={social.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-xl text-neutral-400 transition-colors hover:text-accent"
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
                     </div>
-                    <div className="copy">
-                        {/* <Link to="/login">sign In</Link> */}
-                        <p>© 2024 Elite Media Houses. All rights reserved.</p>
+
+                    <div className="text-center text-xs font-bold uppercase tracking-widest text-neutral-500">
+                        <p>© {new Date().getFullYear()} Elite Media Houses. All rights reserved.</p>
                     </div>
                 </div>
-
-            </footer>
-        </>
+            </Container>
+        </footer>
     );
-}
-
+};
 
 export default Footer;

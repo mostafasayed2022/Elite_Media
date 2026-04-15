@@ -1,5 +1,5 @@
-import Sidebar from "../Sidebar";
-import SearchBar from "../SearchBar";
+import Sidebar from "../../components/features/dashboard/Sidebar";
+import SearchBar from "../../components/features/dashboard/SearchBar";
 import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import "../Css/Dashboard.css";
